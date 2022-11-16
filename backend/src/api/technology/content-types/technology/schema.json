@@ -1,0 +1,30 @@
+{
+  "kind": "collectionType",
+  "collectionName": "technologies",
+  "info": {
+    "singularName": "technology",
+    "pluralName": "technologies",
+    "displayName": "Technology",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "Name": {
+      "type": "string"
+    },
+    "specialisation": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::specialisation.specialisation",
+      "inversedBy": "technologies"
+    },
+    "Priority": {
+      "type": "integer",
+      "unique": false,
+      "min": 1
+    }
+  }
+}

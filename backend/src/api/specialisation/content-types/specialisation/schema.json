@@ -1,0 +1,30 @@
+{
+  "kind": "collectionType",
+  "collectionName": "specialisations",
+  "info": {
+    "singularName": "specialisation",
+    "pluralName": "specialisations",
+    "displayName": "Specialisation",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "Name": {
+      "type": "string"
+    },
+    "technologies": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::technology.technology",
+      "mappedBy": "specialisation"
+    },
+    "Priority": {
+      "type": "integer",
+      "min": 1,
+      "unique": true
+    }
+  }
+}
