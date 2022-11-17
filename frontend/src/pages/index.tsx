@@ -1,26 +1,16 @@
 import Head from 'next/head'
-
-import axios from 'axios';
 import Image from 'next/image';
+import {getHomepageData, getProjectsData, getTechnologiesData} from '@/services/cmsDataService';
 
 
 export async function getStaticProps() {
-    const BASE_URL = process.env.BASE_URL
-    const IMAGE_HOST_DOMAIN = process.env.IMAGE_HOST_DOMAIN
-    try {
-        const homepage = await axios.get(`${BASE_URL}/api/homepage?populate=Avatar`)
-        const technologies = await axios.get(`${BASE_URL}/api/specialisations?populate=technologies`)
-        const projects = await axios.get(`${BASE_URL}/api/projects?populate=Image`)
-        return {
-            props: {
-                homepageData: homepage.data,
-                IMAGE_HOST_DOMAIN,
-                technologies: technologies.data,
-                projects: projects.data
-            }
+    return {
+        props: {
+            homepageData:await getHomepageData(),
+            IMAGE_HOST_DOMAIN: process.env.IMAGE_HOST_DOMAIN,
+            technologies: await getTechnologiesData(),
+            projects: await getProjectsData(),
         }
-    } catch (e) {
-        console.log(e)
     }
 }
 
@@ -72,7 +62,7 @@ export default function Home({homepageData, IMAGE_HOST_DOMAIN, technologies, pro
                                     src={`${IMAGE_HOST_DOMAIN}${project.attributes.Image.data.attributes.formats.small.url}`}
                                     width={project.attributes.Image.data.attributes.formats.small.width}
                                     height={project.attributes.Image.data.attributes.formats.small.height}
-                                    />
+                                />
                                 <h3>{project.attributes.Title}</h3>
                                 <a href={project.attributes.Link}>link</a>
                                 <a href={project.attributes.Repository}>github</a>
