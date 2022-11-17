@@ -3,7 +3,9 @@
 const nextConfig = {
   reactStrictMode: true,
   swcMinify: true,
-  ignoreDuringBuilds: true, // ignore eslint
+  typescript:{
+    ignoreBuildErrors:true,
+  },
   images: {
       domains: [process.env.IMAGE_HOST_NAME]
   },

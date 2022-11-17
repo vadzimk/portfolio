@@ -12,7 +12,7 @@ export default function Technologies({technologies}) {
                             key={specialisation.id}>{specialisation.attributes.Name}
                             <ul>{specialisation.attributes.technologies.data
                                 .sort((a, b) => a.attributes.Priority - b.attributes.Priority)
-                                .map(technology => <Technology technology={technology}/>
+                                .map(technology => <Technology key={technology.id} technology={technology}/>
                                 )}</ul>
                         </li>)}
             </ul>
