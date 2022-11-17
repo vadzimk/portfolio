@@ -1,5 +1,8 @@
 
 
-export default function Technology(){
-    return (<div>Technology content</div>)
+export default function Technology({technology}){
+    return (
+        <li key={technology.id}>
+            -{technology.attributes.Name}
+        </li>)
 }
