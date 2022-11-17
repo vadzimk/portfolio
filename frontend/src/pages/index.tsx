@@ -3,6 +3,9 @@ import Image from 'next/image';
 import {getHomepageData, getProjectsData, getTechnologiesData} from '@/services/cmsDataService';
 import Technologies from '@/components/Technologies';
 import Projects from '@/components/Projects';
+import Contact from '@/components/Contact'
+import Header from '@/components/Header'
+import Footer from '@/components/Footer';
 
 
 export async function getStaticProps() {
@@ -29,6 +32,7 @@ export default function Home({homepageData, IMAGE_HOST_DOMAIN, technologies, pro
             </Head>
 
             <main>
+                <Header/>
                 <h1 className="text-3xl font-bold underline">
                     {heading}
                 </h1>
@@ -40,10 +44,9 @@ export default function Home({homepageData, IMAGE_HOST_DOMAIN, technologies, pro
 
                 <Technologies technologies={technologies}/>
                 <Projects projects={projects} IMAGE_HOST_DOMAIN={IMAGE_HOST_DOMAIN}/>
-                <h2>Contact me</h2>
+                <Contact/>
             </main>
-            <footer>
-            </footer>
+            <Footer/>
         </div>
     )
 }
