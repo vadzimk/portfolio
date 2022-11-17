@@ -2,6 +2,53 @@
 @tailwind components;
 @tailwind utilities;
 
+html {
+    font-size: 18px;
+}
+
+p {
+    @apply leading-6
+}
+h1 {
+    @apply text-7xl
+}
+h2 {
+    @apply text-5xl
+}
+h3 {
+    @apply text-4xl
+}
+
+h4 {
+    @apply text-2xl
+}
+
+h5 {
+    @apply text-xl
+}
+
+@media (max-width: 375px) {
+    html {
+        font-size: 16px;
+    }
+
+    h1 {
+        @apply text-5xl
+    }
+    h2 {
+        @apply text-4xl
+    }
+
+    h3 {
+        @apply text-2xl
+    }
+
+    h4 {
+        @apply text-xl
+    }
+
+}
+
 /*body{*/
 /*  @apply text-white bg-gray-800*/
 /*}*/
