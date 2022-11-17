@@ -2,6 +2,7 @@ import Head from 'next/head'
 import Image from 'next/image';
 import {getHomepageData, getProjectsData, getTechnologiesData} from '@/services/cmsDataService';
 import Technologies from '@/components/Technologies';
+import Projects from '@/components/Projects';
 
 
 export async function getStaticProps() {
@@ -38,26 +39,7 @@ export default function Home({homepageData, IMAGE_HOST_DOMAIN, technologies, pro
                 {/*/>*/}
 
                 <Technologies technologies={technologies}/>
-                <h2>Projects</h2>
-                <ul>
-                    {projects.data
-                        .sort((a, b) => a.attributes.Priority - b.attributes.Priority)
-                        .map(project =>
-                            <div key={project.id}>
-
-                                <Image
-                                    alt={`Project ${project.attributes.Title} image`}
-                                    src={`${IMAGE_HOST_DOMAIN}${project.attributes.Image.data.attributes.formats.small.url}`}
-                                    width={project.attributes.Image.data.attributes.formats.small.width}
-                                    height={project.attributes.Image.data.attributes.formats.small.height}
-                                />
-                                <h3>{project.attributes.Title}</h3>
-                                <a href={project.attributes.Link}>link</a>
-                                <a href={project.attributes.Repository}>github</a>
-                                <p>{project.attributes.Description}</p>
-                            </div>
-                        )}
-                </ul>
+                <Projects projects={projects} IMAGE_HOST_DOMAIN={IMAGE_HOST_DOMAIN}/>
                 <h2>Contact me</h2>
             </main>
             <footer>
