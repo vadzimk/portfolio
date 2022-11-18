@@ -38,9 +38,9 @@ export default function Home({homepageData, IMAGE_HOST_DOMAIN, technologies, pro
                     {/*    className="absolute left-[calc(35vw)] -top-[378px] md:translate-y-[198px] w-[605px] h-[609px] overflow-visible"*/}
                     {/*    style={{backgroundImage: `url(${Triangle.src})`}}/>*/}
                     <Image
-                        className="absolute left-[calc(35vw)] -top-[378px] md:translate-y-[198px] w-[605px] min-w-[605px] h-[609px] overflow-visible"
+                        className="absolute left-[calc(35vw)] -top-[378px] md:translate-y-[198px] min-w-[605px] h-[609px]"
                         src={Triangle} alt=""/>
-                    <div className="h-[calc(100vh)] max-w-[1320px] bg-green-100 mx-auto flex flex-col">
+                    <div className="h-[calc(100vh)] max-w-[1320px] mx-auto flex flex-col"> {/*bg-green-100*/}
                         <div className="z-10">
                             <Header/>
                         </div>
@@ -51,8 +51,8 @@ export default function Home({homepageData, IMAGE_HOST_DOMAIN, technologies, pro
                                         {heading}
                                     </div>
                                 </div>
-                                <div className="shrink-0 flex md:flex-col justify-end">
-                                    <Image className=""
+                                <div className="shrink-0 flex md:flex-col justify-end z-10">
+                                    <Image className="w-[200px] md:w-[300px]"
                                            src={`${IMAGE_HOST_DOMAIN}` + avatar.data.attributes.url}
                                            alt={avatar.data.attributes.alternativeText}
                                            width={avatar.data.attributes.width}
@@ -60,7 +60,7 @@ export default function Home({homepageData, IMAGE_HOST_DOMAIN, technologies, pro
                                     />
                                 </div>
                                 <Image src={Square} alt="" width={813} height={792}
-                                       className="absolute -left-[calc(813px-102px)] -bottom-[calc(792px-121px)]"/>
+                                       className="absolute min-w-[813px] -left-[calc(813px-216px)] md:-left-[calc(813px-216px)] lg:-left-[calc(813px-102px)] -bottom-[calc(792px-417px)] md:-bottom-[calc(792px-121px)]"/>
 
 
                             </div>
