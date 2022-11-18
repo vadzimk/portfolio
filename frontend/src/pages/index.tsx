@@ -34,18 +34,15 @@ export default function Home({homepageData, IMAGE_HOST_DOMAIN, technologies, pro
 
             <main>
                 <div className="h-[calc(100vh)] bg-gray100cold relative">
-                    {/*<div*/}
-                    {/*    className="absolute left-[calc(35vw)] -top-[378px] md:translate-y-[198px] w-[605px] h-[609px] overflow-visible"*/}
-                    {/*    style={{backgroundImage: `url(${Triangle.src})`}}/>*/}
                     <Image
                         className="absolute left-[calc(35vw)] -top-[378px] md:translate-y-[198px] min-w-[605px] h-[609px]"
                         src={Triangle} alt=""/>
-                    <div className="h-[calc(100vh)] max-w-[1320px] mx-auto flex flex-col"> {/*bg-green-100*/}
+                    <div className="h-[calc(100vh)] max-w-screen-desk mx-auto flex flex-col"> {/*bg-green-100*/}
                         <div className="z-10">
                             <Header/>
                         </div>
-                        <div className="flex flex-col justify-center grow">
-                            <div className="flex flex-col md:flex-row  relative">
+                        <div className="flex flex-col justify-center grow ">
+                            <div className="flex flex-col md:flex-row  relative mx-4"> {/*Hero message, avatar, deco-square*/}
                                 <div className="flex flex-col justify-end">
                                     <div className="hero-text z-10">
                                         {heading}

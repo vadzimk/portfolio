@@ -4,6 +4,9 @@ module.exports = {
     "./src/**/*.{js,ts,jsx,tsx}",
   ],
   theme: {
+    maxWidth: {
+      'screen-desk': '1320px',
+    },
     extend: {
       colors:{
         primary1: '#C0D6E7',
