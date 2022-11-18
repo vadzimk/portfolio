@@ -23,55 +23,42 @@
     html {
         font-size: 18px;
     }
-
-    h1 {
-        @apply text-7xl
-    }
-
-    h2 {
-        @apply text-5xl
-    }
-
-    h3 {
-        @apply text-3xl
-    }
-
-    h4 {
-        @apply text-2xl
-    }
-
-    h5 {
-        @apply text-xl
-    }
 }
 
 
 /*mobile*/
 html {
     font-size: 16px;
-    @apply font-sans leading-6 text-gray900
+    @apply font-sans leading-[150%] text-gray900
 }
 
 h1, h2, h3, h4, h5 {
-    @apply font-serif font-bold
+    @apply font-serif font-bold leading-normal
 }
 
 h1 {
-    @apply text-5xl
+    @apply text-5xl md:text-7xl
 }
 
 h2 {
-    @apply text-3xl
+    @apply text-3xl md:text-5xl
 }
 
 h3 {
-    @apply text-2xl
+    @apply text-2xl md:text-3xl
 }
 
 h4 {
+    @apply text-xl md:text-2xl
+}
+
+h5 {
     @apply text-xl
 }
 
+.hero-text{
+    @apply font-bold text-3xl md:text-4xl lg:text-5xl font-sans leading-[150%] md:leading-[150%] lg:leading-[150%] xl:leading-[150%] 2xl:leading-[150%]
+}
 
 /*body{*/
 /*  @apply text-white bg-gray-800*/
