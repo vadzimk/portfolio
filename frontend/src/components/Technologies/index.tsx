@@ -2,7 +2,7 @@ import Technology from '@/components/Technologies/Technology';
 
 export default function Technologies({technologies}) {
     return (
-        <div>
+        <div id="technologies">
             <h2>Technologies I use</h2>
             <ul>
                 {technologies.data

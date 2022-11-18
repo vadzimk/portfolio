@@ -1,71 +1,51 @@
 import Image from 'next/image';
 import logoSvg from '../../public/logo.svg'
 import {navlinks} from '@/components/navlinks';
-import {useState} from 'react';
 import Link from 'next/link'
+import useComponentVisible from '@/hooks/useComponentVisible';
 
 export default function Header() {
-    const [isOpen, setIsOpen] = useState(false)
+
+    const {ref, isVisible, setIsVisible} = useComponentVisible(false)
 
     return (
-        <header className="w-full h-[73px] bg-gray100cold opacity-80 backdrop-blur-[2px]">
-            <div className="mx-4 flex pt-4 justify-between">
-                <div className="flex flex-col justify-end">
-                    <Image src={logoSvg} alt="logo" className="w-[93px] h-[25px]"/>
+        <header ref={ref}
+                className="w-full h-[73px] bg-gray100cold opacity-80 backdrop-blur-[2px] sm:flex sm:justify-between">
+            <div className="mx-4 flex pt-4 sm:p-0 justify-between">
+                <div className="flex flex-col justify-center">
+                    <Image src={logoSvg} alt="logo" className="w-[93px] h-[25px] sm:w-[150px] sm:h-[40px]"/>
                 </div>
                 <div className="sm:hidden"> {/*sandwich*/}
                     <button type="button"
-                            onClick={() => setIsOpen(!isOpen)}
-                            className="block text-gray900 focus:text-accent1 focus:outline-none hover:text-gray500">
-                        <svg viewBox="0 0 100 80" className="w-10 h-10 fill-current ">
-                            <rect width="100" height="20"></rect>
-                            <rect y="30" width="100" height="20"></rect>
-                            <rect y="60" width="100" height="20"></rect>
+                            onClick={() => setIsVisible(!isVisible)}
+                            className="block text-gray900 active:text-accent1 focus:outline-none hover:text-gray500">
+                        <svg width="40" height="40" viewBox="0 0 40 40" className="w-10 h-10 fill-current ">
+                            {!isVisible ? <path fill-rule="evenodd" clip-rule="evenodd"
+                                                d="M0 0H40V6H0V0ZM0 16H40V22H0V16ZM40 32H0V38H40V32Z"/>
+                                : <path fill-rule="evenodd" clip-rule="evenodd"
+                                        d="M15.7573 18.2426L3.99996 30L8.24261 34.2426L20 22.4853L32.0416 34.5269L36.2842 30.2843L24.2426 18.2426L36.5269 5.95837L32.2842 1.71573L20 14L7.99996 2L3.75732 6.24264L15.7573 18.2426Z"/>}
                         </svg>
                     </button>
                 </div>
 
             </div>
-            {/*<!-- !isOpen && className="hidden" -->*/}
-            <nav className="py-3 sm:flex">
+
+            <nav className={`py-4 sm:p-0 ${isVisible ? 'block' : 'hidden'} sm:flex`}>
                 {
                     navlinks.map(item => (
-                        <div
-                            className="block px-2 py-4 odd:bg-[#F4F8FB] hover:bg-gray300"
+                        <div onClick={()=>setIsVisible(false)}
+                            className="px-2 py-2 sm:p-0 sm:flex sm:flex-col sm:justify-center sm:ml-4 odd:bg-[#F4F8FB] sm:odd:bg-transparent hover:bg-gray300 sm:hover:bg-transparent "
                             key={item.id}>
                             <Link className="block font-semibold text-end pr-2"
-                                  href="#">{item.name}</Link>
+                                  href={`#${item.id}`}>
+                                <h5
+                                    className="sm:hover:bg-gradient-to-r from-accent1 to-accent1 sm:hover:bg-bottom sm:hover:bg-[length:8px_6px] sm:hover:bg-repeat-x">{item.name}</h5>
+                            </Link>
                         </div>
 
 
                     ))}
 
-
-                {/*<div className="relative sm:ml-3">*/}
-                {/*    <button className="z-10 relative block h-10 w-10 object-cover rounded-full overflow-hidden border-2 border-gray-300 focus:border-white focus:outline-none">*/}
-                {/*        <img className="h-full w-full" src="./img/kittin-logo.jpg"/>*/}
-                {/*    </button>*/}
-                {/*    /!*<!--   onClick={ ()=>setIsOpen(false) }         -->*/}
-                {/*    <!--*/}
-                {/*        useffect(()=>{*/}
-                {/*                const handleEscape=(e)=>{*/}
-                {/*                    if (e.key==='Esc' || e.key==='Escape')*/}
-                {/*                        setIsOpen(false)*/}
-                {/*                }*/}
-                {/*                document.setEventListener('keydown', handleEscape)*/}
-                {/*                return ()=>document.removeEventListener('keydown', handleEscape)*/}
-                {/*    })*/}
-                {/*    -->*!/*/}
-                {/*    <button tabindex="-1" className="fixed inset-0 bg-black opacity-50 h-full w-full cursor-default "></button>*/}
-                {/*    /!*<!--  isOpen &&     onClick={ ()=>setIsOpen(!isOpen) }        -->*!/*/}
-                {/*    <div className="absolute right-0 bg-white rounded-lg py-2 w-48 mt-2 shadow-xl">*/}
-                {/*        <a className="block px-4 py-2 hover:bg-indigo-400 hover:text-white" href="#">Account settings</a>*/}
-                {/*        <a className="block px-4 py-2 hover:bg-indigo-400 hover:text-white" href="#">Support</a>*/}
-                {/*        <a className="block px-4 py-2 hover:bg-indigo-400 hover:text-white" href="#">Sign out</a>*/}
-                {/*    </div>*/}
-
-
-                {/*</div>*/}
             </nav>
 
             <div className="hidden"> {/*desktop menu*/}

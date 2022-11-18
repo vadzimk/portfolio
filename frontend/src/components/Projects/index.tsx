@@ -4,7 +4,7 @@ import Image from 'next/image';
 
 export default function Projects({projects, IMAGE_HOST_DOMAIN}) {
     return (
-        <div>
+        <div id="projects">
             <h2>Projects</h2>
             <ul>
                 {projects.data

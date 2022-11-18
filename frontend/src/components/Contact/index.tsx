@@ -1,5 +1,7 @@
 export default function Contact() {
-  return (
-    <h2>Contact me form</h2>
-  )
+    return (
+        <div id="contact">
+            <h2>Contact me form</h2>
+        </div>
+    )
 }
