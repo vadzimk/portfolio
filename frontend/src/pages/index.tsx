@@ -34,24 +34,27 @@ export default function Home({homepageData, IMAGE_HOST_DOMAIN, technologies, pro
 
             <main>
                 <div className="h-[calc(100vh)] bg-gray100cold">
-                    <div className="h-[calc(100vh)] w-[1320px] bg-green-100 mx-auto flex flex-col">
+                    <div className="h-[calc(100vh)] max-w-[1320px] bg-green-100 mx-auto flex flex-col">
                         <Header/>
                         <div className="flex flex-col justify-center grow">
-                            <div className="flex bg-amber-300 relative">
+                            <div className="flex flex-col md:flex-row bg-amber-300 relative">
                                 <div className="flex flex-col justify-end">
                                     <h1 className="text-[48px] font-sans leading-[150%] font-bold ">
                                         {heading}
                                     </h1>
                                 </div>
-                                <Image className="shrink-0"
-                                       src={`${IMAGE_HOST_DOMAIN}` + avatar.data.attributes.url}
-                                       alt={avatar.data.attributes.alternativeText}
-                                       width={avatar.data.attributes.width}
-                                       height={avatar.data.attributes.height}
-                                />
+                                <div className="shrink-0 flex md:flex-col justify-end">
+                                    <Image className=""
+                                        src={`${IMAGE_HOST_DOMAIN}` + avatar.data.attributes.url}
+                                        alt={avatar.data.attributes.alternativeText}
+                                        width={avatar.data.attributes.width}
+                                        height={avatar.data.attributes.height}
+                                    />
+                                </div>
                                 <Image src={Square} alt="" width={813} height={792}
                                        className="absolute -left-[calc(813px-102px)] -bottom-[calc(792px-121px)]"/>
-                                <Image src={Triangle} alt="" width={605} height={609} className="absolute left-[508px] -top-[539px]"/>
+                                <Image src={Triangle} alt="" width={605} height={609}
+                                       className="absolute left-[508px] -top-[539px]"/>
 
                             </div>
                         </div>

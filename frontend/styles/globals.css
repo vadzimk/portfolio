@@ -9,6 +9,7 @@
     font-display: optional;
     src: url(/fonts/Hahmlet/Hahmlet-VariableFont_wght.ttf) format("woff2");
 }
+
 @font-face {
     font-family: "Rubik";
     font-style: normal;
@@ -17,57 +18,60 @@
     src: url(/fonts/Rubik/Rubik-VariableFont_wght.ttf) format("woff2");
 }
 
+/*medium md	768px*/
+@media (min-width: 768px) {
+    html {
+        font-size: 18px;
+    }
+
+    h1 {
+        @apply text-7xl
+    }
+
+    h2 {
+        @apply text-5xl
+    }
+
+    h3 {
+        @apply text-3xl
+    }
+
+    h4 {
+        @apply text-2xl
+    }
+
+    h5 {
+        @apply text-xl
+    }
+}
+
+
+/*mobile*/
 html {
-    font-size: 18px;
-    @apply font-sans text-gray900
+    font-size: 16px;
+    @apply font-sans leading-6 text-gray900
 }
 
 h1, h2, h3, h4, h5 {
     @apply font-serif font-bold
 }
 
-p {
-    @apply leading-6
-}
 h1 {
-    @apply text-7xl
-}
-h2 {
     @apply text-5xl
 }
-h3 {
+
+h2 {
     @apply text-3xl
 }
 
-h4 {
+h3 {
     @apply text-2xl
 }
 
-h5 {
+h4 {
     @apply text-xl
 }
 
-@media (max-width: 375px) {
-    html {
-        font-size: 16px;
-    }
-
-    h1 {
-        @apply text-5xl
-    }
-    h2 {
-        @apply text-3xl
-    }
-
-    h3 {
-        @apply text-2xl
-    }
-
-    h4 {
-        @apply text-xl
-    }
-
-}
 
 /*body{*/
 /*  @apply text-white bg-gray-800*/
