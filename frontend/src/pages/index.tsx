@@ -61,8 +61,6 @@ export default function Home({homepageData, IMAGE_HOST_DOMAIN, technologies, pro
                                 </div>
                                 <Image src={Square} alt="" width={813} height={792}
                                        className="absolute min-w-[813px] -left-[calc(813px-216px)] md:-left-[calc(813px-216px)] lg:-left-[calc(813px-102px)] -bottom-[calc(792px-417px)] md:-bottom-[calc(792px-121px)]"/>
-
-
                             </div>
                         </div>
 
