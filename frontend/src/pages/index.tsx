@@ -33,12 +33,17 @@ export default function Home({homepageData, IMAGE_HOST_DOMAIN, technologies, pro
             </Head>
 
             <main>
-                <div className="h-[calc(100vh)] bg-gray100cold">
-                    <div className="absolute left-[calc(35vw)] -top-[378px] md:translate-y-[198px] bg-red-200 w-[605px] h-[609px]"
-                         style={{backgroundImage: `url(${Triangle.src})`}}
-                    />
+                <div className="h-[calc(100vh)] bg-gray100cold relative">
+                    {/*<div*/}
+                    {/*    className="absolute left-[calc(35vw)] -top-[378px] md:translate-y-[198px] w-[605px] h-[609px] overflow-visible"*/}
+                    {/*    style={{backgroundImage: `url(${Triangle.src})`}}/>*/}
+                    <Image
+                        className="absolute left-[calc(35vw)] -top-[378px] md:translate-y-[198px] w-[605px] min-w-[605px] h-[609px] overflow-visible"
+                        src={Triangle} alt=""/>
                     <div className="h-[calc(100vh)] max-w-[1320px] bg-green-100 mx-auto flex flex-col">
-                        <Header/>
+                        <div className="z-10">
+                            <Header/>
+                        </div>
                         <div className="flex flex-col justify-center grow">
                             <div className="flex flex-col md:flex-row  relative">
                                 <div className="flex flex-col justify-end">
