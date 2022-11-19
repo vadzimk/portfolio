@@ -34,12 +34,12 @@ export default function Header() {
                 {
                     navlinks.map(item => (
                         <div onClick={()=>setIsVisible(false)}
-                            className="px-2 py-2 sm:p-0 sm:flex sm:flex-col sm:justify-center sm:ml-4 odd:bg-[#F4F8FB] sm:odd:bg-transparent hover:bg-gray300 sm:hover:bg-transparent "
+                            className="px-2 py-2 sm:p-0 sm:flex sm:flex-col sm:justify-center sm:ml-4 odd:bg-[#F4F8FB] sm:odd:bg-transparent  "
                             key={item.id}>
                             <Link className="block font-semibold text-end pr-2"
                                   href={`#${item.id}`}>
                                 <h5
-                                    className="sm:hover:bg-gradient-to-r from-accent1 to-accent1 sm:hover:bg-bottom sm:hover:bg-[length:8px_6px] sm:hover:bg-repeat-x">{item.name}</h5>
+                                    className=" inline-block hover:bg-gradient-to-r from-accent1 to-accent1 hover:bg-bottom hover:bg-[length:8px_6px] hover:bg-repeat-x">{item.name}</h5>
                             </Link>
                         </div>
 
