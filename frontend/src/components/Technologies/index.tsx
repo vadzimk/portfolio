@@ -1,21 +1,22 @@
 import Technology from '@/components/Technologies/Technology';
+import Category from '@/components/Technologies/Category';
 
 export default function Technologies({technologies}) {
     return (
-        <div id="technologies">
-            <h2>Technologies I use</h2>
-            <ul>
-                {technologies.data
-                    .sort((a, b) => a.attributes.Priority - b.attributes.Priority)
-                    .map(specialisation =>
-                        <li
-                            key={specialisation.id}>{specialisation.attributes.Name}
-                            <ul>{specialisation.attributes.technologies.data
-                                .sort((a, b) => a.attributes.Priority - b.attributes.Priority)
-                                .map(technology => <Technology key={technology.id} technology={technology}/>
-                                )}</ul>
-                        </li>)}
-            </ul>
+        <div id="technologies"
+             className="min-h-[calc(100vh)] bg-gray100warm relative">
+            <div className="mx-4 pt-24">
+                <h2>Technologies I use</h2>
+                <>
+                    {technologies.data
+                        .sort((a, b) => a.attributes.Priority - b.attributes.Priority)
+                        .map(categ =>
+                            <Category
+                                key={categ.id}
+                                categ={categ}/>
+                            )}
+                </>
+            </div>
         </div>
     )
 }

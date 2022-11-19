@@ -50,6 +50,10 @@ h5 {
     @apply font-bold text-2xl sm:text-3xl md:text-4xl  font-sans leading-[150%] md:leading-[150%] lg:leading-[150%] xl:leading-[150%] 2xl:leading-[150%]
 }
 
+.accent-text{
+    @apply font-serif font-extralight text-xl
+}
+
 /*body{*/
 /*  @apply text-white bg-gray-800*/
 /*}*/

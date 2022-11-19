@@ -11,11 +11,13 @@ export default function Header() {
     return (
         <header ref={ref}
                 className="w-full h-[73px] bg-gray100cold opacity-80 backdrop-blur-[2px] sm:flex sm:justify-between">
-            <div className="mx-4 flex pt-4 sm:p-0 justify-between">
+            <div className="mx-4 pt-4 sm:p-0 flex justify-between">
+                {/*logo*/}
                 <div className="flex flex-col justify-center">
                     <Image src={logoSvg} alt="logo" className="w-[93px] h-[25px] sm:w-[150px] sm:h-[40px]"/>
                 </div>
-                <div className="sm:hidden"> {/*sandwich*/}
+                {/*hamburger*/}
+                <div className="sm:hidden">
                     <button type="button"
                             onClick={() => setIsVisible(!isVisible)}
                             className="block text-gray900 active:text-accent1 focus:outline-none hover:text-gray500">
@@ -27,19 +29,18 @@ export default function Header() {
                         </svg>
                     </button>
                 </div>
-
             </div>
-
-            <nav className={`py-4 sm:p-0 ${isVisible ? 'block' : 'hidden'} sm:flex`}>
+            {/*links*/}
+            <nav className={`py-4 sm:p-0 sm:mx-4 ${isVisible ? 'block' : 'hidden'} sm:flex`}>
                 {
                     navlinks.map(item => (
-                        <div onClick={()=>setIsVisible(false)}
-                            className="px-2 py-2 sm:p-0 sm:flex sm:flex-col sm:justify-center sm:ml-4 odd:bg-[#F4F8FB] sm:odd:bg-transparent  "
-                            key={item.id}>
+                        <div onClick={() => setIsVisible(false)}
+                             className="px-2 py-2 sm:p-0 sm:flex sm:flex-col sm:justify-center sm:ml-4 odd:bg-[#F4F8FB] sm:odd:bg-transparent  "
+                             key={item.id}>
                             <Link className="block font-semibold text-end pr-2"
                                   href={`#${item.id}`}>
                                 <h5
-                                    className=" inline-block hover:bg-gradient-to-r from-accent1 to-accent1 hover:bg-bottom hover:bg-[length:8px_6px] hover:bg-repeat-x">{item.name}</h5>
+                                    className=" inline-block hover:bg-gradient-to-r from-accent1 to-accent1 hover:bg-bottom hover:bg-[length:8px_10px] hover:bg-repeat-x">{item.name}</h5>
                             </Link>
                         </div>
 
@@ -47,13 +48,6 @@ export default function Header() {
                     ))}
 
             </nav>
-
-            <div className="hidden"> {/*desktop menu*/}
-                {
-                    navlinks.map(item => (
-                        <div key={item.id}>{item.name}</div>
-                    ))}
-            </div>
         </header>
     )
 }
