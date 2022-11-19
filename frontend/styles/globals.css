@@ -58,6 +58,10 @@ h5 {
     @apply px-4 pt-24 sm:max-w-screen-desk sm:mx-auto
 }
 
+.project-gradient{
+    @apply bg-gradient-to-b from-[#CFF7EF] via-[#D8F2F9] to-[#DEF0FD]
+}
+
 /*body{*/
 /*  @apply text-white bg-gray-800*/
 /*}*/

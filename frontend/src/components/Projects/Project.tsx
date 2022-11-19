@@ -20,19 +20,22 @@ const linkGithubThin = <svg width="36" height="36" fill="none" className="text-g
 
 export default function Project({project, IMAGE_HOST_DOMAIN}) {
     return (
-        <div className="pt-14 pb-3"
+        <div className="pt-16 pb-3"
              key={project.id}>
-            <div className="bg-amber-200  aspect-[1.34] max-w-[648px] flex justify-end items-end">
-                <div className="relative h-[90%]  aspect-[1.34] ">
-                    <Image fill className=""
-                           alt={`Project ${project.attributes.Title} image`}
-                           src={`${IMAGE_HOST_DOMAIN}${project.attributes.Image.data.attributes.formats.small.url}`}
-                        // width={project.attributes.Image.data.attributes.formats.small.width}
-                        // height={project.attributes.Image.data.attributes.formats.small.height}
-                    />
+            <div className="project-gradient aspect-[1.34] max-w-[648px] flex justify-end items-end">
+                <div className="h-[90%] aspect-[1.34]">
+                    <div className="relative h-full w-full">
+                        <Image fill
+                               style={{objectFit: "contain", objectPosition: "right bottom"}}
+                               alt={`Project ${project.attributes.Title} image`}
+                               src={`${IMAGE_HOST_DOMAIN}${project.attributes.Image.data.attributes.formats.small.url}`}
+                            // width={project.attributes.Image.data.attributes.formats.small.width}
+                            // height={project.attributes.Image.data.attributes.formats.small.height}
+                        />
+                    </div>
                 </div>
             </div>
-            <div className="px-4 pt-7">
+            <div className="px-4 pt-7 pb-5">
                 <div className="flex justify-between">
                     <div className="flex flex-col justify-center">
                         <h3 className="lowercase">{project.attributes.Title}</h3>
@@ -48,11 +51,14 @@ export default function Project({project, IMAGE_HOST_DOMAIN}) {
                            href={project.attributes.Repository}>{linkGithubThin}</a>
                     </div>
                 </div>
-                <div className="pt-3">
+                <div className="pt-3 ">
                     {project.attributes.Description}
                 </div>
             </div>
-
+            <div className="flex justify-end">
+                <div className="bg-secondary1 h-2 w-14"></div>
+            </div>
         </div>
     )
 }
+// linear-gradient(4.04deg, rgba(199, 229, 252, 0.6) 38.41%, rgba(47, 234, 168, 0.136) 149.13%)
