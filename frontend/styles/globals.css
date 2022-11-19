@@ -54,6 +54,10 @@ h5 {
     @apply font-serif font-extralight text-xl
 }
 
+.section-container{
+    @apply px-4 pt-24 sm:max-w-screen-desk sm:mx-auto
+}
+
 /*body{*/
 /*  @apply text-white bg-gray-800*/
 /*}*/
