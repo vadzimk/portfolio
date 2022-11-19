@@ -20,7 +20,7 @@ const linkGithubThin = <svg width="36" height="36" fill="none" className="text-g
 
 export default function Project({project, IMAGE_HOST_DOMAIN}) {
     return (
-        <div className="pt-16 pb-3 flex flex-col sm:flex-none sm:grid sm:grid-cols-2 xl:gap-x-12 sm:max-w-screen-desk sm:mx-auto"
+        <div className="pt-24 pb-3 flex flex-col sm:flex-none sm:grid sm:grid-cols-2 xl:gap-x-12 sm:max-w-screen-desk sm:mx-auto"
              key={project.id}>
             {/*image section*/}
             <div className={`project-gradient aspect-[1.34] max-w-[648px] flex justify-end items-end 
