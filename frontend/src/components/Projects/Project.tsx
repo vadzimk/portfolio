@@ -23,7 +23,9 @@ export default function Project({project, IMAGE_HOST_DOMAIN}) {
         <div className="pt-16 pb-3 flex flex-col sm:flex-none sm:grid sm:grid-cols-2 xl:gap-x-12 sm:max-w-screen-desk sm:mx-auto"
              key={project.id}>
             {/*image section*/}
-            <div className="project-gradient aspect-[1.34] max-w-[648px] flex justify-end items-end">
+            <div className={`project-gradient aspect-[1.34] max-w-[648px] flex justify-end items-end 
+            ${project.id % 2===0 ? 'sm:col-start-2 sm:row-start-1 sm:col-span-1': ''}
+            `}>
                 <div className="h-[90%] aspect-[1.34]">
                     <div className="relative h-full w-full">
                         <Image fill
@@ -37,7 +39,9 @@ export default function Project({project, IMAGE_HOST_DOMAIN}) {
                 </div>
             </div>
             {/*description section*/}
-            <div className="flex flex-col justify-start sm:justify-between">
+            <div className={`flex flex-col justify-start sm:justify-between
+            ${project.id % 2===0 ? 'sm:col-start-1 sm:row-start-1 sm:col-span-1' : ''}
+            `}>
                 {/*description*/}
                 <div className="px-4 pt-7 pb-5 max-w-[648px]">
                     <div className="flex justify-between">
