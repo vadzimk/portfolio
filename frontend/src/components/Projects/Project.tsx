@@ -20,8 +20,9 @@ const linkGithubThin = <svg width="36" height="36" fill="none" className="text-g
 
 export default function Project({project, IMAGE_HOST_DOMAIN}) {
     return (
-        <div className="pt-16 pb-3"
+        <div className="pt-16 pb-3 flex flex-col sm:flex-none sm:grid sm:grid-cols-2 xl:gap-x-12 sm:max-w-screen-desk sm:mx-auto"
              key={project.id}>
+            {/*image section*/}
             <div className="project-gradient aspect-[1.34] max-w-[648px] flex justify-end items-end">
                 <div className="h-[90%] aspect-[1.34]">
                     <div className="relative h-full w-full">
@@ -35,28 +36,33 @@ export default function Project({project, IMAGE_HOST_DOMAIN}) {
                     </div>
                 </div>
             </div>
-            <div className="px-4 pt-7 pb-5">
-                <div className="flex justify-between">
-                    <div className="flex flex-col justify-center">
-                        <h3 className="lowercase">{project.attributes.Title}</h3>
+            {/*description section*/}
+            <div className="flex flex-col justify-start sm:justify-between">
+                {/*description*/}
+                <div className="px-4 pt-7 pb-5 max-w-[648px]">
+                    <div className="flex justify-between">
+                        <div className="flex flex-col justify-center">
+                            <h3 className="lowercase">{project.attributes.Title}</h3>
+                        </div>
+                        <div className="flex w-24 justify-between">
+                            <a className="block"
+                               target="_blank"
+                               rel="noreferrer"
+                               href={project.attributes.Link}>{linkSvg}</a>
+                            <a className="block"
+                               target="_blank"
+                               rel="noreferrer"
+                               href={project.attributes.Repository}>{linkGithubThin}</a>
+                        </div>
                     </div>
-                    <div className="flex w-24 justify-between">
-                        <a className="block"
-                           target="_blank"
-                           rel="noreferrer"
-                           href={project.attributes.Link}>{linkSvg}</a>
-                        <a className="block"
-                           target="_blank"
-                           rel="noreferrer"
-                           href={project.attributes.Repository}>{linkGithubThin}</a>
+                    <div className="pt-3 ">
+                        {project.attributes.Description}
                     </div>
                 </div>
-                <div className="pt-3 ">
-                    {project.attributes.Description}
+                {/*decoration box*/}
+                <div className="flex justify-end">
+                    <div className="bg-secondary1 h-2 w-14"></div>
                 </div>
-            </div>
-            <div className="flex justify-end">
-                <div className="bg-secondary1 h-2 w-14"></div>
             </div>
         </div>
     )
