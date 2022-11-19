@@ -4,9 +4,7 @@ module.exports = {
     "./src/**/*.{js,ts,jsx,tsx}",
   ],
   theme: {
-    maxWidth: {
-      'screen-desk': '1320px',
-    },
+
     extend: {
       colors:{
         primary1: '#C0D6E7',
@@ -23,7 +21,14 @@ module.exports = {
       fontFamily:{
         sans: ['Rubik', 'sans-serif'],
         serif: ['Hahmlet', 'serif']
-      }
+      },
+      maxWidth: {
+        'screen-desk': '1320px',
+      },
+      screens:{
+        '3xl': '1920px',
+        // => @media (min-width: 1920px) { ... }
+      },
     },
   },
   plugins: [],

@@ -5,7 +5,7 @@ export default function Technologies({technologies}) {
     return (
         <div id="technologies"
              className="min-h-[calc(100vh)] bg-gray100warm relative">
-            <div className="mx-4 pt-24">
+            <div className="px-4 pt-24 sm:max-w-screen-desk sm:mx-auto">
                 <h2>Technologies I use</h2>
                 <>
                     {technologies.data
