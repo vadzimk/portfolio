@@ -22,13 +22,17 @@ html {
     @apply text-[16px] md:text-[18px] font-sans leading-[150%] text-gray900 scroll-smooth
 }
 
-h1, h2, h3, h4, h5 {
+
+h2, h3, h4, h5 {
     @apply font-serif font-bold leading-normal
 }
 
-h1 {
-    @apply text-5xl md:text-7xl
+h1{
+    @apply font-bold text-2xl sm:text-3xl md:text-4xl  font-sans leading-[150%] md:leading-[150%] lg:leading-[150%] xl:leading-[150%] 2xl:leading-[150%]
 }
+/*h1 {*/
+/*    @apply text-5xl md:text-7xl*/
+/*}*/
 
 h2 {
     @apply text-3xl md:text-5xl
@@ -46,9 +50,9 @@ h5 {
     @apply text-xl
 }
 
-.hero-text{
-    @apply font-bold text-2xl sm:text-3xl md:text-4xl  font-sans leading-[150%] md:leading-[150%] lg:leading-[150%] xl:leading-[150%] 2xl:leading-[150%]
-}
+/*.hero-text{*/
+/*    @apply font-bold text-2xl sm:text-3xl md:text-4xl  font-sans leading-[150%] md:leading-[150%] lg:leading-[150%] xl:leading-[150%] 2xl:leading-[150%]*/
+/*}*/
 
 .accent-text{
     @apply font-serif font-extralight text-xl
@@ -63,6 +67,10 @@ h5 {
 }
 .project-gradient-violet{
     @apply bg-gradient-to-b from-[#EEECFC]/50 via-[#E1EEFD]/50 to-[#DEF0FD]/50
+}
+
+.decorate-list ul{
+    @apply list-disc list-inside
 }
 
 /*https://stackoverflow.com/questions/5460129/how-to-create-a-drop-shadow-only-on-one-side-of-an-element*/

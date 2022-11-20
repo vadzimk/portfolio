@@ -8,6 +8,7 @@ export default function Header() {
 
     const {ref, isVisible, setIsVisible} = useComponentVisible(false)
 
+
     return (
         <header ref={ref}
                 className="fixed top-0 left-0 w-full h-[73px] bg-gradient-to-t from-gray100cold/90 to-gray100cold/100 backdrop-blur-[2px] sm:flex sm:justify-between">

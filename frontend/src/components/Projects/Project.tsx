@@ -1,4 +1,6 @@
 import Image from 'next/image';
+import {mdToHtml} from '@/utils/mdToHtml';
+import {useEffect, useState} from 'react';
 // https://jakearchibald.github.io/svgomg/
 const linkSvg = <svg width="36" height="36" fill="none" className="text-gray900 fill-current">
     <g clipPath="url(#a)">
@@ -19,12 +21,14 @@ const linkGithubThin = <svg width="36" height="36" fill="none" className="text-g
 </svg>
 
 export default function Project({project, IMAGE_HOST_DOMAIN}) {
+    console.log("project.attributes.Description", project.attributes.Description)
     return (
-        <div className="pt-24 pb-3 flex flex-col sm:flex-none sm:grid sm:grid-cols-2 xl:gap-x-12 sm:max-w-screen-desk sm:mx-auto"
-             key={project.id}>
+        <div
+            className="pt-24 pb-3 flex flex-col sm:flex-none sm:grid sm:grid-cols-2 xl:gap-x-12 sm:max-w-screen-desk sm:mx-auto"
+            key={project.id}>
             {/*image section*/}
             <div className={`project-gradient-green aspect-[1.34] max-w-[648px] flex items-end justify-end
-            ${project.id % 2===0 ? 'project-gradient-violet sm:col-start-2 sm:row-start-1 sm:col-span-1 sm:justify-start': 'project-gradient-green sm:justify-end'}
+            ${project.id % 2 === 0 ? 'project-gradient-violet sm:col-start-2 sm:row-start-1 sm:col-span-1 sm:justify-start' : 'project-gradient-green sm:justify-end'}
             `}>
                 <div className="h-[90%] aspect-[1.34]">
                     <div className="relative h-full w-full">
@@ -40,7 +44,7 @@ export default function Project({project, IMAGE_HOST_DOMAIN}) {
             </div>
             {/*description section*/}
             <div className={`flex flex-col justify-start sm:justify-between
-            ${project.id % 2===0 ? 'sm:col-start-1 sm:row-start-1 sm:col-span-1' : ''}
+            ${project.id % 2 === 0 ? 'sm:col-start-1 sm:row-start-1 sm:col-span-1' : ''}
             `}>
                 {/*description*/}
                 <div className="px-4 pt-7 pb-5 max-w-[648px]">
@@ -59,13 +63,14 @@ export default function Project({project, IMAGE_HOST_DOMAIN}) {
                                href={project.attributes.Repository}>{linkGithubThin}</a>
                         </div>
                     </div>
-                    <div className="pt-3 ">
-                        {project.attributes.Description}
-                    </div>
+                    <div className="pt-3 decorate-list"
+                         dangerouslySetInnerHTML={{__html: project.attributes.Description}}
+                    />
                 </div>
                 {/*decoration box*/}
-                <div className={`flex justify-end ${project.id % 2===0 ? 'sm:justify-start' : 'sm:justify-end'}`}>
-                    <div className={`bg-gradient-to-r from-secondary1 to-[#EEAFE9] h-2 w-14 mx-4 ${project.id % 2===0 ? 'rotate-180' : ''} `}></div>
+                <div className={`flex justify-end ${project.id % 2 === 0 ? 'sm:justify-start' : 'sm:justify-end'}`}>
+                    <div
+                        className={`bg-gradient-to-r from-secondary1 to-[#EEAFE9] h-2 w-14 mx-4 ${project.id % 2 === 0 ? 'rotate-180' : ''} `}></div>
                 </div>
             </div>
         </div>

@@ -8,21 +8,34 @@ import Header from '@/components/Header'
 import Footer from '@/components/Footer'
 import Square from '../../public/Square.svg'
 import Triangle from '../../public/Triangle.svg'
+import {mdToHtml} from '@/utils/mdToHtml';
 
 export async function getStaticProps() {
+    const homepageData = await getHomepageData()
+    // Use remark to convert markdown into HTML string
+    const headingHtml = await mdToHtml(homepageData.data.attributes.Heading)
+    const projects = await getProjectsData()
+    // replacing project's description string to contain html instead of markdown
+
+    // foreach does not work with await
+    for (let i = 0; i < projects.data.length; i++) {
+        projects.data[i].attributes.Description = await mdToHtml(projects.data[i].attributes.Description)
+    }
+
+
+    console.log("%j", projects)
     return {
         props: {
-            homepageData: await getHomepageData(),
+            headingHtml,
+            avatar: homepageData.data.attributes.Avatar,
             IMAGE_HOST_DOMAIN: process.env.IMAGE_HOST_DOMAIN,
             technologies: await getTechnologiesData(),
-            projects: await getProjectsData(),
+            projects
         }
     }
 }
 
-export default function Home({homepageData, IMAGE_HOST_DOMAIN, technologies, projects}) {
-    const heading = homepageData.data.attributes.Heading
-    const avatar = homepageData.data.attributes.Avatar
+export default function Home({headingHtml, avatar, IMAGE_HOST_DOMAIN, technologies, projects}) {
 
     return (
         <div>
@@ -41,18 +54,19 @@ export default function Home({homepageData, IMAGE_HOST_DOMAIN, technologies, pro
                         </div>
                         <div className="flex flex-col justify-center grow ">
                             <div
-                                className="flex flex-col md:flex-row  relative mx-4"> {/*Hero message, avatar, deco-square*/}
+                                className="flex flex-col md:flex-row md:justify-between  relative mx-4"> {/*Hero message, avatar, deco-square*/}
                                 <section className="flex flex-col justify-end">
-                                    <div className="hero-text z-10">
-                                        {heading}
-                                    </div>
+                                    <div className="z-10"
+                                         dangerouslySetInnerHTML={{__html: headingHtml}}
+                                    />
                                 </section>
                                 <div className="shrink-0 flex md:flex-col justify-end z-10">
-                                    <Image className="w-[200px] md:w-[300px] rounded-full shadow-[2px_4px_10px_-2px_rgba(0,0,0,0.05)]"
-                                           src={`${IMAGE_HOST_DOMAIN}` + avatar.data.attributes.url}
-                                           alt={avatar.data.attributes.alternativeText}
-                                           width={avatar.data.attributes.width}
-                                           height={avatar.data.attributes.height}
+                                    <Image
+                                        className="w-[200px] md:w-[300px] rounded-full shadow-[2px_4px_10px_-2px_rgba(0,0,0,0.05)]"
+                                        src={`${IMAGE_HOST_DOMAIN}` + avatar.data.attributes.url}
+                                        alt={avatar.data.attributes.alternativeText}
+                                        width={avatar.data.attributes.width}
+                                        height={avatar.data.attributes.height}
                                     />
                                 </div>
                                 <Image src={Square} alt="" width={813} height={792}
