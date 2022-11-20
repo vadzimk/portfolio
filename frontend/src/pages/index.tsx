@@ -38,7 +38,7 @@ export default function Home({homepageData, IMAGE_HOST_DOMAIN, technologies, pro
                         className="absolute left-[calc(35vw)] -top-[378px] md:translate-y-[198px] min-w-[605px] h-[609px]"
                         src={Triangle} alt=""/>
                     <div className="h-[calc(100vh)] max-w-screen-desk mx-auto flex flex-col"> {/*bg-green-100*/}
-                        <div className="z-10">
+                        <div className="z-20">
                             <Header/>
                         </div>
                         <div className="flex flex-col justify-center grow ">

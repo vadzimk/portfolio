@@ -10,9 +10,9 @@ export default function Header() {
 
     return (
         <header ref={ref}
-                className="fixed top-0 left-0 w-full h-[73px] bg-gray100cold opacity-80 backdrop-blur-[2px] sm:flex sm:justify-between">
-            <div className="max-w-screen-desk w-full mx-auto flex justify-between">
-                <div className="mx-4 pt-4 sm:p-0 flex justify-between">
+                className="fixed top-0 left-0 w-full h-[73px] bg-gradient-to-t from-gray100cold/90 to-gray100cold/100 backdrop-blur-[2px] sm:flex sm:justify-between">
+            <div className="max-w-screen-desk sm:px-4 w-full mx-auto flex flex-col justify-between sm:flex-row">
+                <div className="px-4 pt-4 sm:p-0 flex justify-between w-full">
                     {/*logo*/}
                     <Link className="flex flex-col justify-center" href="/">
                         <Image src={logoSvg} alt="logo" className="w-[93px] h-[25px] sm:w-[150px] sm:h-[40px]"/>
@@ -32,16 +32,16 @@ export default function Header() {
                     </div>
                 </div>
                 {/*links*/}
-                <nav className={`py-4 sm:p-0 sm:mx-4 ${isVisible ? 'block' : 'hidden'} sm:flex`}>
+                <nav className={`py-4 sm:p-0 w-full  ${isVisible ? 'block' : 'hidden'} sm:flex sm:justify-end`}>
                     {
                         navlinks.map(item => (
                             <div onClick={() => setIsVisible(false)}
-                                 className="px-2 py-2 sm:p-0 sm:flex sm:flex-col sm:justify-center sm:ml-4 odd:bg-[#F4F8FB] sm:odd:bg-transparent  "
+                                 className="px-2 py-2 sm:p-0 sm:flex sm:flex-col sm:justify-center sm:ml-4 odd:bg-gray100cold/90 even:bg-gray100warm/90 sm:odd:bg-transparent sm:even:bg-transparent  "
                                  key={item.id}>
-                                <Link className="block font-semibold text-end pr-2"
+                                <Link className="block font-semibold text-end pr-2 sm:pr-0"
                                       href={`#${item.id}`}>
                                     <h5
-                                        className=" inline-block hover:bg-gradient-to-r from-accent1 to-accent1 hover:bg-bottom hover:bg-[length:8px_10px] hover:bg-repeat-x">{item.name}</h5>
+                                        className="inline-block hover:bg-gradient-to-r from-accent1 to-accent1 hover:bg-bottom hover:bg-[length:8px_10px] hover:bg-repeat-x">{item.name}</h5>
                                 </Link>
                             </div>
 
