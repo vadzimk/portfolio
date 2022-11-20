@@ -1,5 +1,5 @@
 import Image from 'next/image';
-import logoSvg from '../../public/logo.svg'
+import logoSvg from '../../public/logo-colourful.svg'
 import {navlinks} from '@/components/navlinks';
 import Link from 'next/link'
 import useComponentVisible from '@/hooks/useComponentVisible';
