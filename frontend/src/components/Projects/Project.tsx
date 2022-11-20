@@ -23,8 +23,8 @@ export default function Project({project, IMAGE_HOST_DOMAIN}) {
         <div className="pt-24 pb-3 flex flex-col sm:flex-none sm:grid sm:grid-cols-2 xl:gap-x-12 sm:max-w-screen-desk sm:mx-auto"
              key={project.id}>
             {/*image section*/}
-            <div className={`project-gradient aspect-[1.34] max-w-[648px] flex justify-end items-end 
-            ${project.id % 2===0 ? 'sm:col-start-2 sm:row-start-1 sm:col-span-1': ''}
+            <div className={`project-gradient aspect-[1.34] max-w-[648px] flex items-end justify-end
+            ${project.id % 2===0 ? 'sm:col-start-2 sm:row-start-1 sm:col-span-1 sm:justify-start': 'sm:justify-end'}
             `}>
                 <div className="h-[90%] aspect-[1.34]">
                     <div className="relative h-full w-full">
@@ -64,8 +64,8 @@ export default function Project({project, IMAGE_HOST_DOMAIN}) {
                     </div>
                 </div>
                 {/*decoration box*/}
-                <div className="flex justify-end">
-                    <div className="bg-secondary1 h-2 w-14"></div>
+                <div className={`flex justify-end ${project.id % 2===0 ? 'sm:justify-start' : 'sm:justify-end'}`}>
+                    <div className="bg-secondary1 h-2 w-14 mx-4"></div>
                 </div>
             </div>
         </div>
