@@ -59,7 +59,7 @@ h5 {
 }
 
 .project-gradient{
-    @apply bg-gradient-to-b from-[#CFF7EF] via-[#D8F2F9] to-[#DEF0FD]
+    @apply bg-gradient-to-b from-[#CFF7EF]/50 via-[#D8F2F9]/50 to-[#DEF0FD]/50
 }
 
 /*body{*/

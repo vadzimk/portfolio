@@ -35,7 +35,7 @@ export default function Home({homepageData, IMAGE_HOST_DOMAIN, technologies, pro
             <main>
                 <div className="h-[calc(100vh)] bg-gray100cold relative">
                     <Image
-                        className="absolute left-[calc(35vw)] -top-[378px] md:translate-y-[198px] min-w-[605px] h-[609px]"
+                        className="opacity-50 absolute left-[calc(35vw)] -top-[378px] md:translate-y-[198px] min-w-[605px] h-[609px]"
                         src={Triangle} alt=""/>
                     <div className="h-[calc(100vh)] max-w-screen-desk mx-auto flex flex-col"> {/*bg-green-100*/}
                         <div className="z-20">
@@ -57,7 +57,7 @@ export default function Home({homepageData, IMAGE_HOST_DOMAIN, technologies, pro
                                     />
                                 </div>
                                 <Image src={Square} alt="" width={813} height={792}
-                                       className="absolute min-w-[813px] -left-[calc(813px-216px)] md:-left-[calc(813px-216px)] lg:-left-[calc(813px-102px)] -bottom-[calc(792px-417px)] md:-bottom-[calc(792px-121px)]"/>
+                                       className=" opacity-50 absolute min-w-[813px] -left-[calc(813px-216px)] md:-left-[calc(813px-216px)] lg:-left-[calc(813px-102px)] -bottom-[calc(792px-417px)] md:-bottom-[calc(792px-121px)]"/>
                             </div>
                         </div>
 
