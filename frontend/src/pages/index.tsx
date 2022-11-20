@@ -48,7 +48,7 @@ export default function Home({homepageData, IMAGE_HOST_DOMAIN, technologies, pro
                                     </div>
                                 </section>
                                 <div className="shrink-0 flex md:flex-col justify-end z-10">
-                                    <Image className="w-[200px] md:w-[300px]"
+                                    <Image className="w-[200px] md:w-[300px] rounded-full shadow-[2px_4px_10px_-2px_rgba(0,0,0,0.05)]"
                                            src={`${IMAGE_HOST_DOMAIN}` + avatar.data.attributes.url}
                                            alt={avatar.data.attributes.alternativeText}
                                            width={avatar.data.attributes.width}
