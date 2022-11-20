@@ -3,7 +3,7 @@ import Category from '@/components/Technologies/Category';
 
 export default function Technologies({technologies}) {
     return (
-        <div id="technologies"
+        <section id="technologies"
              className="min-h-[calc(100vh)] bg-gray100warm relative">
             <div className="section-container">
                 <h2>Technologies I use</h2>
@@ -17,6 +17,6 @@ export default function Technologies({technologies}) {
                             )}
                 </>
             </div>
-        </div>
+        </section>
     )
 }

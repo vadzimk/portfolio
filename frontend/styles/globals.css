@@ -58,8 +58,18 @@ h5 {
     @apply px-4 pt-24 sm:max-w-screen-desk sm:mx-auto
 }
 
-.project-gradient{
+.project-gradient-green{
     @apply bg-gradient-to-b from-[#CFF7EF]/50 via-[#D8F2F9]/50 to-[#DEF0FD]/50
+}
+.project-gradient-violet{
+    @apply bg-gradient-to-b from-[#EEECFC]/50 via-[#E1EEFD]/50 to-[#DEF0FD]/50
+}
+
+/*https://stackoverflow.com/questions/5460129/how-to-create-a-drop-shadow-only-on-one-side-of-an-element*/
+@layer utilities {
+    .clip-path {
+        clip-path: polygon(0% 0%, 100% 0%, 100% 120%, 0% 120%);
+    }
 }
 
 /*body{*/
