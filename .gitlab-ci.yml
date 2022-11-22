@@ -54,20 +54,20 @@ deploy_backend:
     - echo $IMAGE_NAME
     - echo "$SERVICE_NAME"_IMAGE_TAG
     - echo $IMAGE_TAG
-    # - set -o allexport
-    # - source $CMS_ENV
-    # - set +o allexport
     - cat $CMS_ENV > .CMS_ENV
     - ls -htla
-    - cat .CMS_ENV
   script:
     - ssh -o StrictHostKeyChecking=no -i $WS_KEY ubuntu@$WS_HOST "if [ ! -d ${PATH_BCK} ]; then mkdir -p ${PATH_BCK}; fi;"
-    - scp -o StrictHostKeyChecking=no -i $WS_KEY backend/docker-compose.yml ubuntu@$WS_HOST:${PATH_BCK}/
+    - scp -o StrictHostKeyChecking=no -i $WS_KEY backend/docker-compose.yml .CMS_ENV ubuntu@$WS_HOST:${PATH_BCK}/
     - ssh -o StrictHostKeyChecking=no -i $WS_KEY ubuntu@$WS_HOST "
       docker login -u $CI_REGISTRY_USER -p $CI_REGISTRY_PASSWORD $CI_REGISTRY &&
       export DC_IMAGE_NAME=$IMAGE_NAME &&
       export DC_IMAGE_TAG=$IMAGE_TAG &&
       cd ${PATH_BCK} &&
+      set -o allexport &&
+      source .CMS_ENV &&
+      set +o allexport &&
+      rm .CMS_ENV &&
       docker network create common_network || true &&
       docker-compose down &&
       JWT_SECRET=$JWT_SECRET &&
