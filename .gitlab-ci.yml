@@ -41,6 +41,9 @@ build_backend:
 
 deploy_backend:
   stage: deploy
+  only:
+    changes:
+      - backend/**/*
   variables:
     SERVICE_NAME: "cms_strapi"
     PATH_BCK: "/home/ubuntu/applications/portfolio/cms"
