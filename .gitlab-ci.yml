@@ -25,7 +25,7 @@ build_backend:
   before_script:
     - export IMAGE_NAME=$CI_REGISTRY_IMAGE/$SERVICE_NAME
     - apk add jq # install app to parse package.json
-    - export PACKAGE_VERSION=$(cat $SERVICE_NAME/package.json | jq -r .version)
+    - export PACKAGE_VERSION=$(cat backend/package.json | jq -r .version)
     - export IMAGE_TAG=$PACKAGE_VERSION.$CI_PIPELINE_IID
     - echo "IMAGE_TAG=$IMAGE_TAG"
     - echo "${SERVICE_NAME}_IMAGE_TAG"=$IMAGE_TAG
