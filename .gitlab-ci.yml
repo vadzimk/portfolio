@@ -10,9 +10,9 @@ stages:
 
 
 build_backend:
-  only:
-    changes:
-      - backend/**/*
+  # only:
+  #   changes:
+  #     - backend/**/*
   stage: build
   image: docker:20.10.17
   variables:
