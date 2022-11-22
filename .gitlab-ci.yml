@@ -64,16 +64,6 @@ deploy_backend:
       cd ${PATH_BCK} &&
       docker network create common_network || true &&
       docker-compose down &&
-#      export HOST=$HOST \
-#      PORT=$PORT \
-#      APP_KEYS=$APP_KEYS \
-#      API_TOKEN_SALT=$API_TOKEN_SALT \
-#      ADMIN_JWT_SECRET=$ADMIN_JWT_SECRET \
-#      DATABASE_HOST=$DATABASE_HOST \
-#      DATABASE_PORT=$DATABASE_PORT \
-#      DATABASE_NAME=$DATABASE_NAME \
-#      DATABASE_USERNAME=$DATABASE_USERNAME \
-#      DATABASE_PASSWORD=$DATABASE_PASSWORD \
       JWT_SECRET=$JWT_SECRET &&
       docker-compose up -d"
   resource_group: dev # fix The deployment job is older than the previously succeeded deployment job, and therefore cannot be run
