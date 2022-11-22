@@ -1,0 +1,31 @@
+version: "3.5"
+# Instructions:
+# docker network create common_network || true && docker-compose -f docker-compose.oci.prod.yml build --no-cache && docker-compose -f docker-compose.oci.prod.yml up
+
+networks:
+  common_network:
+    external:
+      name: common_network  # must match the actual name of the network created in the external file
+
+
+services:  # sequence matters because set DOCKER_BUILDKIT=0
+  cms_strapi:
+    container_name: cms_strapi
+    #    image: ${DC_IMAGE_NAME}:${DC_IMAGE_TAG}
+    image: cms_strapi
+    build:
+      context: .
+      dockerfile: Dockerfile
+    restart: always
+    networks:
+      - common_network
+    expose:
+      - 1337
+    ports:
+      - 1338:1337 # TODO images will be served from file storage directly
+    env_file:
+      - ./.env
+
+
+
+

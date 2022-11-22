@@ -8,7 +8,7 @@ export default function Technologies({technologies}) {
             <div className="section-container">
                 <h2>Technologies I use</h2>
                 <>
-                    {technologies.data
+                    {technologies?.data
                         .sort((a, b) => a.attributes.Priority - b.attributes.Priority)
                         .map(categ =>
                             <Category

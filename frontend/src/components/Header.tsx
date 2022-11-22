@@ -11,7 +11,7 @@ export default function Header() {
 
     return (
         <header ref={ref}
-                className="fixed top-0 left-0 w-full h-[73px] bg-gradient-to-t from-gray100cold/90 to-gray100cold/100 backdrop-blur-[2px] sm:flex sm:justify-between">
+                className="fixed top-0 left-0 w-full h-[73px] bg-gradient-to-t from-white/90 to-white/100 backdrop-blur-[2px] sm:flex sm:justify-between border-none shadow-[0px_0px_8px_1px_rgba(0,0,0,0.1)]">
             <div className="max-w-screen-desk sm:px-4 w-full mx-auto flex flex-col justify-between sm:flex-row">
                 <div className="px-4 pt-4 sm:p-0 flex justify-between w-full">
                     {/*logo*/}
@@ -22,7 +22,7 @@ export default function Header() {
                     <div className="sm:hidden">
                         <button type="button"
                                 onClick={() => setIsVisible(!isVisible)}
-                                className="block text-gray900 active:text-accent1 focus:outline-none hover:text-gray500">
+                                className="block text-gray500 active:text-accent1 focus:outline-none hover:text-gray900">
                             <svg width="40" height="40" viewBox="0 0 40 40" className="w-10 h-10 fill-current ">
                                 {!isVisible ? <path fillRule="evenodd" clipRule="evenodd"
                                                     d="M0 0H40V6H0V0ZM0 16H40V22H0V16ZM40 32H0V38H40V32Z"/>
@@ -33,7 +33,7 @@ export default function Header() {
                     </div>
                 </div>
                 {/*links*/}
-                <nav className={`py-4 sm:p-0 w-full  ${isVisible ? 'block' : 'hidden'} sm:flex sm:justify-end`}>
+                <nav className={`py-4 sm:p-0 w-full backdrop-blur-[3px] sm:backdrop-blur-none  ${isVisible ? 'block' : 'hidden'} sm:flex sm:justify-end`}>
                     {
                         navlinks.map(item => (
                             <div onClick={() => setIsVisible(false)}

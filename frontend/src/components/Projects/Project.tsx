@@ -21,7 +21,7 @@ const linkGithubThin = <svg width="36" height="36" fill="none" className="text-g
 </svg>
 
 export default function Project({project, IMAGE_HOST_DOMAIN}) {
-    console.log("project.attributes.Description", project.attributes.Description)
+
     return (
         <div
             className="pt-24 pb-3 flex flex-col sm:flex-none sm:grid sm:grid-cols-2 xl:gap-x-12 sm:max-w-screen-desk sm:mx-auto"
@@ -35,7 +35,7 @@ export default function Project({project, IMAGE_HOST_DOMAIN}) {
                         <Image fill
                                style={{objectFit: "contain", objectPosition: "right bottom"}}
                                alt={`Project ${project.attributes.Title} image`}
-                               src={`${IMAGE_HOST_DOMAIN}${project.attributes.Image.data.attributes.formats.small.url}`}
+                               src={`${IMAGE_HOST_DOMAIN}${project.attributes.Image.data?.attributes.formats.small.url}`}
                             // width={project.attributes.Image.data.attributes.formats.small.width}
                             // height={project.attributes.Image.data.attributes.formats.small.height}
                         />

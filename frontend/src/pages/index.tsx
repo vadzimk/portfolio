@@ -13,24 +13,24 @@ import {mdToHtml} from '@/utils/mdToHtml';
 export async function getStaticProps() {
     const homepageData = await getHomepageData()
     // Use remark to convert markdown into HTML string
-    const headingHtml = await mdToHtml(homepageData.data.attributes.Heading)
+    const headingHtml = await mdToHtml(homepageData?.data.attributes.Heading)
     const projects = await getProjectsData()
-    // replacing project's description string to contain html instead of markdown
 
-    // foreach does not work with await
-    for (let i = 0; i < projects.data.length; i++) {
-        projects.data[i].attributes.Description = await mdToHtml(projects.data[i].attributes.Description)
+    if (Array.isArray(projects?.data)) {
+        // replace project's description string to contain html instead of markdown
+        // foreach does not work with await
+        for (let i = 0; i < projects.data.length; i++) {
+            projects.data[i].attributes.Description = await mdToHtml(projects.data[i].attributes.Description)
+        }
     }
-
-
-    console.log("%j", projects)
+    // console.log("headingHtml-->", typeof headingHtml, headingHtml )
     return {
         props: {
             headingHtml,
-            avatar: homepageData.data.attributes.Avatar,
+            avatar: homepageData?.data.attributes.Avatar || null,
             IMAGE_HOST_DOMAIN: process.env.IMAGE_HOST_DOMAIN,
-            technologies: await getTechnologiesData(),
-            projects
+            technologies: await getTechnologiesData() || null,
+            projects: projects || null,
         }
     }
 }
@@ -61,13 +61,13 @@ export default function Home({headingHtml, avatar, IMAGE_HOST_DOMAIN, technologi
                                     />
                                 </section>
                                 <div className="shrink-0 flex md:flex-col justify-end z-10">
-                                    <Image
+                                    {avatar && <Image
                                         className="w-[200px] md:w-[300px] rounded-full shadow-[2px_4px_10px_-2px_rgba(0,0,0,0.05)]"
                                         src={`${IMAGE_HOST_DOMAIN}` + avatar.data.attributes.url}
                                         alt={avatar.data.attributes.alternativeText}
                                         width={avatar.data.attributes.width}
                                         height={avatar.data.attributes.height}
-                                    />
+                                    />}
                                 </div>
                                 <Image src={Square} alt="" width={813} height={792}
                                        className=" opacity-50 absolute min-w-[813px] -left-[calc(813px-216px)] md:-left-[calc(813px-216px)] lg:-left-[calc(813px-102px)] -bottom-[calc(792px-417px)] md:-bottom-[calc(792px-121px)]"/>

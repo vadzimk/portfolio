@@ -1,0 +1,37 @@
+version: "3.5"
+# Instructions:
+# export DOCKER_BUILDKIT=0; docker network create common_network || true && docker-compose -f docker-compose.oci.prod.yml down && docker-compose -f docker-compose.oci.prod.yml build --progress=plain --no-cache && docker-compose -f docker-compose.oci.prod.yml up
+
+networks:
+  common_network:
+    external:
+      name: common_network  # must match the actual name of the network created in the external file
+
+
+services:
+  portfolio_next:
+    container_name: portfolio_next
+#    image: ${DC_IMAGE_NAME}:${DC_IMAGE_TAG}
+    image: portfolio_next
+    build:
+      context: .
+      dockerfile: Dockerfile
+      network: common_network  # only when DOCKER_BUILDKIT=0
+    restart: always
+    networks:
+      - common_network
+    ports:
+      - 3009:3000  # TODO change to 3000, this is only for local debugging
+    env_file:
+      - ./.env.production
+#    environment:
+#      - MAIL_USERNAME=$MAIL_USERNAME
+#      - MAIL_PASSWORD=$MAIL_PASSWORD
+#      - OAUTH_CLIENTID=$OAUTH_CLIENTID
+#      - OAUTH_CLIENT_SECRET=$OAUTH_CLIENT_SECRET
+#      - OAUTH_REFRESH_TOKEN=$OAUTH_REFRESH_TOKEN
+#      - ACCESS_TOKEN=$ACCESS_TOKEN
+#      - RECEIVING_EMAILS=$RECEIVING_EMAILS
+
+
+
