@@ -59,7 +59,7 @@ deploy_backend:
     # - set +o allexport
     - cat $CMS_ENV > .CMS_ENV
     - ls -htla
-    - echo .CMS_ENV
+    - cat .CMS_ENV
   script:
     - ssh -o StrictHostKeyChecking=no -i $WS_KEY ubuntu@$WS_HOST "if [ ! -d ${PATH_BCK} ]; then mkdir -p ${PATH_BCK}; fi;"
     - scp -o StrictHostKeyChecking=no -i $WS_KEY backend/docker-compose.yml ubuntu@$WS_HOST:${PATH_BCK}/
