@@ -51,9 +51,12 @@ deploy_backend:
     - echo $IMAGE_NAME
     - echo "$SERVICE_NAME"_IMAGE_TAG
     - echo $IMAGE_TAG
-    - set -o allexport
-    - source $CMS_ENV
-    - set +o allexport
+    # - set -o allexport
+    # - source $CMS_ENV
+    # - set +o allexport
+    - cat $CMS_ENV > .CMS_ENV
+    - ls -htla
+    - echo .CMS_ENV
   script:
     - ssh -o StrictHostKeyChecking=no -i $WS_KEY ubuntu@$WS_HOST "if [ ! -d ${PATH_BCK} ]; then mkdir -p ${PATH_BCK}; fi;"
     - scp -o StrictHostKeyChecking=no -i $WS_KEY backend/docker-compose.yml ubuntu@$WS_HOST:${PATH_BCK}/
