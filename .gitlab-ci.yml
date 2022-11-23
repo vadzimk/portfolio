@@ -96,11 +96,12 @@ build_frontend: # can't use needs here because not the same or earlier stage is 
     - set -o allexport
     - source $NEXT_ENV
     - set +o allexport
+    - echo $IMAGE_HOST_NAME
   script:
     - docker login -u $CI_REGISTRY_USER -p $CI_REGISTRY_PASSWORD $CI_REGISTRY
     - export DOCKER_BUILDKIT=0  # allows networking during build
     - docker network create common_network
-    - docker build -t $IMAGE_NAME:$IMAGE_TAG --network=common_network --build-arg BASE_URL --build-arg IMAGE_HOST_NAME --build-arg IMAGE_HOST_DOMAIN --build-arg REVALIDATE_TOKEN ./frontend
+    - docker build -t $IMAGE_NAME:$IMAGE_TAG --network=common_network --build-arg BASE_URL=$BASE_URL --build-arg IMAGE_HOST_NAME=$IMAGE_HOST_NAME --build-arg IMAGE_HOST_DOMAIN=$IMAGE_HOST_DOMAIN --build-arg REVALIDATE_TOKEN=$REVALIDATE_TOKEN ./frontend
     - docker push $IMAGE_NAME:$IMAGE_TAG
   artifacts: # by default uploaded to all following stages if not specified in dependencies
     reports:
