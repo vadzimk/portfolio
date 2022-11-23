@@ -10,12 +10,20 @@ services:
   portfolio_next:
     container_name: portfolio_next
     image: ${DC_IMAGE_NAME}:${DC_IMAGE_TAG}
+    build:
+      context: .
+      dockerfile: Dockerfile
+      network: common_network  # only when DOCKER_BUILDKIT=0
     restart: always
     networks:
       - common_network
     ports:
       - 3000:3000
-#    environment:
+    environment:
+       - BASE_URL=$BASE_URL
+       - IMAGE_HOST_NAME=$IMAGE_HOST_NAME
+       - IMAGE_HOST_DOMAIN=$IMAGE_HOST_DOMAIN
+       - REVALIDATE_TOKEN=$REVALIDATE_TOKEN
 #      - MAIL_USERNAME=$MAIL_USERNAME
 #      - MAIL_PASSWORD=$MAIL_PASSWORD
 #      - OAUTH_CLIENTID=$OAUTH_CLIENTID
