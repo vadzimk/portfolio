@@ -1,0 +1,28 @@
+version: "3.5"
+
+networks:
+  common_network:
+    external:
+      name: common_network  # must match the actual name of the network created in the external file
+
+
+services:
+  portfolio_next:
+    container_name: portfolio_next
+    image: ${DC_IMAGE_NAME}:${DC_IMAGE_TAG}
+    restart: always
+    networks:
+      - common_network
+    ports:
+      - 3000:3000
+#    environment:
+#      - MAIL_USERNAME=$MAIL_USERNAME
+#      - MAIL_PASSWORD=$MAIL_PASSWORD
+#      - OAUTH_CLIENTID=$OAUTH_CLIENTID
+#      - OAUTH_CLIENT_SECRET=$OAUTH_CLIENT_SECRET
+#      - OAUTH_REFRESH_TOKEN=$OAUTH_REFRESH_TOKEN
+#      - ACCESS_TOKEN=$ACCESS_TOKEN
+#      - RECEIVING_EMAILS=$RECEIVING_EMAILS
+
+
+
