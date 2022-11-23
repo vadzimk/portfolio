@@ -5,12 +5,14 @@ workflow:
     - when: always
 
 stages:
-  - build
-  - deploy
+  - build-cms
+  - deploy-cms
+  - build-next  # cms must be already available in order to execute next static build
+  - deploy-next
 
 
 build_backend:
-  stage: build
+  stage: build-cms
   image: docker:20.10.17
   variables:
     # using "docker" as the host is only possible if you alias the service below
@@ -40,7 +42,7 @@ build_backend:
 
 
 deploy_backend:
-  stage: deploy
+  stage: deploy-cms
   variables:
     SERVICE_NAME: "cms_strapi"
     PATH_BCK: "/home/ubuntu/applications/portfolio/cms"
@@ -70,10 +72,8 @@ deploy_backend:
       docker-compose up -d"
   resource_group: dev # fix The deployment job is older than the previously succeeded deployment job, and therefore cannot be run
 
-build_frontend:
-  stage: build
-  needs:
-    - deploy_backend  # cms must be up for static page rendering
+build_frontend: # can't use needs here because not the same or earlier stage is referred to
+  stage: build-next
   image: docker:20.10.17
   variables:
     # using "docker" as the host is only possible if you alias the service below
@@ -111,7 +111,7 @@ build_frontend:
       dotenv: build.env # loaded in all subsequent jobs (must be relative to working directory of .gitlab-ci.yml)
 
 deploy_frontend:
-  stage: deploy
+  stage: deploy-next
   variables:
     SERVICE_NAME: "portfolio_next"
     PATH_FRONT: "/home/ubuntu/applications/portfolio/next"
