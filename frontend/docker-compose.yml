@@ -9,7 +9,7 @@ networks:
 services:
   portfolio_next:
     container_name: portfolio_next
-    image: ${DC_IMAGE_NAME}:${DC_IMAGE_TAG}
+    image: ${IMAGE_NAME}:${IMAGE_TAG}
     build:
       context: .
       dockerfile: Dockerfile
