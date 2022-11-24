@@ -123,7 +123,7 @@ deploy_frontend:
     - ls -htla
   script:
     - ssh -o StrictHostKeyChecking=no -i $WS_KEY ubuntu@$WS_HOST "if [ ! -d ${PATH_FRONT} ]; then mkdir -p ${PATH_FRONT}; fi;"
-    - scp -o StrictHostKeyChecking=no -i $WS_KEY frontend/docker-compose.yml .NEXT_ENV ubuntu@$WS_HOST:${PATH_FRONT}/
+    - scp -o StrictHostKeyChecking=no -i $WS_KEY frontend/docker-compose.yml .NEXT_ENV frontend/Dockerfile ubuntu@$WS_HOST:${PATH_FRONT}/
     - ssh -o StrictHostKeyChecking=no -i $WS_KEY ubuntu@$WS_HOST "
       docker login -u $CI_REGISTRY_USER -p $CI_REGISTRY_PASSWORD $CI_REGISTRY &&
       export IMAGE_NAME=$IMAGE_NAME &&
