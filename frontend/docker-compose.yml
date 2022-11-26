@@ -24,7 +24,11 @@ services:
       - common_network
     ports:
       - 3000:3000
-#    environment:  # during runtime
+    environment:  # during runtime
+      - BASE_URL=$BASE_URL
+      - IMAGE_HOST_NAME=$IMAGE_HOST_NAME
+      - IMAGE_HOST_DOMAIN=$IMAGE_HOST_DOMAIN
+      - REVALIDATE_TOKEN=$REVALIDATE_TOKEN
 #      - MAIL_USERNAME=$MAIL_USERNAME
 #      - MAIL_PASSWORD=$MAIL_PASSWORD
 #      - OAUTH_CLIENTID=$OAUTH_CLIENTID
