@@ -1,7 +1,7 @@
 #!/bin/bash
 set -e
 
-if psql -U $POSTGRES_USER -lqt | cut -d \| -f 1 | grep -qw $DATABASE_NAME);
+if psql -U $POSTGRES_USER -lqt | cut -d \| -f 1 | grep -qw $DATABASE_NAME;
 then
   echo "$DATABASE_NAME exists"
 else

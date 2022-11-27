@@ -18,6 +18,7 @@ get_backend_image_tag: # from previous successful job
   stage: fetch-artifacts
   before_script:
     - apk add unzip
+    - apk add curl
   script:
     - |
       curl --request GET --location --output artifacts.zip \
