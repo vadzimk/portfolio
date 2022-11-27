@@ -69,14 +69,14 @@ build_backend:
       - backend_image_tag.txt
     reports:
       dotenv: build.env # loaded in all subsequent jobs (must be relative to working directory of .gitlab-ci.yml)
-  rules:
-    - if: $cms_strapi_IMAGE_TAG == ""
-      when: always
-    - if: $cms_strapi_IMAGE_TAG != ""
-      changes:
-        - backend/**/*
-      when: always
-    - when: never
+#  rules:
+#    - if: $cms_strapi_IMAGE_TAG == ""
+#      when: always
+#    - if: $cms_strapi_IMAGE_TAG != ""
+#      changes:
+#        - backend/**/*
+#      when: always
+#    - when: never
 
 
 
