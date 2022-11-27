@@ -68,9 +68,9 @@ build_backend:
     reports:
       dotenv: build.env # loaded in all subsequent jobs (must be relative to working directory of .gitlab-ci.yml)
   rules:
-    - if: ${SERVICE_NAME}_IMAGE_TAG == ""
+    - if: "${SERVICE_NAME}_IMAGE_TAG" == ""
       when: always
-    - if: ${SERVICE_NAME}_IMAGE_TAG != ""
+    - if: "${SERVICE_NAME}_IMAGE_TAG" != ""
       changes:
         - backend/**/*
       when: always
