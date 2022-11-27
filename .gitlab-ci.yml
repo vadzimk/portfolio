@@ -32,11 +32,15 @@ build_backend:
     - echo "IMAGE_TAG=$IMAGE_TAG"
     - echo "${SERVICE_NAME}_IMAGE_TAG"=$IMAGE_TAG
     - echo "${SERVICE_NAME}_IMAGE_TAG=${IMAGE_TAG}" >> build.env
+    - echo "IMAGE_TAG=${IMAGE_TAG}" > backend_image_tag.txt
   script:
     - docker login -u $CI_REGISTRY_USER -p $CI_REGISTRY_PASSWORD $CI_REGISTRY
     - docker build -t $IMAGE_NAME:$IMAGE_TAG ./backend
     - docker push $IMAGE_NAME:$IMAGE_TAG
   artifacts: # by default uploaded to all following stages if not specified in dependencies
+    name: "$CI_JOB_NAME"
+    paths:
+      - backend_image_tag.txt
     reports:
       dotenv: build.env # loaded in all subsequent jobs (must be relative to working directory of .gitlab-ci.yml)
 
@@ -67,6 +71,7 @@ deploy_backend:
       source .CMS_ENV &&
       set +o allexport &&
       rm .CMS_ENV &&
+      ls -htla &&
       docker exec -i postgres bash -c "POSTGRES_USER=$DATABASE_USERNAME; DATABASE_NAME=$DATABASE_NAME; $(<postgres-init-db.sh)" &&
       docker network create common_network || true &&
       docker-compose down &&
