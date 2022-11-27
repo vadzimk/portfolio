@@ -108,7 +108,7 @@ deploy_backend:
       rm .CMS_ENV &&
       ls -htla &&
       docker exec -i postgres bash -c "POSTGRES_USER=$DATABASE_USERNAME; DATABASE_NAME=$DATABASE_NAME; $(<postgres-init-db.sh)" &&
-      { docker network create common_network || true } &&
+      { docker network create common_network || true; } &&
       docker-compose down &&
       docker-compose up -d"
   resource_group: dev # fix The deployment job is older than the previously succeeded deployment job, and therefore cannot be run
