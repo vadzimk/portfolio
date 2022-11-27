@@ -107,8 +107,8 @@ deploy_backend:
       ls -htla &&
       export DC_IMAGE_NAME=$IMAGE_NAME &&
       export DC_IMAGE_TAG=$IMAGE_TAG &&
-      export DATABASE_USERNAME=$POSTGRES_USER
-      export DATABASE_PASSWORD=$POSTGRES_PASSWORD
+      export DATABASE_USERNAME=$POSTGRES_USER &&
+      export DATABASE_PASSWORD=$POSTGRES_PASSWORD &&
       docker exec -i postgres bash -c \"POSTGRES_USER=$DATABASE_USERNAME; DATABASE_NAME=$DATABASE_NAME; $(<postgres-init-db.sh)\" &&
       docker network create common_network || true &&
       docker-compose down &&
