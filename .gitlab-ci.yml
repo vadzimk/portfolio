@@ -135,7 +135,7 @@ build_frontend: # can't use needs here because not the same or earlier stage is 
     - echo "${SERVICE_NAME}_IMAGE_TAG"=$IMAGE_TAG
     - echo "${SERVICE_NAME}_IMAGE_TAG=${IMAGE_TAG}" >> build.env
     - set -o allexport
-    - source $NEXT_ENV
+    - source $NEXT_BUILD_ENV
     - set +o allexport
     - echo $IMAGE_HOST_NAME
   script:
