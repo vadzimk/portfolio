@@ -16,6 +16,8 @@ variables:
 
 get_backend_image_tag: # from previous successful job
   stage: fetch-artifacts
+  variables:
+    SERVICE_NAME: "cms_strapi"
   before_script:
     - apk add unzip
     - apk add curl
@@ -24,10 +26,7 @@ get_backend_image_tag: # from previous successful job
       curl --request GET --location --output artifacts.zip \
       --url "https://gitlab.com/api/v4/projects/${CI_PROJECT_ID}/jobs/artifacts/master/download?job=build_backend" \
       --header "PRIVATE-TOKEN: ${GITLAB_PRIVATE_ACCESS_TOKEN}"
-    - unzip -j artifacts.zip
-    - ls -htla
-    - PREV_BACKEND_IMAGE_TAG=$(<${BACKEND_IMAGE_TAG_FILENAME})
-    - echo "${SERVICE_NAME}_IMAGE_TAG=${PREV_BACKEND_IMAGE_TAG}" >> build.env
+    - unzip -j artifacts.zip && { PREV_BACKEND_IMAGE_TAG=$(<${BACKEND_IMAGE_TAG_FILENAME}) && echo "${SERVICE_NAME}_IMAGE_TAG=${PREV_BACKEND_IMAGE_TAG}" >> build.env } || true
   artifacts:
     reports:
       dotenv: build.env
@@ -68,14 +67,14 @@ build_backend:
       - backend_image_tag.txt
     reports:
       dotenv: build.env # loaded in all subsequent jobs (must be relative to working directory of .gitlab-ci.yml)
-#  rules: # TODO uncomment this
-#    - if: $PREV_BACKEND_IMAGE_TAG == ""
-#      when: always
-#    - if: $PREV_BACKEND_IMAGE_TAG != ""
-#      changes:
-#        - backend/**/*
-#      when: always
-#    - when: never
+  rules:
+    - if: ${SERVICE_NAME}_IMAGE_TAG == ""
+      when: always
+    - if: ${SERVICE_NAME}_IMAGE_TAG != ""
+      changes:
+        - backend/**/*
+      when: always
+    - when: never
 
 
 
