@@ -5,7 +5,7 @@ workflow:
     - when: always
 
 stages:
-  - fetch-artifacts
+#  - fetch-artifacts
   - build-cms
   - deploy-cms
   - build-next  # cms must be already available in order to execute next static build
@@ -14,27 +14,27 @@ stages:
 variables:
   BACKEND_IMAGE_TAG_FILENAME: backend_image_tag.txt
 
-get_backend_image_tag: # from previous successful job
-  stage: fetch-artifacts
-  variables:
-    SERVICE_NAME: "cms_strapi"
-  before_script:
-    - apk add unzip
-    - apk add curl
-  script:
-    - |
-      curl --request GET --location --output artifacts.zip \
-      --url "https://gitlab.com/api/v4/projects/${CI_PROJECT_ID}/jobs/artifacts/master/download?job=build_backend" \
-      --header "PRIVATE-TOKEN: ${GITLAB_PRIVATE_ACCESS_TOKEN}"
-    - unzip -j artifacts.zip && PREV_BACKEND_IMAGE_TAG=$(<"${BACKEND_IMAGE_TAG_FILENAME}") || true
-    - echo "${SERVICE_NAME}_IMAGE_TAG=${PREV_BACKEND_IMAGE_TAG}"
-    - echo "${SERVICE_NAME}_IMAGE_TAG=${PREV_BACKEND_IMAGE_TAG}" >> build.env;
-  artifacts:
-    reports:
-      dotenv: build.env
-  except: # not executed if there are changes to the sources
-    changes:
-      - backend/**/*
+#get_backend_image_tag: # from previous successful job
+#  stage: fetch-artifacts
+#  variables:
+#    SERVICE_NAME: "cms_strapi"
+#  before_script:
+#    - apk add unzip
+#    - apk add curl
+#  script:
+#    - |
+#      curl --request GET --location --output artifacts.zip \
+#      --url "https://gitlab.com/api/v4/projects/${CI_PROJECT_ID}/jobs/artifacts/master/download?job=build_backend" \
+#      --header "PRIVATE-TOKEN: ${GITLAB_PRIVATE_ACCESS_TOKEN}"
+#    - unzip -j artifacts.zip && PREV_BACKEND_IMAGE_TAG=$(<"${BACKEND_IMAGE_TAG_FILENAME}") || true
+#    - echo "${SERVICE_NAME}_IMAGE_TAG=${PREV_BACKEND_IMAGE_TAG}"
+#    - echo "${SERVICE_NAME}_IMAGE_TAG=${PREV_BACKEND_IMAGE_TAG}" >> build.env;
+#  artifacts:
+#    reports:
+#      dotenv: build.env
+#  except: # not executed if there are changes to the sources
+#    changes:
+#      - backend/**/*
 
 
 build_backend:
@@ -69,14 +69,14 @@ build_backend:
       - backend_image_tag.txt
     reports:
       dotenv: build.env # loaded in all subsequent jobs (must be relative to working directory of .gitlab-ci.yml)
-  rules:
-    - if: $cms_strapi_IMAGE_TAG == ""
-      when: always
-    - if: $cms_strapi_IMAGE_TAG != ""
-      changes:
-        - backend/**/*
-      when: always
-    - when: never
+#  rules:
+#    - if: $cms_strapi_IMAGE_TAG == ""
+#      when: always
+#    - if: $cms_strapi_IMAGE_TAG != ""
+#      changes:
+#        - backend/**/*
+#      when: always
+#    - when: never
 
 
 
