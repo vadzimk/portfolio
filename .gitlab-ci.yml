@@ -26,7 +26,7 @@ get_backend_image_tag: # from previous successful job
       curl --request GET --location --output artifacts.zip \
       --url "https://gitlab.com/api/v4/projects/${CI_PROJECT_ID}/jobs/artifacts/master/download?job=build_backend" \
       --header "PRIVATE-TOKEN: ${GITLAB_PRIVATE_ACCESS_TOKEN}"
-    - unzip -j artifacts.zip && { PREV_BACKEND_IMAGE_TAG=$(<${BACKEND_IMAGE_TAG_FILENAME}) && echo "${SERVICE_NAME}_IMAGE_TAG=${PREV_BACKEND_IMAGE_TAG}" >> build.env } || true
+    - unzip -j artifacts.zip && { PREV_BACKEND_IMAGE_TAG=$(<${BACKEND_IMAGE_TAG_FILENAME}) && echo "${SERVICE_NAME}_IMAGE_TAG=${PREV_BACKEND_IMAGE_TAG}" >> build.env } || echo "" >> build.env
   artifacts:
     reports:
       dotenv: build.env
