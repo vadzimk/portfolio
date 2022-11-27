@@ -107,8 +107,21 @@ deploy_backend:
       set +o allexport &&
       rm .CMS_ENV &&
       ls -htla &&
-      docker exec -i postgres bash -c "POSTGRES_USER=$DATABASE_USERNAME; DATABASE_NAME=$DATABASE_NAME; $(<postgres-init-db.sh)" &&
-
+      docker exec -i postgres bash -c "POSTGRES_USER=$DATABASE_USERNAME; DATABASE_NAME=$DATABASE_NAME; $(<postgres-init-db.sh)";
+      echo "${DC_IMAGE_NAME}:${DC_IMAGE_TAG}"
+      echo HOST=$HOST
+      echo PORT=$PORT
+      echo APP_KEYS=$APP_KEYS
+      echo PI_TOKEN_SALT=$API_TOKEN_SALT
+      echo ADMIN_JWT_SECRET=$ADMIN_JWT_SECRET
+      echo DATABASE_HOST=$DATABASE_HOST
+      echo DATABASE_PORT=$DATABASE_PORT
+      echo DATABASE_NAME=$DATABASE_NAME
+      echo DATABASE_USERNAME=$DATABASE_USERNAME
+      echo DATABASE_PASSWORD=$DATABASE_PASSWORD
+      echo JWT_SECRET=$JWT_SECRET;
+      docker network create common_network || true &&
+      docker-compose down &&
       docker-compose up -d"
   resource_group: dev # fix The deployment job is older than the previously succeeded deployment job, and therefore cannot be run
 
