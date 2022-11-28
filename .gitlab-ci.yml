@@ -14,6 +14,30 @@ stages:
 variables:
   BACKEND_IMAGE_TAG_FILENAME: backend_image_tag.txt
 
+init_database:
+  stage: build-cms-and-init-db
+  before_script:
+    - set -o allexport &&
+      source $CMS_ENV &&
+      set +o allexport # get database name
+  script:
+    # init db for strapi cms
+    - chmod 400 $WS_KEY # private key
+    - echo POSTGRES_USER=$POSTGRES_USER
+    - echo DATABASE_NAME=$DATABASE_NAME
+    - ssh -o StrictHostKeyChecking=no -i $WS_KEY ubuntu@$WS_HOST "
+      docker exec -i postgres bash -c \"
+      set -e
+      export POSTGRES_USER=$POSTGRES_USER;
+      export DATABASE_NAME=$DATABASE_NAME;
+      if psql -U $POSTGRES_USER -lqt | cut -d \| -f 1 | grep -qw $DATABASE_NAME;
+      then
+      echo $DATABASE_NAME exists;
+      else
+      createdb -U $POSTGRES_USER -T template0 $DATABASE_NAME && echo $DATABASE_NAME created;
+      fi;
+      \" "
+
 #get_backend_image_tag: # from previous successful job
 #  stage: fetch-artifacts
 #  variables:
@@ -77,30 +101,6 @@ build_backend:
 #        - backend/**/*
 #      when: always
 #    - when: never
-
-init_database:
-  stage: build-cms-and-init-db
-  before_script:
-    - set -o allexport &&
-      source $CMS_ENV &&
-      set +o allexport # get database name
-  script:
-    # init db for strapi cms
-    - chmod 400 $WS_KEY # private key
-    - echo POSTGRES_USER=$POSTGRES_USER
-    - echo DATABASE_NAME=$DATABASE_NAME
-    - ssh -o StrictHostKeyChecking=no -i $WS_KEY ubuntu@$WS_HOST "
-      docker exec -i postgres bash -c \"
-      set -e
-      export POSTGRES_USER=$POSTGRES_USER;
-      export DATABASE_NAME=$DATABASE_NAME;
-      if psql -U $POSTGRES_USER -lqt | cut -d \| -f 1 | grep -qw $DATABASE_NAME;
-      then
-      echo $DATABASE_NAME exists;
-      else
-      createdb -U $POSTGRES_USER -T template0 $DATABASE_NAME && echo $DATABASE_NAME created;
-      fi;
-      \" "
 
 deploy_backend:
   stage: deploy-cms
