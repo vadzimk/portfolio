@@ -132,6 +132,7 @@ deploy_backend:
       export DC_IMAGE_TAG=$IMAGE_TAG &&
       export DATABASE_USERNAME=$POSTGRES_USER &&
       export DATABASE_PASSWORD=$POSTGRES_PASSWORD &&
+      echo DATABASE_PASSWORD=$POSTGRES_PASSWORD &&
       docker network create common_network || true &&
       docker-compose down &&
       docker-compose up -d"
