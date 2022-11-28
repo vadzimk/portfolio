@@ -36,7 +36,7 @@ export async function getStaticProps() {
 }
 
 export default function Home({headingHtml, avatar, IMAGE_HOST_DOMAIN, technologies, projects}) {
-
+    console.log("headingHtml", headingHtml)
     return (
         <div>
             <Head>
@@ -61,7 +61,7 @@ export default function Home({headingHtml, avatar, IMAGE_HOST_DOMAIN, technologi
                                     />
                                 </section>
                                 <div className="shrink-0 flex md:flex-col justify-end z-10">
-                                    {avatar && <Image
+                                    {avatar?.data && <Image
                                         className="w-[200px] md:w-[300px] rounded-full shadow-[2px_4px_10px_-2px_rgba(0,0,0,0.05)]"
                                         src={`${IMAGE_HOST_DOMAIN}` + avatar.data.attributes.url}
                                         alt={avatar.data.attributes.alternativeText}
