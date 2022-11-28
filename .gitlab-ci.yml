@@ -80,16 +80,20 @@ build_backend:
 
 init_database:
   stage: build-cms-and-init-db
+  before_script:
+    - set -o allexport &&
+      source $CMS_ENV &&
+      set +o allexport # get database name
   script:
     # init db for strapi cms
     - chmod 400 $WS_KEY # private key
+    - echo POSTGRES_USER=$POSTGRES_USER
+    - echo DATABASE_NAME=$DATABASE_NAME
     - ssh -o StrictHostKeyChecking=no -i $WS_KEY ubuntu@$WS_HOST "
-      export DATABASE_USERNAME=$POSTGRES_USER &&
-      export DATABASE_PASSWORD=$POSTGRES_PASSWORD &&
       docker exec -i postgres bash -c \"
       set -e
-      echo POSTGRES_USER=$POSTGRES_USER;
-      echo DATABASE_NAME=$DATABASE_NAME;
+      export POSTGRES_USER=$POSTGRES_USER;
+      export DATABASE_NAME=$DATABASE_NAME;
       if psql -U $POSTGRES_USER -lqt | cut -d \| -f 1 | grep -qw $DATABASE_NAME;
       then
       echo $DATABASE_NAME exists;
@@ -133,7 +137,7 @@ deploy_backend:
       docker-compose up -d"
   resource_group: dev # fix The deployment job is older than the previously succeeded deployment job, and therefore cannot be run
 
-build_frontend: # can't use needs here because not the same or earlier stage is referred to
+build_frontend:
   stage: build-next
   image: docker:20.10.17
   variables:
