@@ -6,7 +6,7 @@ workflow:
 
 stages:
 #  - fetch-artifacts
-  - build-cms
+  - build-cms-and-init-db
   - deploy-cms
   - build-next  # cms must be already available in order to execute next static build
   - deploy-next
@@ -38,7 +38,7 @@ variables:
 
 
 build_backend:
-  stage: build-cms
+  stage: build-cms-and-init-db
   image: docker:20.10.17
   variables:
     # using "docker" as the host is only possible if you alias the service below
@@ -78,7 +78,25 @@ build_backend:
 #      when: always
 #    - when: never
 
-
+init_database:
+  stage: build-cms-and-init-db
+  script:
+    # init db for strapi cms
+    - chmod 400 $WS_KEY # private key
+    - ssh -o StrictHostKeyChecking=no -i $WS_KEY ubuntu@$WS_HOST "
+      export DATABASE_USERNAME=$POSTGRES_USER &&
+      export DATABASE_PASSWORD=$POSTGRES_PASSWORD &&
+      docker exec -i postgres bash -c \"
+      set -e
+      echo POSTGRES_USER=$POSTGRES_USER;
+      echo DATABASE_NAME=$DATABASE_NAME;
+      if psql -U $POSTGRES_USER -lqt | cut -d \| -f 1 | grep -qw $DATABASE_NAME;
+      then
+      echo $DATABASE_NAME exists;
+      else
+      createdb -U $POSTGRES_USER -T template0 $DATABASE_NAME && echo $DATABASE_NAME created;
+      fi;
+      \" "
 
 deploy_backend:
   stage: deploy-cms
@@ -96,7 +114,8 @@ deploy_backend:
     - ls -htla
   script:
     - ssh -o StrictHostKeyChecking=no -i $WS_KEY ubuntu@$WS_HOST "if [ ! -d ${PATH_BCK} ]; then mkdir -p ${PATH_BCK}; fi;"
-    - scp -o StrictHostKeyChecking=no -i $WS_KEY backend/docker-compose.yml postgres-init-db.sh .CMS_ENV ubuntu@$WS_HOST:${PATH_BCK}/
+    - scp -o StrictHostKeyChecking=no -i $WS_KEY backend/docker-compose.yml .CMS_ENV ubuntu@$WS_HOST:${PATH_BCK}/
+    # start cms
     - ssh -o StrictHostKeyChecking=no -i "$WS_KEY" "ubuntu@$WS_HOST" "
       cd ${PATH_BCK} &&
       docker login -u $CI_REGISTRY_USER -p $CI_REGISTRY_PASSWORD $CI_REGISTRY &&
@@ -109,7 +128,6 @@ deploy_backend:
       export DC_IMAGE_TAG=$IMAGE_TAG &&
       export DATABASE_USERNAME=$POSTGRES_USER &&
       export DATABASE_PASSWORD=$POSTGRES_PASSWORD &&
-      docker exec -i postgres bash -c \"POSTGRES_USER=$DATABASE_USERNAME; DATABASE_NAME=$DATABASE_NAME; $(<postgres-init-db.sh)\" &&
       docker network create common_network || true &&
       docker-compose down &&
       docker-compose up -d"
