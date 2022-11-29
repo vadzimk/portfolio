@@ -199,8 +199,6 @@ deploy_frontend:
       source .NEXT_ENV &&
       set +o allexport &&
       rm .NEXT_ENV &&
-#      docker-compose down &&
-#      docker-compose up --no-build -d
       { docker stop portfolio_next || true; } &&
       { docker rm portfolio_next || true; } &&
       docker run ${IMAGE_NAME}:${IMAGE_TAG} \
