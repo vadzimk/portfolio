@@ -185,7 +185,7 @@ deploy_frontend:
     - echo $IMAGE_NAME
     - echo "$SERVICE_NAME"_IMAGE_TAG
     - echo $IMAGE_TAG
-    - cat $NEXT_ENV > .NEXT_ENV
+    - cat $NEXT_RUN_ENV > .NEXT_ENV
     - ls -htla
   script:
     - ssh -o StrictHostKeyChecking=no -i $WS_KEY ubuntu@$WS_HOST "if [ ! -d ${PATH_FRONT} ]; then mkdir -p ${PATH_FRONT}; fi;"
