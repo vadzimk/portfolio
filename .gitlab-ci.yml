@@ -201,10 +201,11 @@ deploy_frontend:
       rm .NEXT_ENV &&
       { docker stop portfolio_next || true; } &&
       { docker rm portfolio_next || true; } &&
-      docker run ${IMAGE_NAME}:${IMAGE_TAG} \
+      docker container run ${IMAGE_NAME}:${IMAGE_TAG} \
         --name=portfolio_next \
         --network=common_network \
         --restart=always \
+        -p 3000:3000 \
         -e BASE_URL \
         -e IMAGE_HOST_NAME \
         -e IMAGE_HOST_DOMAIN \
