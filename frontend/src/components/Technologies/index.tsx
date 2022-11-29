@@ -9,7 +9,7 @@ export default function Technologies({technologies}) {
                 <h2>Technologies I use</h2>
                 <>
                     {technologies?.data
-                        .sort((a, b) => a.attributes.Priority - b.attributes.Priority)
+                        ?.sort((a, b) => a.attributes.Priority - b.attributes.Priority)
                         .map(categ =>
                             <Category
                                 key={categ.id}

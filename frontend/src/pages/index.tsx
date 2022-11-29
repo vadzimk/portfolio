@@ -13,7 +13,7 @@ import {mdToHtml} from '@/utils/mdToHtml';
 export async function getStaticProps() {
     const homepageData = await getHomepageData()
     // Use remark to convert markdown into HTML string
-    const headingHtml = await mdToHtml(homepageData?.data.attributes.Heading)
+    const headingHtml = await mdToHtml(homepageData?.data?.attributes.Heading)
     const projects = await getProjectsData()
 
     if (Array.isArray(projects?.data)) {
@@ -27,7 +27,7 @@ export async function getStaticProps() {
     return {
         props: {
             headingHtml,
-            avatar: homepageData?.data.attributes.Avatar || null,
+            avatar: homepageData?.data?.attributes.Avatar || null,
             IMAGE_HOST_DOMAIN: process.env.IMAGE_HOST_DOMAIN,
             technologies: await getTechnologiesData() || null,
             projects: projects || null,
