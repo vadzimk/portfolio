@@ -26,15 +26,17 @@ init_database:
     - echo POSTGRES_USER=$POSTGRES_USER
     - echo DATABASE_NAME=$DATABASE_NAME
     - ssh -o StrictHostKeyChecking=no -i $WS_KEY ubuntu@$WS_HOST "
-      docker exec -i postgres bash -c \"
+      docker exec -i pgbackups bash -c \"
       set -e
       export POSTGRES_USER=$POSTGRES_USER;
       export DATABASE_NAME=$DATABASE_NAME;
-      if psql -U $POSTGRES_USER -lqt | cut -d \| -f 1 | grep -qw $DATABASE_NAME;
+      if psql -h $POSTGRES_HOST -p $POSTGRES_PORT -U $POSTGRES_USER -lqt | cut -d \| -f 1 | grep -qw $DATABASE_NAME;
       then
       echo $DATABASE_NAME exists;
       else
-      createdb -U $POSTGRES_USER -T template0 $DATABASE_NAME && echo $DATABASE_NAME created;
+      createdb -h $DATABASE_HOST -p $DATABASE_PORT -U $POSTGRES_USER -T template0 $DATABASE_NAME;
+      echo $DATABASE_NAME created;
+      ./restore.sh $DATABASE_NAME;
       fi;
       \" "
 
