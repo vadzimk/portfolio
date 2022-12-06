@@ -31,7 +31,7 @@ init_database:
       export POSTGRES_USER=$POSTGRES_USER;
       export DATABASE_NAME=$DATABASE_NAME;
       export PGPASSWORD=$POSTGRES_PASSWORD;
-      if psql -h $POSTGRES_HOST -p $POSTGRES_PORT -U $POSTGRES_USER -lqt | cut -d \| -f 1 | grep -qw $DATABASE_NAME;
+      if psql -h $DATABASE_HOST -p $POSTGRES_PORT -U $POSTGRES_USER -lqt | cut -d \| -f 1 | grep -qw $DATABASE_NAME;
       then
       echo $DATABASE_NAME exists;
       else
