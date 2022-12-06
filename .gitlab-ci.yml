@@ -24,6 +24,7 @@ init_database:
     # init db for strapi cms
     - chmod 400 $WS_KEY # private key
     - echo DATABASE_NAME=$DATABASE_NAME
+    - echo POSTGRES_PASSWORD=$POSTGRES_PASSWORD
     - ssh -o StrictHostKeyChecking=no -i $WS_KEY ubuntu@$WS_HOST "
       docker exec -i pgbackups bash -c \"
       set -e
