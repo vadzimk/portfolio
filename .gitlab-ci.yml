@@ -23,12 +23,12 @@ init_database:
   script:
     # init db for strapi cms
     - chmod 400 $WS_KEY # private key
-    - echo POSTGRES_USER=$POSTGRES_USER
     - echo DATABASE_NAME=$DATABASE_NAME
     - ssh -o StrictHostKeyChecking=no -i $WS_KEY ubuntu@$WS_HOST "
       docker exec -i pgbackups bash -c \"
       set -e
       export PGPASSWORD=$POSTGRES_PASSWORD;
+      echo PGPASSWORD=$PGPASSWORD;
       if psql -h $DATABASE_HOST -p $DATABASE_PORT -U $POSTGRES_USER -lqt | cut -d \| -f 1 | grep -qw $DATABASE_NAME;
       then
       echo $DATABASE_NAME exists;
