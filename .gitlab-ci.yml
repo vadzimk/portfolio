@@ -212,7 +212,7 @@ deploy_frontend:
       { docker network create common_network || true; } &&
       { docker stop portfolio_next || true; } &&
       { docker rm portfolio_next || true; } &&
-      docker container run ${IMAGE_NAME}:${IMAGE_TAG}
+      docker container run
       --name=portfolio_next
       --network=common_network
       --restart=always
@@ -221,6 +221,6 @@ deploy_frontend:
       -e IMAGE_HOST_NAME=$IMAGE_HOST_NAME
       -e IMAGE_HOST_DOMAIN=$IMAGE_HOST_DOMAIN
       -e REVALIDATE_TOKEN=$REVALIDATE_TOKEN
-      -d;
+      -d ${IMAGE_NAME}:${IMAGE_TAG};
       ";
   resource_group: dev # fix The deployment job is older than the previously succeeded deployment job, and therefore cannot be run
