@@ -7,8 +7,8 @@ RUN apk add --no-cache libc6-compat
 WORKDIR /app
 
 # Install dependencies
-COPY package.json package-lock.json* ./
-RUN npm ci;
+COPY package.json package-lock.json frontend/node_modules/ frontend/.npm/ ./
+RUN npm ci --cache .npm --prefer-offline
 
 
 # Rebuild the source code only when needed
@@ -25,9 +25,7 @@ ARG BASE_URL
 ARG IMAGE_HOST_NAME
 ARG IMAGE_HOST_DOMAIN
 ARG REVALIDATE_TOKEN
-# RUN yarn build
 
-# If using npm comment out above and use below instead
 RUN npm run build
 
 # Production image, copy all the files and run next

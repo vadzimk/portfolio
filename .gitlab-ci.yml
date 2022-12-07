@@ -5,17 +5,18 @@ workflow:
     - when: always
 
 stages:
-#  - fetch-artifacts
-  - build-cms-and-init-db
+  - install
+  - build-cms
   - deploy-cms
   - build-next  # cms must be already available in order to execute next static build
   - deploy-next
 
 variables:
   BACKEND_IMAGE_TAG_FILENAME: backend_image_tag.txt
+  FLUSHCACHE: "true" # trigger job to produce cache always when $FLUSHCACHE == "true"
 
 init_database:
-  stage: build-cms-and-init-db
+  stage: install
   before_script:
     - set -o allexport &&
       source $CMS_ENV &&
@@ -39,40 +40,52 @@ init_database:
       fi;
       \" "
 
-#get_last_image_tags: # from previous successful job # https://stackoverflow.com/questions/71051029/download-the-latest-artifacts-of-failed-gitlab-pipeline
-#  stage: fetch-artifacts
-#  variables:
-#    SERVICE_NAME: "cms_strapi"
-#  before_script:
-#    - apk add unzip curl jq
-#  script:
-#    # get latest pipeline id
-#    - |
-#      LATEST_PIPELINE_ID=$(curl --request GET --location -sS \
-#      --url "https://gitlab.com/api/v4/projects/${CI_PROJECT_ID}/pipelines"\
-#      --header "PRIVATE-TOKEN: ${GITLAB_PRIVATE_ACCESS_TOKEN}" | jq '.[0].id')
-#    # get job id from job name
-#    - |
-#      JOB_ID_BY_NAME=$(curl --request GET --location -sS \
-#      --url "https://gitlab.com/api/v4/projects/${CI_PROJECT_ID}/pipelines/${LATEST_PIPELINE_ID}/jobs"\
-#      --header "PRIVATE-TOKEN: ${GITLAB_PRIVATE_ACCESS_TOKEN}" | jq .[] | jq select(.name=="$JOB_NAME") | jq .id)
-#    - |
-#      curl --request GET --location --output artifacts.zip \
-#      --url "https://gitlab.com/api/v4/projects/${CI_PROJECT_ID}/jobs/artifacts/master/download?job=build_backend" \
-#      --header "PRIVATE-TOKEN: ${GITLAB_PRIVATE_ACCESS_TOKEN}"
-#    - unzip -j artifacts.zip && PREV_BACKEND_IMAGE_TAG=$(<"${BACKEND_IMAGE_TAG_FILENAME}") || true
-#    - echo "${SERVICE_NAME}_IMAGE_TAG=${PREV_BACKEND_IMAGE_TAG}"
-#    - echo "${SERVICE_NAME}_IMAGE_TAG=${PREV_BACKEND_IMAGE_TAG}" >> build.env;
-#  artifacts:
-#    reports:
-#      dotenv: build.env
-#  except: # not executed if there are changes to the sources
-#    changes:
-#      - backend/**/*
+install_backend_dependencies:
+  stage: install
+  image: node:16-alpine
+  script:
+    - cd backend
+    - npm ci --cache .npm --prefer-offline
+  cache:
+    key: DEP-CMS-$CI_COMMIT_REF_SLUG # separate key for dependencies
+    paths:
+      - backend/node_modules
+      - backend/.npm/
+    policy: push
+  rules:
+    - if: $FLUSHCACHE == "true"
+      when: always
+    - if: $FLUSHCACHE == "false"
+      changes:
+        - backend/package-lock.json
+      when: always
+    - when: never
+
+
+install_frontend_dependencies:
+  stage: install
+  image: node:16-alpine
+  script:
+    - cd frontend
+    - npm ci --cache .npm --prefer-offline
+  cache:
+    key: DEP-NEXT-$CI_COMMIT_REF_SLUG # separate key for dependencies
+    paths:
+      - frontend/node_modules
+      - frontend/.npm/
+    policy: push
+  rules:
+    - if: $FLUSHCACHE == "true"
+      when: always
+    - if: $FLUSHCACHE == "false"
+      changes:
+        - frontend/package-lock.json
+      when: always
+    - when: never
 
 
 build_backend:
-  stage: build-cms-and-init-db
+  stage: build-cms
   image: docker:20.10.17
   variables:
     # using "docker" as the host is only possible if you alias the service below
@@ -84,6 +97,12 @@ build_backend:
     - name: docker:20.10.17-dind
       alias: docker
       command: [ "--tls=false" ]
+  cache:
+    key: DEP-CMS-$CI_COMMIT_REF_SLUG
+    paths:
+      - backend/node_modules
+      - backend/.npm/
+    policy: pull
   before_script:
     - export IMAGE_NAME=$CI_REGISTRY_IMAGE/$SERVICE_NAME
     - apk add jq # install app to parse package.json
@@ -103,14 +122,7 @@ build_backend:
       - backend_image_tag.txt
     reports:
       dotenv: build.env # loaded in all subsequent jobs (must be relative to working directory of .gitlab-ci.yml)
-#  rules:
-#    - if: $cms_strapi_IMAGE_TAG == ""
-#      when: always
-#    - if: $cms_strapi_IMAGE_TAG != ""
-#      changes:
-#        - backend/**/*
-#      when: always
-#    - when: never
+
 
 deploy_backend:
   stage: deploy-cms
@@ -161,6 +173,12 @@ build_frontend:
     - name: docker:20.10.17-dind
       alias: docker
       command: [ "--tls=false" ]
+  cache:
+    key: DEP-NEXT-$CI_COMMIT_REF_SLUG
+    paths:
+      - frontend/node_modules
+      - frontend/.npm/
+    policy: pull
   before_script:
     - export IMAGE_NAME=$CI_REGISTRY_IMAGE/$SERVICE_NAME
     - apk add jq # install app to parse package.json
@@ -196,6 +214,7 @@ deploy_frontend:
     - echo "$SERVICE_NAME"_IMAGE_TAG
     - echo $IMAGE_TAG
     - cat $NEXT_RUN_ENV > .NEXT_ENV
+    - cat .NEXT_ENV
     - ls -htla
   script:
     - ssh -o StrictHostKeyChecking=no -i $WS_KEY ubuntu@$WS_HOST "if [ ! -d ${PATH_FRONT} ]; then mkdir -p ${PATH_FRONT}; fi;"
@@ -208,6 +227,7 @@ deploy_frontend:
       set -o allexport &&
       source .NEXT_ENV &&
       set +o allexport &&
+      echo .NEXT_ENV && cat .NEXT_ENV &&
       rm .NEXT_ENV &&
       { echo BASE_URL=$BASE_URL;
       echo IMAGE_HOST_NAME=$IMAGE_HOST_NAME;

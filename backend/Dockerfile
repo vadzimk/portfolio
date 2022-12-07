@@ -6,9 +6,9 @@ RUN apk update && apk add build-base gcc autoconf automake zlib-dev libpng-dev v
 ARG NODE_ENV=production
 ENV NODE_ENV=${NODE_ENV}
 WORKDIR /opt/
-COPY ./package.json ./package-lock.json ./
+COPY package.json package-lock.json backend/node_modules/ backend/.npm/ ./
 ENV PATH /opt/node_modules/.bin:$PATH
-RUN npm install --production
+RUN npm ci --cache .npm --prefer-offline
 WORKDIR /opt/app
 COPY ./ .
 RUN npm run build
