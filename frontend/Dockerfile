@@ -7,7 +7,7 @@ RUN apk add --no-cache libc6-compat
 WORKDIR /app
 
 # Install dependencies
-COPY package.json package-lock.json frontend/node_modules/ frontend/.npm/ ./
+COPY package.json package-lock.json node_modules/ .npm/ ./
 RUN npm ci --cache .npm --prefer-offline
 
 
