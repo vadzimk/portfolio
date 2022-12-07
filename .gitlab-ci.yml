@@ -39,7 +39,7 @@ init_database:
       fi;
       \" "
 
-#get_last_image_tags: # from previous successful job
+#get_last_image_tags: # from previous successful job # https://stackoverflow.com/questions/71051029/download-the-latest-artifacts-of-failed-gitlab-pipeline
 #  stage: fetch-artifacts
 #  variables:
 #    SERVICE_NAME: "cms_strapi"
@@ -209,6 +209,10 @@ deploy_frontend:
       source .NEXT_ENV &&
       set +o allexport &&
       rm .NEXT_ENV &&
+      { echo BASE_URL=$BASE_URL;
+      echo IMAGE_HOST_NAME=$IMAGE_HOST_NAME;
+      echo IMAGE_HOST_DOMAIN=$IMAGE_HOST_DOMAIN;
+      echo REVALIDATE_TOKEN=$REVALIDATE_TOKEN; } &&
       { docker network create common_network || true; } &&
       { docker stop portfolio_next || true; } &&
       { docker rm portfolio_next || true; } &&
