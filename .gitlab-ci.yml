@@ -200,17 +200,8 @@ deploy_frontend:
       source .NEXT_ENV &&
       set +o allexport &&
       rm .NEXT_ENV &&
-      { docker stop portfolio_next || true; } &&
-      { docker rm portfolio_next || true; } &&
-      docker container run ${IMAGE_NAME}:${IMAGE_TAG} \
-        --name=portfolio_next \
-        --network=common_network \
-        --restart=always \
-        -p 3000:3000 \
-        -e BASE_URL \
-        -e IMAGE_HOST_NAME \
-        -e IMAGE_HOST_DOMAIN \
-        -e REVALIDATE_TOKEN 
-        -d
-      "
+      { docker network create common_network || true; } &&
+      docker-compose down &&
+      docker-compose up --no-build -d;
+      ";
   resource_group: dev # fix The deployment job is older than the previously succeeded deployment job, and therefore cannot be run
