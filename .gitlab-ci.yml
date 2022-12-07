@@ -224,12 +224,13 @@ deploy_frontend:
       export IMAGE_NAME=$IMAGE_NAME &&
       export IMAGE_TAG=$IMAGE_TAG &&
       cd ${PATH_FRONT} &&
-      set -o allexport &&
-      source .NEXT_ENV &&
-      set +o allexport &&
+      { set -o allexport;
+      source .NEXT_ENV;
+      set +o allexport; } &&
       echo .NEXT_ENV && cat .NEXT_ENV &&
       rm .NEXT_ENV &&
-      { echo BASE_URL=$BASE_URL;
+      { echo "-----";
+      echo BASE_URL=$BASE_URL;
       echo IMAGE_HOST_NAME=$IMAGE_HOST_NAME;
       echo IMAGE_HOST_DOMAIN=$IMAGE_HOST_DOMAIN;
       echo REVALIDATE_TOKEN=$REVALIDATE_TOKEN; } &&
