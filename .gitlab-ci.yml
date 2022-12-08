@@ -15,6 +15,33 @@ variables:
   BACKEND_IMAGE_TAG_FILENAME: backend_image_tag.txt
 #  FLUSHCACHE: "false" # trigger job to produce cache always when $FLUSHCACHE == "true"
 
+
+set_variables_from_artifact:
+  stage: build-cms
+  variables:
+    ARTIFACT_PROJECT_ID: "37029027"
+    BRANCH: "master"
+    JOB_NAME: "apply"
+  before_script:
+    - apk add jq curl
+  script: # https://docs.gitlab.com/ee/api/job_artifacts.html#download-a-single-artifact-file-from-specific-tag-or-branch
+    # create variables
+    - |
+      curl --location -o ./ter_output.json \
+      --header "PRIVATE-TOKEN: ${GITLAB_JOB_ARTIFACTS_API_ACCESS_TOKEN}" \
+      -X GET https://gitlab.com/api/v4/projects/${ARTIFACT_PROJECT_ID}/jobs/artifacts/${BRANCH}/raw/ter_output.json?job=${JOB_NAME};
+    - | 
+      { echo STRAPI_ACCESS_KEY_ID=$(cat ter_output.json | jq -r '."strapi_user_customer_secret_key_id".value');
+        echo STRAPI_ACCESS_KEY_VALUE=$(cat ter_output.json | jq -r '."strapi_user_customer_secret_key_value".value');
+        echo STRAPI_MEDIA_BUCKET_NAME=$(cat ter_output.json | jq -r '."strapi-media-bucket-name".value');
+        echo S3_SERVER_ADDRESS=$(cat ter_output.json | jq -r '."S3-ServerAddress".value');
+      } >> strapi.env
+    - cat strapi.env
+  artifacts:
+    reports:
+      dotenv: strapi.env
+
+
 init_database:
   stage: build-cms
   before_script:
@@ -155,11 +182,15 @@ deploy_backend:
       export DC_IMAGE_TAG=$IMAGE_TAG &&
       export DATABASE_USERNAME=$POSTGRES_USER &&
       export DATABASE_PASSWORD=$POSTGRES_PASSWORD &&
-      echo DATABASE_PASSWORD=$POSTGRES_PASSWORD &&
-      docker network create common_network || true &&
+      export STRAPI_ACCESS_KEY_ID=$STRAPI_ACCESS_KEY_ID &&
+      export STRAPI_ACCESS_KEY_VALUE=$STRAPI_ACCESS_KEY_VALUE &&
+      export STRAPI_MEDIA_BUCKET_NAME=$STRAPI_MEDIA_BUCKET_NAME &&
+      export S3_SERVER_ADDRESS=$S3_SERVER_ADDRESS &&
+      { docker network create common_network || true; } &&
       docker-compose down &&
       docker-compose up -d"
   resource_group: dev # fix The deployment job is older than the previously succeeded deployment job, and therefore cannot be run
+
 
 build_frontend:
   stage: build-next
