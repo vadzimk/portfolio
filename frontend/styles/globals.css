@@ -7,7 +7,7 @@
     font-style: normal;
     font-weight: 100 900;
     font-display: optional;
-    src: url(/fonts/Hahmlet/Hahmlet-VariableFont_wght.ttf) format("woff2");
+    src: url(/fonts/Hahmlet/Hahmlet-VariableFont_wght.ttf) format("ttf");
 }
 
 @font-face {
@@ -15,7 +15,7 @@
     font-style: normal;
     font-weight: 100 900;
     font-display: optional;
-    src: url(/fonts/Rubik/Rubik-VariableFont_wght.ttf) format("woff2");
+    src: url(/fonts/Rubik/Rubik-VariableFont_wght.ttf) format("ttf");
 }
 
 html {
