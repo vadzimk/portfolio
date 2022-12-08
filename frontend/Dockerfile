@@ -13,7 +13,8 @@ RUN npm run build
 RUN addgroup --system --gid 1001 nodejs
 RUN adduser --system --uid 1001 nextjs
 RUN chown nextjs:nodejs /app/.next/standalone /app/.next/static
-RUN mv /app/.next/standalone ./
+RUN cp -n /app/.next/standalone/* .
+RUN rm -rf /app/.next/standalone
 
 ENV NODE_ENV production
 USER nextjs
