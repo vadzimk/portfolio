@@ -13,7 +13,7 @@ stages:
 
 variables:
   BACKEND_IMAGE_TAG_FILENAME: backend_image_tag.txt
-  FLUSHCACHE: "true" # trigger job to produce cache always when $FLUSHCACHE == "true"
+  FLUSHCACHE: "false" # trigger job to produce cache always when $FLUSHCACHE == "true"
 
 init_database:
   stage: install

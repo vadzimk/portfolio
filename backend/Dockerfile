@@ -18,6 +18,6 @@ RUN rm -rf /var/cache/apk/*
 ARG NODE_ENV=production
 ENV NODE_ENV=${NODE_ENV}
 WORKDIR /app
-COPY --from=build /opt/app ./
+COPY --from=build /app ./
 EXPOSE 1337
 CMD ["npm", "run","start"]
