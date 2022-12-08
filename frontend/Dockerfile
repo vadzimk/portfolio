@@ -6,8 +6,7 @@ COPY . .
 RUN npm ci --cache .npm --prefer-offline
 ENV NEXT_TELEMETRY_DISABLED 1
 ARG BASE_URL
-ARG IMAGE_HOST_NAME
-ARG IMAGE_HOST_DOMAIN
+ARG S3_SERVER_ADDRESS
 ARG REVALIDATE_TOKEN
 RUN npm run build
 RUN addgroup --system --gid 1001 nodejs

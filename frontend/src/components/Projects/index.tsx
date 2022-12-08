@@ -1,8 +1,7 @@
 import Project from '@/components/Projects/Project';
-import Image from 'next/image';
 
 
-export default function Projects({projects, IMAGE_HOST_DOMAIN}) {
+export default function Projects({projects}) {
     return (
         <section id="projects"
              className="min-h-[calc(100vh)] bg-none">
@@ -13,7 +12,7 @@ export default function Projects({projects, IMAGE_HOST_DOMAIN}) {
                     {projects?.data
                         ?.sort((a, b) => a.attributes.Priority - b.attributes.Priority)
                         .map(project =>
-                            <Project key={project.id} project={project} IMAGE_HOST_DOMAIN={IMAGE_HOST_DOMAIN}/>
+                            <Project key={project.id} project={project}/>
                         )}
                 </ul>
         </section>

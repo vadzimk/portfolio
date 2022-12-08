@@ -36,7 +36,6 @@ set_variables_from_artifact:
         echo STRAPI_MEDIA_BUCKET_NAME=$(cat ter_output.json | jq -r '."strapi-media-bucket-name".value');
         echo S3_SERVER_ADDRESS=$(cat ter_output.json | jq -r '."S3-ServerAddress".value');
       } >> strapi.env
-    - cat strapi.env
   artifacts:
     reports:
       dotenv: strapi.env
@@ -216,7 +215,7 @@ build_frontend:
     - set -o allexport
     - source $NEXT_BUILD_ENV
     - set +o allexport
-    - echo $IMAGE_HOST_NAME
+    - export S3_SERVER_ADDRESS=$S3_SERVER_ADDRESS
   script:
     - docker login -u $CI_REGISTRY_USER -p $CI_REGISTRY_PASSWORD $CI_REGISTRY
     - export DOCKER_BUILDKIT=0  # allows networking during build
@@ -249,6 +248,7 @@ deploy_frontend:
     - set -o allexport
     - source $NEXT_RUN_ENV
     - set +o allexport;
+    - export S3_SERVER_ADDRESS=$S3_SERVER_ADDRESS
     - ls -htla
   script:
     - ssh -o StrictHostKeyChecking=no -i $WS_KEY ubuntu@$WS_HOST "if [ ! -d ${PATH_FRONT} ]; then mkdir -p ${PATH_FRONT}; fi;"
@@ -267,8 +267,7 @@ deploy_frontend:
       --restart=always
       -p 3000:3000
       -e BASE_URL=$BASE_URL
-      -e IMAGE_HOST_NAME=$IMAGE_HOST_NAME
-      -e IMAGE_HOST_DOMAIN=$IMAGE_HOST_DOMAIN
+      -e S3_SERVER_ADDRESS=$S3_SERVER_ADDRESS
       -e REVALIDATE_TOKEN=$REVALIDATE_TOKEN
       -d ${IMAGE_NAME}:${IMAGE_TAG};
       ";

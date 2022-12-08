@@ -8,7 +8,7 @@ const nextConfig = {
     ignoreBuildErrors:true,
   },
   images: {
-      domains: [process.env.IMAGE_HOST_NAME]
+      domains: [process.env.S3_SERVER_ADDRESS]
   },
   async headers() { // Tell browser to cache font file for a long time (~1yr) to avoid unnecessary re-downloads for subsequent site visits.
     return [

@@ -28,14 +28,13 @@ export async function getStaticProps() {
         props: {
             headingHtml,
             avatar: homepageData?.data?.attributes.Avatar || null,
-            IMAGE_HOST_DOMAIN: process.env.IMAGE_HOST_DOMAIN,
             technologies: await getTechnologiesData() || null,
             projects: projects || null,
         }
     }
 }
 
-export default function Home({headingHtml, avatar, IMAGE_HOST_DOMAIN, technologies, projects}) {
+export default function Home({headingHtml, avatar, technologies, projects}) {
     console.log("headingHtml", headingHtml)
     return (
         <div>
@@ -63,7 +62,7 @@ export default function Home({headingHtml, avatar, IMAGE_HOST_DOMAIN, technologi
                                 <div className="shrink-0 flex md:flex-col justify-end z-10">
                                     {avatar?.data && <Image
                                         className="w-[200px] md:w-[300px] rounded-full shadow-[2px_4px_10px_-2px_rgba(0,0,0,0.05)]"
-                                        src={`${IMAGE_HOST_DOMAIN}` + avatar.data.attributes.url}
+                                        src={avatar.data.attributes.url}
                                         alt={avatar.data.attributes.alternativeText}
                                         width={avatar.data.attributes.width}
                                         height={avatar.data.attributes.height}
@@ -79,7 +78,7 @@ export default function Home({headingHtml, avatar, IMAGE_HOST_DOMAIN, technologi
 
 
                 <Technologies technologies={technologies}/>
-                <Projects projects={projects} IMAGE_HOST_DOMAIN={IMAGE_HOST_DOMAIN}/>
+                <Projects projects={projects}/>
             </main>
             <div className="min-h-[calc(100vh)] bg-gray100cold">
                 <Contact/>
