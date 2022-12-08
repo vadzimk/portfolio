@@ -5,10 +5,10 @@ workflow:
     - when: always
 
 stages:
-  - install
+#  - install
   - build-cms
   - deploy-cms
-  - build-next  # cms must be already available in order to execute next static build
+  - build-next  # cms must be already up in order to execute next static build
   - deploy-next
 
 variables:
@@ -16,7 +16,7 @@ variables:
 #  FLUSHCACHE: "false" # trigger job to produce cache always when $FLUSHCACHE == "true"
 
 init_database:
-  stage: install
+  stage: build-cms
   before_script:
     - set -o allexport &&
       source $CMS_ENV &&
@@ -221,7 +221,7 @@ deploy_frontend:
     - ls -htla
   script:
     - ssh -o StrictHostKeyChecking=no -i $WS_KEY ubuntu@$WS_HOST "if [ ! -d ${PATH_FRONT} ]; then mkdir -p ${PATH_FRONT}; fi;"
-    - scp -o StrictHostKeyChecking=no -i $WS_KEY frontend/docker-compose.yml .NEXT_ENV frontend/Dockerfile ubuntu@$WS_HOST:${PATH_FRONT}/
+    - scp -o StrictHostKeyChecking=no -i $WS_KEY frontend/docker-compose.yml frontend/Dockerfile ubuntu@$WS_HOST:${PATH_FRONT}/
     - ssh -o StrictHostKeyChecking=no -i $WS_KEY ubuntu@$WS_HOST "
       docker login -u $CI_REGISTRY_USER -p $CI_REGISTRY_PASSWORD $CI_REGISTRY &&
       export IMAGE_NAME=$IMAGE_NAME &&
