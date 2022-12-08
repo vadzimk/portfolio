@@ -230,10 +230,10 @@ deploy_frontend:
       echo .NEXT_ENV && cat .NEXT_ENV &&
       rm .NEXT_ENV &&
       { echo "-----";
-      echo BASE_URL=$BASE_URL;
-      echo IMAGE_HOST_NAME=$IMAGE_HOST_NAME;
-      echo IMAGE_HOST_DOMAIN=$IMAGE_HOST_DOMAIN;
-      echo REVALIDATE_TOKEN=$REVALIDATE_TOKEN; } &&
+      echo BASE_URL=\\$BASE_URL;
+      echo IMAGE_HOST_NAME=\\$IMAGE_HOST_NAME;
+      echo IMAGE_HOST_DOMAIN=\\$IMAGE_HOST_DOMAIN;
+      echo REVALIDATE_TOKEN=\\$REVALIDATE_TOKEN; } &&
       { docker network create common_network || true; } &&
       { docker stop portfolio_next || true; } &&
       { docker rm portfolio_next || true; } &&
