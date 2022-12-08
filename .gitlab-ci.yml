@@ -226,12 +226,7 @@ deploy_frontend:
       docker login -u $CI_REGISTRY_USER -p $CI_REGISTRY_PASSWORD $CI_REGISTRY &&
       export IMAGE_NAME=$IMAGE_NAME &&
       export IMAGE_TAG=$IMAGE_TAG &&
-      cd ${PATH_FRONT} 
-      { echo "-----";
-      echo BASE_URL=$BASE_URL;
-      echo IMAGE_HOST_NAME=$IMAGE_HOST_NAME;
-      echo IMAGE_HOST_DOMAIN=$IMAGE_HOST_DOMAIN;
-      echo REVALIDATE_TOKEN=$REVALIDATE_TOKEN; } &&
+      { cd $PATH_FRONT || exit; } &&
       { docker network create common_network || true; } &&
       { docker stop portfolio_next || true; } &&
       { docker rm portfolio_next || true; } &&
