@@ -9,7 +9,7 @@
         font-weight: 100 900;
         font-display: optional;
         src: local('Hahmlet'),
-        url(/fonts/Hahmlet/Hahmlet-VariableFont_wght.ttf);
+        url(/fonts/Hahmlet/Hahmlet-VariableFont_wght.ttf); /* no need for format if ttf */
     }
 
     @font-face {
@@ -22,7 +22,7 @@
 }
 
 html {
-    @apply text-[16px] md:text-[18px] font-sans leading-[150%] text-gray900 scroll-smooth
+    @apply text-[16px] font-sans leading-[150%] text-gray900 scroll-smooth
 }
 
 
