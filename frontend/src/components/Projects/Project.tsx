@@ -35,7 +35,7 @@ export default function Project({project}) {
                         <Image fill
                                style={{objectFit: "contain", objectPosition: "right bottom"}}
                                alt={`Project ${project.attributes.Title} image`}
-                               src={`${project.attributes.Image.data?.attributes.formats.small.url}`}
+                               src={`${project.attributes.Image.data?.attributes.formats?.small.url || project.attributes.Image.data?.attributes.url}`}
                             // width={project.attributes.Image.data.attributes.formats.small.width}
                             // height={project.attributes.Image.data.attributes.formats.small.height}
                         />
