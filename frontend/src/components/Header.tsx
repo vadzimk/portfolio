@@ -37,7 +37,7 @@ export default function Header() {
                     {
                         navlinks.map(item => (
                             <div onClick={() => setIsVisible(false)}
-                                 className="px-2 py-2 sm:p-0 sm:flex sm:flex-col sm:gap-1 sm:justify-center sm:ml-4 odd:bg-gray100cold/90 even:bg-gray100warm/90 sm:odd:bg-transparent sm:even:bg-transparent  "
+                                 className="px-2 py-3 sm:p-0 sm:flex sm:flex-col sm:gap-1 sm:justify-center sm:ml-4 odd:bg-gray100cold/90 even:bg-gray100warm/90 sm:odd:bg-transparent sm:even:bg-transparent  "
                                  key={item.id}>
                                 <Link className="block text-end pr-2 sm:pr-0"
                                       href={`#${item.id}`}>

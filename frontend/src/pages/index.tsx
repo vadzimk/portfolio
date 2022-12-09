@@ -43,7 +43,7 @@ export default function Home({headingHtml, avatar, technologies, projects}) {
             </Head>
 
             <main>
-                <div className="h-[calc(100vh)] bg-gray100cold relative">
+                <div className="h-[calc(100vh)] bg-gray100cold relative overflow-hidden">
                     <Image
                         className="opacity-50 absolute left-[calc(35vw)] -top-[378px] md:translate-y-[198px] min-w-[605px] h-[609px]"
                         src={Triangle} alt=""/>
