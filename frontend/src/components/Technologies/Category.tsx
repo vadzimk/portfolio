@@ -2,7 +2,7 @@ import Technology from '@/components/Technologies/Technology';
 
 export default function Category({categ}){
     return(
-        <div className="pt-14 pb-3 sm:pb-9   sm:border-none clip-path shadow-[0px_0px_8px_1px_rgba(0,0,0,0.1)] last:shadow-none">
+        <div className="pt-14 pb-3 sm:pb-9   sm:border-none clip-path shadow-[0px_0px_4px_1px_rgba(0,0,0,0.1)] ">
             <div className="accent-text uppercase">
                 {categ.attributes.Name}
             </div>

@@ -13,7 +13,7 @@ export default function Header() {
         <header ref={ref}
                 className="fixed top-0 left-0 w-full h-[73px] bg-gradient-to-t from-white/90 to-white/100 backdrop-blur-[2px] sm:flex sm:justify-between border-none shadow-[0px_0px_8px_1px_rgba(0,0,0,0.1)]">
             <div className="max-w-screen-desk sm:px-4 w-full mx-auto flex flex-col justify-between sm:flex-row">
-                <div className="px-4 pt-4 sm:p-0 flex justify-between w-full">
+                <div className="px-4 py-4 sm:p-0 flex justify-between w-full">
                     {/*logo*/}
                     <Link className="flex flex-col justify-center" href="/">
                         <Image src={logoSvg} alt="logo" className="w-[93px] h-[25px] sm:w-[150px] sm:h-[40px]"/>
@@ -33,11 +33,14 @@ export default function Header() {
                     </div>
                 </div>
                 {/*links*/}
-                <nav className={`py-4 sm:p-0 w-full backdrop-blur-[3px] sm:backdrop-blur-none  ${isVisible ? 'block' : 'hidden'} sm:flex sm:justify-end`}>
+                <nav className={`py-0 sm:p-0 w-full bg-from-white/90 backdrop-blur-[3px] sm:backdrop-blur-none  ${isVisible ? 'block' : 'hidden'} sm:flex sm:justify-end`}>
                     {
                         navlinks.map(item => (
                             <div onClick={() => setIsVisible(false)}
-                                 className="px-2 py-3 sm:p-0 sm:flex sm:flex-col sm:gap-1 sm:justify-center sm:ml-4 odd:bg-gray100cold/90 even:bg-gray100warm/90 sm:odd:bg-transparent sm:even:bg-transparent  "
+                                 className="px-2 py-4 sm:p-0 sm:flex sm:flex-col sm:gap-1 sm:justify-center sm:ml-4
+                                  odd:bg-gray100cold/90 sm:odd:bg-transparent
+                                  even:bg-gray100warm/90 sm:even:bg-transparent
+                                  "
                                  key={item.id}>
                                 <Link className="block text-end pr-2 sm:pr-0"
                                       href={`#${item.id}`}>

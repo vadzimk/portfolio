@@ -74,6 +74,14 @@ h5 {
     @apply bg-gradient-to-b from-[#EEECFC]/50 via-[#E1EEFD]/50 to-[#DEF0FD]/50
 }
 
+.project-deco-violet {
+    @apply bg-gradient-to-r from-[#C7E5FC] to-[#C8C0FF]
+}
+
+.project-deco-green {
+    @apply bg-gradient-to-r from-[#B0DDFF] to-[#A5FFED]
+}
+
 .decorate-list ul {
     @apply list-disc list-inside
 }

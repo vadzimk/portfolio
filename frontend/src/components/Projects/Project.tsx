@@ -24,7 +24,7 @@ export default function Project({project}) {
 
     return (
         <div
-            className="pt-24 pb-3 flex flex-col sm:flex-none sm:grid sm:grid-cols-2 xl:gap-x-12 sm:max-w-screen-desk sm:mx-auto"
+            className="pt-28 pb-28 flex flex-col sm:flex-none sm:grid sm:grid-cols-2 xl:gap-x-12 sm:max-w-screen-desk sm:mx-auto"
             key={project.id}>
             {/*image section*/}
             <div className={`project-gradient-green aspect-[1.34] max-w-[648px] flex items-end justify-end
@@ -70,7 +70,7 @@ export default function Project({project}) {
                 {/*decoration box*/}
                 <div className={`flex justify-end ${project.id % 2 === 0 ? 'sm:justify-start' : 'sm:justify-end'}`}>
                     <div
-                        className={`bg-gradient-to-r from-secondary1 to-[#EEAFE9] h-2 w-14 mx-4 ${project.id % 2 === 0 ? 'rotate-180' : ''} `}></div>
+                        className={`h-2 w-24 mx-4 ${project.id % 2 === 0 ? 'rotate-180 project-deco-violet' : 'bg-gradient-to-r project-deco-green'} `}></div>
                 </div>
             </div>
         </div>
