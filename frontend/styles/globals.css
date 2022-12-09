@@ -2,20 +2,23 @@
 @tailwind components;
 @tailwind utilities;
 
-@font-face {
-    font-family: "Hahmlet";
-    font-style: normal;
-    font-weight: 100 900;
-    font-display: optional;
-    src: url(/fonts/Hahmlet/Hahmlet-VariableFont_wght.ttf) format("ttf");
-}
+@layer base {
+    @font-face {
+        font-family: "Hahmlet";
+        font-style: normal;
+        font-weight: 100 900;
+        font-display: optional;
+        src: local('Hahmlet'),
+        url(/fonts/Hahmlet/Hahmlet-VariableFont_wght.ttf);
+    }
 
-@font-face {
-    font-family: "Rubik";
-    font-style: normal;
-    font-weight: 100 900;
-    font-display: optional;
-    src: url(/fonts/Rubik/Rubik-VariableFont_wght.ttf) format("ttf");
+    @font-face {
+        font-family: "Rubik";
+        font-style: normal;
+        font-weight: 100 900;
+        font-display: optional;
+        src: url(/fonts/Rubik/Rubik-VariableFont_wght.ttf);
+    }
 }
 
 html {
@@ -27,9 +30,10 @@ h2, h3, h4, h5 {
     @apply font-serif font-bold leading-normal
 }
 
-h1{
+h1 {
     @apply font-bold text-2xl sm:text-3xl font-sans leading-[150%] md:leading-[150%] lg:leading-[150%] xl:leading-[150%] 2xl:leading-[150%]
 }
+
 /*h1 {*/
 /*    @apply text-5xl md:text-7xl*/
 /*}*/
@@ -54,22 +58,23 @@ h5 {
 /*    @apply font-bold text-2xl sm:text-3xl md:text-4xl  font-sans leading-[150%] md:leading-[150%] lg:leading-[150%] xl:leading-[150%] 2xl:leading-[150%]*/
 /*}*/
 
-.accent-text{
+.accent-text {
     @apply font-serif font-extralight text-xl
 }
 
-.section-container{
+.section-container {
     @apply px-4 pt-24 sm:max-w-screen-desk sm:mx-auto
 }
 
-.project-gradient-green{
+.project-gradient-green {
     @apply bg-gradient-to-b from-[#CFF7EF]/50 via-[#D8F2F9]/50 to-[#DEF0FD]/50
 }
-.project-gradient-violet{
+
+.project-gradient-violet {
     @apply bg-gradient-to-b from-[#EEECFC]/50 via-[#E1EEFD]/50 to-[#DEF0FD]/50
 }
 
-.decorate-list ul{
+.decorate-list ul {
     @apply list-disc list-inside
 }
 
