@@ -37,24 +37,26 @@ const TextInput = ({type, label, name, required, className}: InputProps) => {
         <div className={className}>
             <div className="relative h-full">
                 <Component
-                       type="text"
-                       id="filled_error"
-                       aria-describedby="filled_error_help"
-                       placeholder=" "
-                       className={`block px-3 pb-2.5 pt-5 w-full h-full text-sm bg-white
+                    type="text"
+                    id="filled_error"
+                    aria-describedby="filled_error_help"
+                    placeholder=" "
+                    className={`block px-3 pb-2.5 pt-5 w-full h-full text-sm bg-white
                     border-0 box-border appearance-none focus:outline-none focus:ring-0 peer 
-                    ${errors[name] ? 'border-red-600 border-b-2' : ''}`}
+                    ${errors[name] ? 'border-red-600 border-b-2' : ''}
+                    overflow-scroll
+                    `}
                 />
                 <label htmlFor="filled_error"
                        className="absolute text-sm duration-300 transform -translate-y-4 scale-75 top-4 z-10 origin-[0] left-3 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-4">
                     {label}
                 </label>
             </div>
-              <div id="filled_error_help"
+            <div id="filled_error_help"
                  className={`mt-0.5 text-xs text-red-800 absolute ${errors[name]?.type === 'required'} '' ? 'hidden'`}
-              >
-                  {errors[name]?.message as string}
-              </div>
+            >
+                {errors[name]?.message as string}
+            </div>
 
         </div>);
 };
@@ -76,24 +78,26 @@ export default function Contact() {
                           onSubmit={methods.handleSubmit(onSubmit)}>
                         <TextInput
                             type="textarea"
-                            className="h-72"
+                            className="h-72 grow"
                             label="Message"
                             name="message"
                             required/>
-                        <div className="flex flex-col gap-8">
-                            <TextInput
-                                label="Subject"
-                                name="subject"
-                                required/>
-                            <TextInput
-                                label="Your email"
-                                name="email"
-                                required/>
+                        <div className="flex flex-col gap-8 grow sm:justify-between">
+                            <div className="flex flex-col gap-8">
+                                <TextInput
+                                    label="Subject"
+                                    name="subject"
+                                    required/>
+                                <TextInput
+                                    label="Your email"
+                                    name="email"
+                                    required/>
+                            </div>
                             <button type="submit"
                                     className="w-full font-serif text-xl text-center
                                 bg-gradient-to-tr from-accent1/30 via-accent1/30 to-primary1
                                 hover:from-accent1/40 hover:via-accent1/40 hover:to-primary1
-                                hover:shadow-lg focus:outline-none focus:ring-teal-300 dark:focus:ring-teal-800 rounded px-5 py-2.5 mr-2 mb-2"
+                                hover:shadow-lg focus:outline-none focus:ring-teal-300 dark:focus:ring-teal-800 rounded px-5 py-2.5"
                             >
                                 Send
                             </button>
