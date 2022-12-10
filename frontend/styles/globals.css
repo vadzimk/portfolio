@@ -50,7 +50,7 @@ h4 {
     @apply text-xl
 }
 
-h5, button {
+h5 {
     @apply text-lg
 }
 
