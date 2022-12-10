@@ -44,7 +44,7 @@ const TextInput = ({type, label, name, required, className}: InputProps) => {
                     className={`block px-3 pb-2.5 pt-5 w-full h-full text-sm bg-white
                     border-0 box-border appearance-none focus:outline-none focus:ring-0 peer 
                     ${errors[name] ? 'border-red-600 border-b-2' : ''}
-                    overflow-scroll
+                    overflow-scroll resize-none
                     `}
                 />
                 <label htmlFor="filled_error"
@@ -70,7 +70,7 @@ export default function Contact() {
     return (
         <section
             id="contact"
-            className="bg-red-100 section-container">
+            className="bg-red-100 section-container pb-48">
             <h2>Contact</h2>
             <div className="pt-14">
                 <FormProvider {...methods}>

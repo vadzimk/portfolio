@@ -83,7 +83,6 @@ export default function Home({headingHtml, avatar, technologies, projects}) {
             <div className="min-h-[calc(100vh)] bg-gray100cold">
                 <Contact/>
                 <Footer/>
-
             </div>
         </div>
     )
