@@ -65,7 +65,7 @@ export default function Contact() {
     const methods = useForm<IFormValues>();
 
     const onSubmit: SubmitHandler<IFormValues> = data => {
-        alert(JSON.stringify(data));
+        console.log(JSON.stringify(data));
     };
     return (
         <section
@@ -94,10 +94,12 @@ export default function Contact() {
                                     required/>
                             </div>
                             <button type="submit"
-                                    className="w-full font-serif text-xl text-center
+                                    className="w-full font-serif text-xl text-center rounded px-5 py-2.5
                                 bg-gradient-to-tr from-accent1/30 via-accent1/30 to-primary1
                                 hover:from-accent1/40 hover:via-accent1/40 hover:to-primary1
-                                hover:shadow-lg focus:outline-none focus:ring-teal-300 dark:focus:ring-teal-800 rounded px-5 py-2.5"
+                                hover:shadow-lg focus:shadow-inner
+                                focus:brightness-[.95]
+                                "
                             >
                                 Send
                             </button>
