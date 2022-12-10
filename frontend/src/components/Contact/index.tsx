@@ -6,7 +6,8 @@ import {
     useFormState,
     FormProvider,
     useFormContext
-} from "react-hook-form"
+} from "react-hook-form";
+
 import React, {ReactElement} from 'react';
 
 
@@ -28,14 +29,14 @@ const TextInput = ({type, label, name, required, className}: InputProps) => {
     const {register, formState: {errors}} = useFormContext(); // retrieve all hook methods
     console.log(name, errors[name])
 
-    let Component = ({...other}) => <input {...other}/> as React.ReactElement
+    let Component = (props) => <input {...props} {...register(name, {required: "Required"})}/> as React.ReactElement
     if (type === 'textarea')
-        Component = ({...other}) => <textarea {...other}/> as React.ReactElement
+        Component = (props) => <textarea {...props} {...register(name, {required: "Required"})}/> as React.ReactElement
 
     return (
         <div className={className}>
             <div className="relative h-full">
-                <Component {...register(name, {required: "Required"})}
+                <Component
                        type="text"
                        id="filled_error"
                        aria-describedby="filled_error_help"
