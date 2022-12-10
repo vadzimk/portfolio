@@ -8,7 +8,7 @@ export default function Footer() {
     return (
         // TODO delete display none
         <div style={{display: "none"}} >
-            <Image src={logoSvg} alt="logo"/>
+            <Image src={logoSvg} alt="logo" className=" h-[25px] sm:h-[40px] w-auto"/>
             <div>
                 <Image src={linkedinThick} alt="vadzim linkedin page"/>
                 <Image src={githubThick} alt="vadzim github page"/>

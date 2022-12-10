@@ -16,7 +16,7 @@ export default function Header() {
                 <div className="px-4 py-4 sm:p-0 flex justify-between w-full">
                     {/*logo*/}
                     <Link className="flex flex-col justify-center" href="/">
-                        <Image src={logoSvg} alt="logo" className="w-[93px] h-[25px] sm:w-[150px] sm:h-[40px]"/>
+                        <Image src={logoSvg} alt="logo" className="h-[25px] sm:h-[40px] w-auto"/>
                     </Link>
                     {/*hamburger*/}
                     <div className="sm:hidden">

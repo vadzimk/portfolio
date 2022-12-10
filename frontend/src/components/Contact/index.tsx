@@ -41,7 +41,7 @@ export default function Contact() {
         <section
             id="contact" className="bg-red-100 section-container">
             <h2>Contact</h2>
-            <div className="pt-14" style={{display: "none"}}> {/*TODO delete display none*/}
+            <div className="pt-14">
                 <form onSubmit={handleSubmit(onSubmit)}>
                     <Input className=""
                            label="Message" register={register} required/>
