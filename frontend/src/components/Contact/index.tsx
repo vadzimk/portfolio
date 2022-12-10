@@ -42,25 +42,27 @@ const TextInput = ({type, label, name, required, className}: InputProps) => {
                     aria-describedby="filled_error_help"
                     placeholder=" "
                     className={`block px-3 pb-2.5 pt-5 w-full h-full bg-white
-                    border-0 box-border appearance-none focus:outline-none focus:ring-0 peer 
-                    ${errors[name] ? 'border-red-600 border-b-2' : ''}
+                    border-0 box-border appearance-none 
+                    shadow-[inset_1px_2px_4px_rgba(0,0,0,0.1)]
+                    focus:outline-none focus:ring-0 peer 
+                    ${errors[name] ? 'border-secondary1 border-b-2' : ''}
                     overflow-scroll resize-none
                     `}
                 />
                 <label htmlFor="filled_error"
-                       className="absolute text-sm duration-300 transform -translate-y-4 scale-75 top-4 z-10 origin-[0] left-3 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-4">
+                       className="absolute text-sm duration-300 transform -translate-y-4 scale-75 top-4 z-10 origin-[0] left-3 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-4 opacity-70">
                     {label}
                 </label>
             </div>
             <div id="filled_error_help"
-                 className={`mt-0.5 text-xs text-red-800 absolute ${errors[name]?.type === 'required'} '' ? 'hidden'`}
+                 className={`mt-0.5 text-xs text-[#AA72E2FF] absolute ${errors[name]?.type === 'required'} '' ? 'hidden'`}
             >
                 {errors[name]?.message as string}
             </div>
 
         </div>);
 };
-const Arrow = <svg width="14" height="22" fill="none" className="text-secondary1 fill-current">
+const Arrow = <svg width="14" height="22" fill="none" className="text-secondary1 fill-current scale-[.80]">
     <path  d="M9.37 10.84.333 19.879l1.917 1.918L13.296 10.75 2.75.204.742 2.212l8.628 8.629Z"/>
 </svg>
 
@@ -73,7 +75,7 @@ export default function Contact() {
     return (
         <section
             id="contact"
-            className="bg-red-100 section-container pb-48">
+            className="section-container pb-48">
             <h2>Contact</h2>
             <div className="pt-14">
                 <FormProvider {...methods}>

@@ -28,7 +28,7 @@ ${project.id % 2 === 0 ? 'hover:bg-[#EEECFC]/50 focus:bg-[#EEECFC]' : 'hover:bg-
             className="pt-28 pb-28 flex flex-col sm:flex-none sm:grid sm:grid-cols-2 xl:gap-x-12 sm:max-w-screen-desk sm:mx-auto"
             key={project.id}>
             {/*image section*/}
-            <div className={`project-gradient-green hover:shadow-lg aspect-[1.34] max-w-[648px] flex items-end justify-end 
+            <div className={`project-gradient-green shadow-[0_25px_50px_-12px_rgba(0,0,0,0.08)] aspect-[1.34] max-w-[648px] flex items-end justify-end 
             ${project.id % 2 === 0 
                 ? 'project-gradient-violet sm:col-start-2 sm:row-start-1 sm:col-span-1 sm:justify-start' 
                 : 'project-gradient-green sm:justify-end'}`}>
