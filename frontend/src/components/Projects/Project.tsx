@@ -21,7 +21,8 @@ const linkGithubThin = <svg width="36" height="36" fill="none" className="text-g
 </svg>
 
 export default function Project({project}) {
-
+const linkStyle = `block shadow-md focus:shadow-inner hover:shadow-lg
+${project.id % 2 === 0 ? 'hover:bg-[#EEECFC]/50 focus:bg-[#EEECFC]' : 'hover:bg-[#CFF7EF]/50 focus:bg-[#CFF7EF]'}`
     return (
         <div
             className="pt-28 pb-28 flex flex-col sm:flex-none sm:grid sm:grid-cols-2 xl:gap-x-12 sm:max-w-screen-desk sm:mx-auto"
@@ -53,15 +54,15 @@ export default function Project({project}) {
                         <div className="flex flex-col justify-center">
                             <h3 className="lowercase">{project.attributes.Title}</h3>
                         </div>
-                        <div className="flex w-24 justify-between">
-                            <a className="block"
-                               target="_blank"
-                               rel="noreferrer"
-                               href={project.attributes.Link}>{linkSvg}</a>
-                            <a className="block"
-                               target="_blank"
-                               rel="noreferrer"
-                               href={project.attributes.Repository}>{linkGithubThin}</a>
+                        <div className="flex justify-between gap-6">
+                            {project.attributes.Link && <a className={linkStyle}
+                                target="_blank"
+                                rel="noreferrer"
+                                href={project.attributes.Link}>{linkSvg}</a>}
+                            {project.attributes.Repository && <a className={linkStyle}
+                                target="_blank"
+                                rel="noreferrer"
+                                href={project.attributes.Repository}>{linkGithubThin}</a>}
                         </div>
                     </div>
                     <div className="pt-3 decorate-list"
