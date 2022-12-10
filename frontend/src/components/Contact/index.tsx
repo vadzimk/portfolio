@@ -41,7 +41,7 @@ const TextInput = ({type, label, name, required, className}: InputProps) => {
                     id="filled_error"
                     aria-describedby="filled_error_help"
                     placeholder=" "
-                    className={`block px-3 pb-2.5 pt-5 w-full h-full text-sm bg-white
+                    className={`block px-3 pb-2.5 pt-5 w-full h-full bg-white
                     border-0 box-border appearance-none focus:outline-none focus:ring-0 peer 
                     ${errors[name] ? 'border-red-600 border-b-2' : ''}
                     overflow-scroll resize-none
@@ -60,6 +60,9 @@ const TextInput = ({type, label, name, required, className}: InputProps) => {
 
         </div>);
 };
+const Arrow = <svg width="14" height="22" fill="none" className="text-secondary1 fill-current">
+    <path  d="M9.37 10.84.333 19.879l1.917 1.918L13.296 10.75 2.75.204.742 2.212l8.628 8.629Z"/>
+</svg>
 
 export default function Contact() {
     const methods = useForm<IFormValues>();
@@ -98,10 +101,13 @@ export default function Contact() {
                                 bg-gradient-to-tr from-accent1/30 via-accent1/30 to-primary1
                                 hover:from-accent1/40 hover:via-accent1/40 hover:to-primary1
                                 hover:shadow-lg focus:shadow-inner
-                                focus:brightness-[.95]
+                                focus:brightness-[.95] flex justify-center gap-2
                                 "
                             >
-                                Send
+                                <div>Send</div>
+                                <div className="flex flex-col justify-center items-center">
+                                    {Arrow}
+                                </div>
                             </button>
                         </div>
                     </form>
