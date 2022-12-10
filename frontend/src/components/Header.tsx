@@ -33,7 +33,9 @@ export default function Header() {
                     </div>
                 </div>
                 {/*links*/}
-                <nav className={`py-0 sm:p-0 w-full bg-from-white/90 backdrop-blur-[3px] sm:backdrop-blur-none  ${isVisible ? 'block' : 'hidden'} sm:flex sm:justify-end`}>
+                <nav className={`py-0 sm:p-0 w-full bg-white/90 backdrop-blur-[3px] sm:backdrop-blur-none 
+                ${isVisible ? 'block' : 'hidden'} 
+                sm:flex sm:justify-end`}>
                     {
                         navlinks.map(item => (
                             <div onClick={() => setIsVisible(false)}

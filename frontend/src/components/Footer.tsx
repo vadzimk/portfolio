@@ -1,4 +1,4 @@
-import logoSvg from '../../public/logo.svg'
+import logoSvg from '../../public/logo-colourful.svg'
 import githubThick from '../../public/linkedin-thick.svg'
 import linkedinThick from '../../public/github-thick.svg'
 import Image from 'next/image'
@@ -6,7 +6,8 @@ import {navlinks} from '@/components/navlinks';
 
 export default function Footer() {
     return (
-        <div>
+        // TODO delete display none
+        <div style={{display: "none"}} >
             <Image src={logoSvg} alt="logo"/>
             <div>
                 <Image src={linkedinThick} alt="vadzim linkedin page"/>

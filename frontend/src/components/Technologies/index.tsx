@@ -6,7 +6,7 @@ export default function Technologies({technologies}) {
         <section id="technologies"
              className="min-h-[calc(100vh)] bg-gray100warm relative">
             <div className="section-container">
-                <h2>Technologies I use</h2>
+                <h2>Technologies used</h2>
                 <>
                     {technologies?.data
                         ?.sort((a, b) => a.attributes.Priority - b.attributes.Priority)

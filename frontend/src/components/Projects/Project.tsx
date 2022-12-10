@@ -29,6 +29,7 @@ export default function Project({project}) {
             {/*image section*/}
             <div className={`project-gradient-green aspect-[1.34] max-w-[648px] flex items-end justify-end
             ${project.id % 2 === 0 ? 'project-gradient-violet sm:col-start-2 sm:row-start-1 sm:col-span-1 sm:justify-start' : 'project-gradient-green sm:justify-end'}
+            hover:shadow-lg
             `}>
                 <div className="h-[90%] aspect-[1.34]  saturate-[30%]  hover:saturate-100">
                     <div className="relative h-full w-full">
