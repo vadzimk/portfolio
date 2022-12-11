@@ -43,14 +43,14 @@ export default function Footer() {
             <div className="max-w-screen-desk px-4 w-full mx-auto pb-24 flex justify-between">
                 <div className="flex flex-col sm:flex-row gap-4">
                     <a
-                       href=""
-                       title="vadzim's github page"
+                       href="https://github.com/vadzimk"
+                       title="vadzim's Github page"
                     >
                         {githubIcon}
                     </a>
                     <a
-                       href="#"
-                       title="vadzim's linkedin page"
+                       href="https://www.linkedin.com/in/vadzim-k/"
+                       title="vadzim's Linkedin page"
                     >
                         {linkedinIcon}
                     </a>
