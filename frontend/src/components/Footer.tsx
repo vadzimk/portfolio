@@ -46,6 +46,7 @@ export default function Footer() {
                        href="https://github.com/vadzimk"
                        title="vadzim's Github page"
                        target="_blank"
+                       rel="noreferrer"
 
                     >
                         {githubIcon}
@@ -54,6 +55,7 @@ export default function Footer() {
                        href="https://www.linkedin.com/in/vadzim-k/"
                        title="vadzim's Linkedin page"
                        target="_blank"
+                       rel="noreferrer"
                     >
                         {linkedinIcon}
                     </a>
