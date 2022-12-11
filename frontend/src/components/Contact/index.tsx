@@ -100,9 +100,10 @@ export default function Contact() {
                             </div>
                             <button type="submit"
                                     className="w-full font-serif text-xl text-center rounded px-5 py-2.5
-                                bg-gradient-to-tr from-accent1/30 via-accent1/30 to-primary1
-                                hover:from-accent1/40 hover:via-accent1/40 hover:to-primary1
-                                hover:shadow-lg focus:shadow-inner
+                                bg-gradient-to-tr from-accent1/30 via-accent1/30 to-primary2
+                                hover:from-accent1/40 hover:via-accent1/40 hover:to-primary2
+                                hover:shadow-md hover:shadow-primary2
+                                focus:shadow-inner
                                 focus:brightness-[.95] flex justify-center gap-2
                                 "
                             >

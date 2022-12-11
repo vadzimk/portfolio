@@ -16,13 +16,13 @@ export default function Header() {
                 <div className="px-4 py-4 sm:p-0 flex justify-between w-full">
                     {/*logo*/}
                     <Link className="flex flex-col justify-center" href="/">
-                        <Image src={logoSvg} alt="logo" className="h-[25px] sm:h-[40px] w-auto"/>
+                        <Image src={logoSvg} alt="logo" className="h-6 sm:h-10 w-auto"/>
                     </Link>
                     {/*hamburger*/}
                     <div className="sm:hidden">
                         <button type="button"
                                 onClick={() => setIsVisible(!isVisible)}
-                                className="block text-gray500 active:text-accent1 focus:outline-none hover:text-gray900">
+                                className="block text-gray800 active:text-accent1 focus:outline-none hover:text-gray900">
                             <svg width="40" height="40" viewBox="0 0 40 40" className="w-10 h-10 fill-current ">
                                 {!isVisible ? <path fillRule="evenodd" clipRule="evenodd"
                                                     d="M0 0H40V6H0V0ZM0 16H40V22H0V16ZM40 32H0V38H40V32Z"/>
@@ -47,13 +47,10 @@ export default function Header() {
                                 <Link className="block text-end pr-2 sm:pr-0"
                                       href={`#${item.id}`}>
                                     <span
-                                        className="font-light text-md uppercase inline-block hover:bg-gradient-to-r from-accent1 to-accent1 hover:bg-bottom hover:bg-[length:8px_6px] hover:bg-repeat-x">{item.name}</span>
+                                        className="nav-text">{item.name}</span>
                                 </Link>
                             </div>
-
-
                         ))}
-
                 </nav>
             </div>
         </header>
