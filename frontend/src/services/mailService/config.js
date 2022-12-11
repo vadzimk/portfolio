@@ -1,6 +1,3 @@
-import dotenv from 'dotenv';
-dotenv.config();
-
 const auth = {
   type: 'OAuth2',
     user: process.env.MAIL_USERNAME,
