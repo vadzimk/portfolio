@@ -80,7 +80,7 @@ export default function Home({headingHtml, avatar, technologies, projects}) {
                 <Technologies technologies={technologies}/>
                 <Projects projects={projects}/>
             </main>
-            <div className="min-h-[calc(100vh)] bg-gray100cold">
+            <div className="min-h-[calc(100vh)] bg-gray100cold relative">
                 <Contact/>
                 <Footer/>
             </div>

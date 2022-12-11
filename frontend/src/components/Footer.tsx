@@ -30,7 +30,7 @@ const linkedinIcon = <svg width="48" height="48" viewBox="0 0 48 48" fill="none"
 export default function Footer() {
     return (
         // TODO delete display none
-        <div className="flex flex-col gap-4 ">
+        <div className="flex flex-col gap-4 absolute bottom-0 left-0 right-0">
             {/*Top of divider*/}
             <div className="pt-24 max-w-screen-desk px-4 w-full mx-auto ">
                 <div className="w-full">
