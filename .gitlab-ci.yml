@@ -270,6 +270,13 @@ deploy_frontend:
       -e BASE_URL=$BASE_URL
       -e S3_SERVER_ADDRESS=$S3_SERVER_ADDRESS
       -e REVALIDATE_TOKEN=$REVALIDATE_TOKEN
+      -e MAIL_USERNAME=$MAIL_USERNAME
+      -e MAIL_PASSWORD=$MAIL_PASSWORD
+      -e OAUTH_CLIENTID=$OAUTH_CLIENTID
+      -e OAUTH_CLIENT_SECRET=$OAUTH_CLIENT_SECRET
+      -e OAUTH_REFRESH_TOKEN=$OAUTH_REFRESH_TOKEN
+      -e ACCESS_TOKEN=$ACCESS_TOKEN
+      -e RECEIVING_EMAILS=$RECEIVING_EMAILS
       -d ${IMAGE_NAME}:${IMAGE_TAG};
       ";
   resource_group: dev # fix The deployment job is older than the previously succeeded deployment job, and therefore cannot be run
