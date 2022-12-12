@@ -12,7 +12,7 @@ type InputProps = {
 
 export default function TextInput ({type, label, name, options, className}: InputProps) {
     const {register, formState: {errors}} = useFormContext(); // retrieve all hook methods
-    console.log(name, errors[name])
+    // console.log(name, errors[name])
 
     let Component = (props) => <input {...props} {...register(name, options)}/> as React.ReactElement
     if (type === 'textarea')

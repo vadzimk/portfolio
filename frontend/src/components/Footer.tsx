@@ -1,4 +1,3 @@
-import Image from 'next/image'
 import {navlinks} from '@/components/navlinks';
 import Link from 'next/link';
 
@@ -22,15 +21,15 @@ const githubIcon = <svg width="49" height="48" viewBox="0 0 49 48" fill="none"
 
 const linkedinIcon = <svg width="48" height="48" viewBox="0 0 48 48" fill="none"
                           className="text-gray800 fill-current w-9 h-9 drop-shadow-lg hover:drop-shadow-md">
-    <path fill-rule="evenodd"
+    <path fillRule="evenodd"
           d="M42.138 0A5.863 5.863 0 0 1 48 5.863v36.274A5.863 5.863 0 0 1 42.138 48H5.861A5.863 5.863 0 0 1 0 42.137V5.863A5.863 5.863 0 0 1 5.862 0h36.276ZM15.044 39.686V18.521H8.006v21.165h7.038Zm25.362 0V27.554c0-6.501-3.468-9.527-8.1-9.527-3.731 0-5.406 2.05-6.337 3.495v-2.995h-7.032c.094 1.988 0 21.166 0 21.166h7.032V27.866c0-.631.043-1.262.231-1.719.506-1.262 1.669-2.575 3.606-2.575 2.544 0 3.563 1.944 3.563 4.788v11.326h7.037ZM11.575 8.32c-2.406 0-3.981 1.581-3.981 3.657 0 2.031 1.525 3.656 3.887 3.656h.044c2.45 0 3.981-1.625 3.981-3.656-.043-2.076-1.525-3.65-3.931-3.657Z"
-          clip-rule="evenodd"/>
+          clipRule="evenodd"/>
 </svg>
 
 export default function Footer() {
     return (
         // TODO delete display none
-        <div className="flex flex-col gap-4 absolute bottom-0 left-0 right-0">
+        <div className="flex flex-col gap-4 static bottom-0 left-0 right-0">
             {/*Top of divider*/}
             <div className="pt-24 max-w-screen-desk px-4 w-full mx-auto ">
                 <div className="w-full">

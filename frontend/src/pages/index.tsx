@@ -35,7 +35,6 @@ export async function getStaticProps() {
 }
 
 export default function Home({headingHtml, avatar, technologies, projects}) {
-    console.log("headingHtml", headingHtml)
     return (
         <div>
             <Head>
