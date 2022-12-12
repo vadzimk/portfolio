@@ -27,7 +27,7 @@ export default function TextInput ({type, label, name, options, className}: Inpu
                     aria-describedby="filled_error_help"
                     placeholder=" "
                     className={`block px-3 pb-2.5 pt-5 w-full h-full bg-white
-                    border-0 box-border appearance-none 
+                    border border-slate-200 box-border appearance-none 
                     shadow-[inset_1px_2px_4px_rgba(0,0,0,0.1)]
                     focus:outline-none focus:ring-0 peer 
                     ${errors[name] ? 'border-secondary1 border-b-2' : ''}
