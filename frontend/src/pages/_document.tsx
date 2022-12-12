@@ -8,14 +8,14 @@ export default function Document() {
             <Head>
                 {/*Fonts*/}
                 <link
-                    rel="preload"
+                    rel="stylesheet preload"
                     href="/fonts/Hahmlet/Hahmlet-VariableFont_wght.ttf"
                     as="font"
                     type="font/ttf"
                     crossOrigin="anonymous"
                 />
                 <link
-                    rel="preload"
+                    rel="stylesheet preload"
                     href="/fonts/Rubik/Rubik-VariableFont_wght.ttf"
                     as="font"
                     type="font/ttf"
