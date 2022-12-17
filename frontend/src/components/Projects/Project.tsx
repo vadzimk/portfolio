@@ -21,16 +21,17 @@ const linkGithubThin = <svg width="36" height="36" fill="none" className="text-g
 </svg>
 
 export default function Project({project}) {
-const linkStyle = `block shadow-md focus:shadow-inner hover:shadow-lg
-${project.id % 2 === 0 ? 'hover:bg-[#EEECFC]/50 focus:bg-[#EEECFC]' : 'hover:bg-[#CFF7EF]/50 focus:bg-[#CFF7EF]'}`
+    const priority = project.attributes.Priority
+    const linkStyle = `block shadow-md focus:shadow-inner hover:shadow-lg
+${priority % 2 === 0 ? 'hover:bg-[#EEECFC]/50 focus:bg-[#EEECFC]' : 'hover:bg-[#CFF7EF]/50 focus:bg-[#CFF7EF]'}`
     return (
         <div
             className="pt-28 pb-28 flex flex-col sm:flex-none sm:grid sm:grid-cols-2 xl:gap-x-12 sm:max-w-screen-desk sm:mx-auto"
             key={project.id}>
             {/*image section*/}
             <div className={`project-gradient-green shadow-[0_25px_50px_-12px_rgba(0,0,0,0.08)] aspect-[1.34] max-w-[648px] flex items-end justify-end 
-            ${project.id % 2 === 0 
-                ? 'project-gradient-violet sm:col-start-2 sm:row-start-1 sm:col-span-1 sm:justify-start' 
+            ${priority % 2 === 0
+                ? 'project-gradient-violet sm:col-start-2 sm:row-start-1 sm:col-span-1 sm:justify-start'
                 : 'project-gradient-green sm:justify-end'}`}>
                 <div className="h-[90%] aspect-[1.34] saturate-[30%] hover:saturate-100">
                     <div className="relative h-full w-full">
@@ -46,7 +47,7 @@ ${project.id % 2 === 0 ? 'hover:bg-[#EEECFC]/50 focus:bg-[#EEECFC]' : 'hover:bg-
             </div>
             {/*description section*/}
             <div className={`flex flex-col justify-start sm:justify-between
-            ${project.id % 2 === 0 ? 'sm:col-start-1 sm:row-start-1 sm:col-span-1' : ''}
+            ${priority % 2 === 0 ? 'sm:col-start-1 sm:row-start-1 sm:col-span-1' : ''}
             `}>
                 {/*description*/}
                 <div className="px-4 pt-7 pb-5 max-w-[648px]">
@@ -56,13 +57,13 @@ ${project.id % 2 === 0 ? 'hover:bg-[#EEECFC]/50 focus:bg-[#EEECFC]' : 'hover:bg-
                         </div>
                         <div className="flex justify-between gap-6">
                             {project.attributes.Link && <a className={linkStyle}
-                                target="_blank"
-                                rel="noreferrer"
-                                href={project.attributes.Link}>{linkSvg}</a>}
+                                                           target="_blank"
+                                                           rel="noreferrer"
+                                                           href={project.attributes.Link}>{linkSvg}</a>}
                             {project.attributes.Repository && <a className={linkStyle}
-                                target="_blank"
-                                rel="noreferrer"
-                                href={project.attributes.Repository}>{linkGithubThin}</a>}
+                                                                 target="_blank"
+                                                                 rel="noreferrer"
+                                                                 href={project.attributes.Repository}>{linkGithubThin}</a>}
                         </div>
                     </div>
                     <div className="pt-3 decorate-list"
@@ -70,9 +71,9 @@ ${project.id % 2 === 0 ? 'hover:bg-[#EEECFC]/50 focus:bg-[#EEECFC]' : 'hover:bg-
                     />
                 </div>
                 {/*decoration box*/}
-                <div className={`flex justify-end ${project.id % 2 === 0 ? 'sm:justify-start' : 'sm:justify-end'}`}>
+                <div className={`flex justify-end ${priority % 2 === 0 ? 'sm:justify-start' : 'sm:justify-end'}`}>
                     <div
-                        className={`h-2 w-24 mx-4 ${project.id % 2 === 0 ? 'rotate-180 project-deco-violet' : 'bg-gradient-to-r project-deco-green'} `}></div>
+                        className={`h-2 w-24 mx-4 ${priority % 2 === 0 ? 'rotate-180 project-deco-violet' : 'bg-gradient-to-r project-deco-green'} `}></div>
                 </div>
             </div>
         </div>
