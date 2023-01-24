@@ -61,7 +61,7 @@ export default function Home({headingHtml, avatar, technologies, projects}) {
                                 <div className="shrink-0 flex md:flex-col justify-end z-10">
                                     {avatar?.data && <Image
                                         className="w-[200px] md:w-[300px] rounded-full shadow-[2px_4px_10px_-2px_rgba(0,0,0,0.05)]"
-                                        src={avatar.data.attributes.url}
+                                        src={avatar.data.attributes?.url}
                                         alt={avatar.data.attributes.alternativeText}
                                         width={avatar.data.attributes.width}
                                         height={avatar.data.attributes.height}
