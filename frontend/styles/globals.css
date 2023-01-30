@@ -1,28 +1,9 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-
 @layer base {
-    @font-face {
-        font-family: "Hahmlet";
-        font-style: normal;
-        font-weight: 100 900;
-        font-display: optional;
-        src: local('Hahmlet'),
-        url(/fonts/Hahmlet/Hahmlet-VariableFont_wght.ttf); /* no need for format if ttf */
-    }
-
-    @font-face {
-        font-family: "Rubik";
-        font-style: normal;
-        font-weight: 100 900;
-        font-display: optional;
-        src: url(/fonts/Rubik/Rubik-VariableFont_wght.ttf);
-    }
-}
-
-html {
-    @apply text-[16px] font-sans leading-[150%] text-gray900 scroll-smooth
+body {
+    @apply text-[16px] font-sans leading-[150%] text-gray900 dark:text-orange100 scroll-smooth
 }
 
 
@@ -54,41 +35,65 @@ h5 {
     @apply text-lg
 }
 
-/*.hero-text{*/
-/*    @apply font-bold text-2xl sm:text-3xl md:text-4xl  font-sans leading-[150%] md:leading-[150%] lg:leading-[150%] xl:leading-[150%] 2xl:leading-[150%]*/
-/*}*/
 
-.nav-text {
-    @apply font-light uppercase inline-block hover:bg-gradient-to-r from-accent1 to-accent1 hover:bg-bottom hover:bg-[length:8px_6px] hover:bg-repeat-x
+    @font-face {
+        font-family: "Hahmlet";
+        font-style: normal;
+        font-weight: 100 900;
+        font-display: optional;
+        src: local('Hahmlet'),
+        url(/fonts/Hahmlet/Hahmlet-VariableFont_wght.ttf); /* no need for format if ttf */
+    }
+
+    @font-face {
+        font-family: "Rubik";
+        font-style: normal;
+        font-weight: 100 900;
+        font-display: optional;
+        src: url(/fonts/Rubik/Rubik-VariableFont_wght.ttf);
+    }
+    .accent-text {
+        @apply font-serif font-extralight text-xl
+    }
 }
 
-.accent-text {
-    @apply font-serif font-extralight text-xl
+@layer components {
+
+
+    /*.hero-text{*/
+    /*    @apply font-bold text-2xl sm:text-3xl md:text-4xl  font-sans leading-[150%] md:leading-[150%] lg:leading-[150%] xl:leading-[150%] 2xl:leading-[150%]*/
+    /*}*/
+    .nav-text {
+        @apply font-light uppercase inline-block hover:bg-gradient-to-r from-accent1 to-accent1 hover:bg-bottom hover:bg-[length:8px_6px] hover:bg-repeat-x
+    }
+
+
+
+    .section-container {
+        @apply px-4 pt-24 sm:max-w-screen-desk sm:mx-auto
+    }
+
+    .project-gradient-green {
+        @apply bg-gradient-to-b from-[#CFF7EF]/50 via-[#D8F2F9]/50 to-[#DEF0FD]/50
+    }
+
+    .project-gradient-violet {
+        @apply bg-gradient-to-b from-[#EEECFC]/50 via-[#E1EEFD]/50 to-[#DEF0FD]/50
+    }
+
+    .project-deco-violet {
+        @apply bg-gradient-to-r from-[#C7E5FC] to-[#C8C0FF]
+    }
+
+    .project-deco-green {
+        @apply bg-gradient-to-r from-[#B0DDFF] to-[#A5FFED]
+    }
+
+    .decorate-list ul {
+        @apply list-disc list-inside
+    }
 }
 
-.section-container {
-    @apply px-4 pt-24 sm:max-w-screen-desk sm:mx-auto
-}
-
-.project-gradient-green {
-    @apply bg-gradient-to-b from-[#CFF7EF]/50 via-[#D8F2F9]/50 to-[#DEF0FD]/50
-}
-
-.project-gradient-violet {
-    @apply bg-gradient-to-b from-[#EEECFC]/50 via-[#E1EEFD]/50 to-[#DEF0FD]/50
-}
-
-.project-deco-violet {
-    @apply bg-gradient-to-r from-[#C7E5FC] to-[#C8C0FF]
-}
-
-.project-deco-green {
-    @apply bg-gradient-to-r from-[#B0DDFF] to-[#A5FFED]
-}
-
-.decorate-list ul {
-    @apply list-disc list-inside
-}
 
 /*https://stackoverflow.com/questions/5460129/how-to-create-a-drop-shadow-only-on-one-side-of-an-element*/
 @layer utilities {

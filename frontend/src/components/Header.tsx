@@ -1,17 +1,24 @@
 import Image from 'next/image';
-import logoSvg from '../../public/logo-colourful.svg'
+import logoSvg from '../../public/logo.svg'
+import sunIcon from '../../public/sun-icon.svg'
+import moonIcon from '../../public/moon-icon.svg'
 import {navlinks} from '@/components/navlinks';
 import Link from 'next/link'
 import useComponentVisible from '@/hooks/useComponentVisible';
+import {useTheme} from 'next-themes';
 
 export default function Header() {
 
     const {ref, isVisible, setIsVisible} = useComponentVisible(false)
-
+    const {theme, setTheme} = useTheme();
 
     return (
         <header ref={ref}
-                className="fixed top-0 left-0 w-full h-[73px] bg-gradient-to-t from-white/90 to-white/100 backdrop-blur-[2px] sm:flex sm:justify-between border-none shadow-[0px_0px_8px_1px_rgba(0,0,0,0.1)]">
+                className="fixed top-0 left-0 w-full h-[73px]
+                bg-gradient-to-t from-blue500/90 to-blue500/100 backdrop-blur-[2px]
+                text-orange100
+                dark:from-blue700/90 dark:to-blue700/100
+                sm:flex sm:justify-between border-none shadow-[0px_0px_8px_1px_rgba(0,0,0,0.1)]">
             <div className="max-w-screen-desk sm:px-4 w-full mx-auto flex flex-col justify-between sm:flex-row">
                 <div className="px-4 py-4 sm:p-0 flex justify-between w-full">
                     {/*logo*/}
@@ -33,7 +40,7 @@ export default function Header() {
                     </div>
                 </div>
                 {/*links*/}
-                <nav className={`py-0 sm:p-0 w-full bg-white/90 backdrop-blur-[3px] sm:backdrop-blur-none 
+                <nav className={`py-0 sm:p-0 w-full  backdrop-blur-[3px] sm:backdrop-blur-none 
                 ${isVisible ? 'block' : 'hidden'} 
                 sm:flex sm:justify-end`}>
                     {
@@ -51,6 +58,11 @@ export default function Header() {
                                 </Link>
                             </div>
                         ))}
+                    <button onClick={()=>setTheme(theme === 'dark' ? 'light' : 'dark')}>
+                        <Image src={theme === 'dark' ? sunIcon : moonIcon} alt="dark/light mode"
+                               className="px-2 py-4 sm:p-0 sm:flex sm:flex-col sm:gap-1 sm:justify-center sm:ml-4
+                               w-[24px] h-[24px]"/>
+                    </button>
                 </nav>
             </div>
         </header>
