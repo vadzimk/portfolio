@@ -14,28 +14,29 @@ module.exports = {
         secondary1: '#E3C7FF',
         secondary2: '#F2E9FE',
         accent1: '#A5FFED',
+
         gray900: '#0F1011', // new
-        gray600: '#abc1d2',
-        gray700: '#86a5b6',
-        gray800: '#6a8c9f',
-        gray500: '#BAB5BD',
-        gray300: '#E0DBE3',
+        gray800: '#3E4346', // new
+        gray700: '#52575B',
+        gray600: '#5B656E',
+        gray500: '#5B656F',
+        gray400: '#5C727D',
+        gray300: '#75909F',
+        gray200: '#CEDCE4',
+        gray100: '#F2F4F5',
+        gray050: '#FAFDFF',
+
         gray100warm: '#FCFAFE',
         gray100cold: '#F9FBFD',
-        blue900: '#4E5761',
-        blue800: '#566470',
-        blue700: '#556B80',
-        blue600: '#76868F',
+
         blue500: '#75909F',
-        blue400: '#8CA3B0',
-        blue300: '#CEDBE4',
-        blue200: '#EDF9FF',
-        blue100: '#EFF7FF',
-        green500: '#7CBEB6',
-        green200: '#D6EFEE',
-        green100: '#EDFFFD',
+
+        green300: '#7CBEB6',
+        green200: '#A5FFED',
+        green100: '#D6EFEE',
+
         orange500: '#E59766',
-        orange100: '#F0EFED'
+
       },
       fontFamily: {
         sans: ['Rubik', 'sans-serif'],

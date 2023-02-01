@@ -3,7 +3,7 @@
 @tailwind utilities;
 @layer base {
 body {
-    @apply text-[16px] font-sans leading-[150%] text-gray900 dark:text-orange100 scroll-smooth
+    @apply text-[16px] font-sans leading-[150%] text-gray900 dark:text-gray100 scroll-smooth
 }
 
 
@@ -91,6 +91,10 @@ h5 {
 
     .decorate-list ul {
         @apply list-disc list-inside
+    }
+
+    .icon-micro-interactions {
+        @apply hover:text-green200 focus:outline-none active:text-green300
     }
 }
 
