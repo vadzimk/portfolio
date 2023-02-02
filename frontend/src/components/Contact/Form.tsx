@@ -8,9 +8,11 @@ export interface IFormValues {
     "email": string;
 }
 
-const Arrow = <svg width="14" height="22" fill="none" className="text-secondary1 fill-current scale-[.80]">
+const Arrow = ({addClassName}) => (
+    <svg width="14" height="22" fill="none" className={`${addClassName} fill-current scale-[.80]`}>
     <path d="M9.37 10.84.333 19.879l1.917 1.918L13.296 10.75 2.75.204.742 2.212l8.628 8.629Z"/>
 </svg>
+)
 
 export default function Form({onSubmit}) {
     const methods = useForm<IFormValues>();
@@ -45,17 +47,16 @@ export default function Form({onSubmit}) {
                             }}/>
                     </div>
                     <button type="submit"
-                            className="w-full font-serif text-xl text-center rounded px-5 py-2.5
-                                bg-gradient-to-tr from-accent1/30 via-accent1/30 to-primary2
-                                hover:from-accent1/40 hover:via-accent1/40 hover:to-primary2
-                                hover:shadow-md hover:shadow-primary2
+                            className="w-full font-sans uppercase font-medium text-gray700 dark:text-gray100 text-xl text-center rounded px-5 py-2.5
+                                bg-green200 dark:bg-green300
+                                hover:shadow-md hover:shadow-gray300 dark:hover:shadow-gray800
                                 focus:shadow-inner
                                 focus:brightness-[.95] flex justify-center gap-2
                                 "
                     >
                         <div>Send</div>
                         <div className="flex flex-col justify-center items-center">
-                            {Arrow}
+                            <Arrow addClassName="text-gray700 dark:text-gray100"/>
                         </div>
                     </button>
                 </div>

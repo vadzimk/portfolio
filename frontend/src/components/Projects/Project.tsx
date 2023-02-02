@@ -26,10 +26,12 @@ export default function Project({project}) {
 ${priority % 2 === 0 ? 'hover:bg-[#EEECFC]/50 focus:bg-[#EEECFC]' : 'hover:bg-[#CFF7EF]/50 focus:bg-[#CFF7EF]'}`
     return (
         <div
-            className="bg-gray050 dark:bg-gray500 flex flex-col sm:flex-none sm:grid sm:grid-cols-2  sm:max-w-screen-desk sm:mx-auto"
+            className="bg-gray050 dark:bg-gray500 flex flex-col sm:flex-none sm:grid sm:grid-cols-2  sm:max-w-screen-desk sm:mx-auto
+            shadow-[0_25px_50px_-12px_rgba(0,0,0,0.08)]
+            "
             key={project.id}>
             {/*image section*/}
-            <div className={`shadow-[0_25px_50px_-12px_rgba(0,0,0,0.08)] aspect-[1.34] max-w-[648px] flex items-end justify-end bg-gray200 
+            <div className={` aspect-[1.34] max-w-[648px] flex items-end justify-end bg-gray200 
             ${priority % 2 === 0
                 ? 'sm:col-start-2 sm:ro w-start-1 sm:col-span-1 sm:justify-start'
                 : 'sm:justify-end'}`}>
