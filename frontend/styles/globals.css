@@ -3,7 +3,7 @@
 @tailwind utilities;
 @layer base {
     body {
-        @apply text-[16px] font-sans leading-[150%] text-gray900 dark:text-gray100 scroll-smooth bg-gray100 dark:bg-gray800
+        @apply text-[16px] font-light font-sans leading-[150%] text-gray900 dark:text-gray100 scroll-smooth bg-gray100 dark:bg-gray800
     }
 
     h2, h3, h4, h5 {
