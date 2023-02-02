@@ -42,33 +42,32 @@ export default function Home({headingHtml, avatar, technologies, projects}) {
             </Head>
 
             <main>
-                <div className="h-[calc(100vh)] bg-gray100cold relative overflow-hidden">
-                    <Image
-                        className="opacity-50 absolute left-[calc(35vw)] -top-[378px] md:translate-y-[198px] min-w-[605px] "
-                        src={Triangle} alt=""/>
-                    <div className="h-[calc(100vh)] max-w-screen-desk mx-auto flex flex-col"> {/*bg-green-100*/}
+                <div className="relative overflow-hidden
+                bg-[url('/Dongdaemun-lg.png')] dark:bg-[url('/Dongdaemun-lg-dk.png')]
+                bg-no-repeat bg:auto sm:bg-cover bg-center
+                ">
+                    <div className="h-[calc(100vh)] max-h-[900px] max-w-screen-desk mx-auto flex flex-col"> {/*bg-green-100*/}
                         <div className="z-20">
                             <Header/>
                         </div>
-                        <div className="flex flex-col justify-center grow ">
+                        <div className="flex flex-col justify-center grow">
                             <div
-                                className="flex flex-col md:flex-row md:justify-between  relative mx-4"> {/*Hero message, avatar, deco-square*/}
-                                <section className="flex flex-col justify-end">
-                                    <div className="z-10"
+                                className="flex flex-col md:flex-row md:justify-between relative items-center sm:mx-4"> {/*Hero message, avatar*/}
+                                <section
+                                    className="flex flex-col justify-end max-w-sm sm:max-w-lg bg-gray800/30 md:bg-transparent">
+                                    <div className="z-10 text-gray100 p-4"
                                          dangerouslySetInnerHTML={{__html: headingHtml}}
                                     />
                                 </section>
                                 <div className="shrink-0 flex md:flex-col justify-end z-10">
-                                    {avatar?.data && <Image
-                                        className="w-[200px] md:w-[300px] rounded-full shadow-[2px_4px_10px_-2px_rgba(0,0,0,0.05)]"
-                                        src={avatar.data.attributes?.url}
-                                        alt={avatar.data.attributes.alternativeText}
-                                        width={avatar.data.attributes.width}
-                                        height={avatar.data.attributes.height}
-                                    />}
+                                    {/*{avatar?.data && <Image*/}
+                                    {/*    className="w-[200px] md:w-[300px] rounded-full shadow-[2px_4px_10px_-2px_rgba(0,0,0,0.05)]"*/}
+                                    {/*    src={avatar.data.attributes?.url}*/}
+                                    {/*    alt={avatar.data.attributes.alternativeText}*/}
+                                    {/*    width={avatar.data.attributes.width}*/}
+                                    {/*    height={avatar.data.attributes.height}*/}
+                                    {/*/>}*/}
                                 </div>
-                                <Image src={Square} alt=""
-                                       className=" opacity-50 absolute min-w-[813px] -left-[calc(813px-216px)] md:-left-[calc(813px-216px)] lg:-left-[calc(813px-102px)] -bottom-[calc(792px-417px)] md:-bottom-[calc(792px-121px)]"/>
                             </div>
                         </div>
 
@@ -79,7 +78,7 @@ export default function Home({headingHtml, avatar, technologies, projects}) {
                 <Technologies technologies={technologies}/>
                 <Projects projects={projects}/>
             </main>
-            <div className="min-h-[calc(100vh)] bg-gray100cold relative">
+            <div className="min-h-[calc(100vh)] max-h-[900px] bg-gray100cold relative">
                 <Contact/>
                 <Footer/>
             </div>

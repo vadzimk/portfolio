@@ -24,7 +24,7 @@ export default function Header() {
 
     const modeButton = (
         <button onClick={() => setTheme(theme === 'dark' ? 'light' : 'dark')}>
-            <div className="sm:p-0 sm:flex sm:flex-col sm:gap-1 sm:justify-center sm:ml-4
+            <div className="sm:p-0 sm:flex sm:flex-col sm:gap-1 sm:justify-center sm:ml-16
                    icon-micro-interactions">
                 {theme === 'dark' ? sunIcon : moonIcon}
             </div>
@@ -52,10 +52,10 @@ export default function Header() {
                                 onClick={() => setIsVisible(!isVisible)}
                                 className="block text-gray100 icon-micro-interactions">
                             <svg width="40" height="40" viewBox="0 0 32 32" className="w-8 h-8 fill-current">
-                                {!isVisible ? <path fill-rule="evenodd" clip-rule="evenodd"
+                                {!isVisible ? <path fillRule="evenodd" clipRule="evenodd"
                                                     d="M0 0H32V4H0V0ZM0 14H32V18H0V14ZM32 28H0V32H32V28Z"
                                     />
-                                    : <path fill-rule="evenodd" clip-rule="evenodd"
+                                    : <path fillRule="evenodd" clipRule="evenodd"
                                             d="M12.9623 15.9117L0 28.8275L2.89314 31.7103L15.8555 18.7945L29.1085 32L32.0017 29.1172L18.7486 15.9117L31.8245 2.88275L28.9314 0L15.8555 13.029L3.07031 0.289698L0.177176 3.17245L12.9623 15.9117Z"
                                     />}
                             </svg>
@@ -69,7 +69,7 @@ export default function Header() {
                     {
                         navlinks.map(item => (
                             <div onClick={() => setIsVisible(false)}
-                                 className="px-2 py-4 sm:p-0 sm:flex sm:flex-col sm:gap-1 sm:justify-center sm:ml-4
+                                 className="px-2 py-4 sm:p-0 sm:flex sm:flex-col sm:gap-1 sm:justify-center sm:ml-16
                                   dark:odd:bg-gray800/90 odd:bg-gray100/90
                                   dark:even:bg-gray700/90 even:bg-gray050/90
                                   dark:sm:even:bg-transparent sm:even:bg-transparent

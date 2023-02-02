@@ -15,8 +15,9 @@ module.exports = {
         secondary2: '#F2E9FE',
         accent1: '#A5FFED',
 
-        gray900: '#0F1011', // new
-        gray800: '#3E4346', // new
+        gray900: '#0F1011',
+        gray800: '#3E4346',
+        gray850: '#4A4B4B',
         gray700: '#52575B',
         gray600: '#5B656E',
         gray500: '#5B656F',
