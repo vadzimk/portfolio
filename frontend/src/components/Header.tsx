@@ -34,9 +34,9 @@ export default function Header() {
     return (
         <header ref={ref}
                 className="fixed top-0 left-0 w-full sm:h-[73px]
-                bg-gradient-to-t from-gray500/90 to-gray500/100 backdrop-blur-[2px]
+                bg-gradient-to-t from-gray300/90 to-gray300/100 backdrop-blur-[2px]
                 text-gray100
-                dark:from-gray700/90 dark:to-gray700/100
+                dark:from-gray400/90 dark:to-gray400/100
                 sm:flex sm:justify-between border-none shadow-[0px_0px_8px_1px_rgba(0,0,0,0.1)]">
             <div className="max-w-screen-desk sm:px-4 w-full mx-auto flex flex-col justify-between sm:flex-row">
                 <div className="px-4 py-4 sm:p-0 flex justify-between w-full">

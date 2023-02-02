@@ -46,7 +46,7 @@ export default function Home({headingHtml, avatar, technologies, projects}) {
                 bg-[url('/Dongdaemun-lg.png')] dark:bg-[url('/Dongdaemun-lg-dk.png')]
                 bg-no-repeat bg:auto sm:bg-cover bg-center
                 ">
-                    <div className="h-[calc(100vh)] max-h-[900px] max-w-screen-desk mx-auto flex flex-col"> {/*bg-green-100*/}
+                    <div className="screen-height max-w-screen-desk mx-auto flex flex-col"> {/*bg-green-100*/}
                         <div className="z-20">
                             <Header/>
                         </div>
@@ -78,7 +78,7 @@ export default function Home({headingHtml, avatar, technologies, projects}) {
                 <Technologies technologies={technologies}/>
                 <Projects projects={projects}/>
             </main>
-            <div className="min-h-[calc(100vh)] max-h-[900px] bg-gray100cold relative">
+            <div className="screen-height bg-gray100cold relative">
                 <Contact/>
                 <Footer/>
             </div>
