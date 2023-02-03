@@ -110,7 +110,7 @@
         clip-path: polygon(0% 0%, 99.9% 0%, 99.9% 120%, 0% 120%);
     }
     .screen-height {
-        @apply min-h-[calc(100vh)] max-h-[900px]
+        @apply min-h-[calc(100vh)] max-h-[1100px]
     }
 }
 

@@ -73,10 +73,10 @@ export default function Home({headingHtml, avatar, technologies, projects}) {
 
                     </div>
                 </div>
-
-
-                <Technologies technologies={technologies}/>
-                <Projects projects={projects}/>
+                <div className="bg-gray050 dark:bg-gray850">
+                    <Technologies technologies={technologies}/>
+                    <Projects projects={projects}/>
+                </div>
             </main>
             <div className="screen-height bg-gray050 dark:bg-gray500 relative">
                 <Contact/>

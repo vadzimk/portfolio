@@ -4,12 +4,7 @@ import Category from '@/components/Technologies/Category';
 export default function Technologies({technologies}) {
     return (
         <section id="technologies"
-             className="relative min-h-[calc(100vh)]
-             {/*bg-[url('/bg04.png')]*/}
-             {/*dark:bg-[url('/bg04-30opac.png')]*/}
-             bg-gray050
-             dark:bg-gray850
-             ">
+                 className="relative min-h-[calc(100vh)]">
             <div className="section-container">
                 <h2>Technologies used</h2>
                 <>
@@ -19,7 +14,7 @@ export default function Technologies({technologies}) {
                             <Category
                                 key={categ.id}
                                 categ={categ}/>
-                            )}
+                        )}
                 </>
             </div>
         </section>
