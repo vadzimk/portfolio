@@ -26,11 +26,13 @@ export default function TextInput ({type, label, name, options, className}: Inpu
                     id={`input_${name}`}
                     aria-describedby="filled_error_help"
                     placeholder=" "
-                    className={`block px-3 pb-2.5 pt-5 w-full h-full bg-white
+                    className={`block px-3 pb-2.5 pt-5 w-full h-full 
+                    bg-white dark:bg-gray700
                     border border-slate-100 box-border appearance-none 
+                    dark:border-gray700
                     shadow-[inset_1px_2px_4px_rgba(0,0,0,0.1)]
                     focus:outline-none focus:ring-0 peer 
-                    ${errors[name] ? 'border-secondary1 border-b-2' : ''}
+                    ${errors[name] ? 'border-b-orange500 dark:border-b-orange500 border-b-2' : ''}
                     overflow-scroll resize-none
                     `}
                 />
@@ -40,7 +42,7 @@ export default function TextInput ({type, label, name, options, className}: Inpu
                 </label>
             </div>
             <div id="filled_error_help"
-                 className={`mt-0.5 text-xs text-[#AA72E2FF] absolute ${errors[name]?.type === 'required'} '' ? 'hidden'`}
+                 className={`mt-0.5 text-xs text-orange500 absolute ${errors[name]?.type === 'required'} '' ? 'hidden'`}
             >
                 {errors[name]?.message as string}
             </div>

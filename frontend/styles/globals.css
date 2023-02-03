@@ -1,8 +1,47 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-
 @layer base {
+    body {
+        @apply text-[16px] font-light font-sans leading-[150%] text-gray900 dark:text-gray100 scroll-smooth bg-gray100 dark:bg-gray800
+    }
+
+    h2, h3, h4, h5 {
+        @apply font-serif leading-normal
+    }
+
+    h2 {
+        @apply font-light
+    }
+
+    h3, h4, h5 {
+        @apply font-bold
+    }
+
+    h1 {
+        @apply font-light text-2xl sm:text-4xl font-sans leading-[150%] md:leading-[150%] lg:leading-[150%] xl:leading-[150%] 2xl:leading-[150%]
+    }
+
+    /*h1 {*/
+    /*    @apply text-5xl md:text-7xl*/
+    /*}*/
+    h2 {
+        @apply text-3xl
+    }
+
+    h3 {
+        @apply text-2xl
+    }
+
+    h4 {
+        @apply text-xl
+    }
+
+    h5 {
+        @apply text-lg
+    }
+
+
     @font-face {
         font-family: "Hahmlet";
         font-style: normal;
@@ -19,81 +58,59 @@
         font-display: optional;
         src: url(/fonts/Rubik/Rubik-VariableFont_wght.ttf);
     }
+    .accent-text {
+        @apply font-serif font-extralight text-xl
+    }
 }
 
-html {
-    @apply text-[16px] font-sans leading-[150%] text-gray900 scroll-smooth
+@layer components {
+
+
+    /*.hero-text{*/
+    /*    @apply font-bold text-2xl sm:text-3xl md:text-4xl  font-sans leading-[150%] md:leading-[150%] lg:leading-[150%] xl:leading-[150%] 2xl:leading-[150%]*/
+    /*}*/
+    .nav-text {
+        @apply font-light uppercase inline-block hover:bg-gradient-to-r from-accent1 to-accent1 hover:bg-bottom hover:bg-[length:8px_6px] hover:bg-repeat-x
+    }
+
+
+    .section-container {
+        @apply px-4 pt-24 sm:max-w-screen-desk sm:mx-auto
+    }
+
+    .project-gradient-green {
+        @apply bg-gradient-to-b from-[#CFF7EF]/50 via-[#D8F2F9]/50 to-[#DEF0FD]/50
+    }
+
+    .project-gradient-violet {
+        @apply bg-gradient-to-b from-[#EEECFC]/50 via-[#E1EEFD]/50 to-[#DEF0FD]/50
+    }
+
+    .project-deco-violet {
+        @apply bg-gradient-to-r from-[#C7E5FC] to-[#C8C0FF]
+    }
+
+    .project-deco-green {
+        @apply bg-gradient-to-r from-[#B0DDFF] to-[#A5FFED]
+    }
+
+    .decorate-list ul {
+        @apply list-disc list-inside
+    }
+
+    .icon-micro-interactions {
+        @apply hover:text-green200 focus:outline-none active:text-green300
+    }
 }
 
-
-h2, h3, h4, h5 {
-    @apply font-serif font-bold leading-normal
-}
-
-h1 {
-    @apply font-bold text-2xl sm:text-3xl font-sans leading-[150%] md:leading-[150%] lg:leading-[150%] xl:leading-[150%] 2xl:leading-[150%]
-}
-
-/*h1 {*/
-/*    @apply text-5xl md:text-7xl*/
-/*}*/
-
-h2 {
-    @apply text-3xl
-}
-
-h3 {
-    @apply text-2xl
-}
-
-h4 {
-    @apply text-xl
-}
-
-h5 {
-    @apply text-lg
-}
-
-/*.hero-text{*/
-/*    @apply font-bold text-2xl sm:text-3xl md:text-4xl  font-sans leading-[150%] md:leading-[150%] lg:leading-[150%] xl:leading-[150%] 2xl:leading-[150%]*/
-/*}*/
-
-.nav-text {
-    @apply font-light uppercase inline-block hover:bg-gradient-to-r from-accent1 to-accent1 hover:bg-bottom hover:bg-[length:8px_6px] hover:bg-repeat-x
-}
-
-.accent-text {
-    @apply font-serif font-extralight text-xl
-}
-
-.section-container {
-    @apply px-4 pt-24 sm:max-w-screen-desk sm:mx-auto
-}
-
-.project-gradient-green {
-    @apply bg-gradient-to-b from-[#CFF7EF]/50 via-[#D8F2F9]/50 to-[#DEF0FD]/50
-}
-
-.project-gradient-violet {
-    @apply bg-gradient-to-b from-[#EEECFC]/50 via-[#E1EEFD]/50 to-[#DEF0FD]/50
-}
-
-.project-deco-violet {
-    @apply bg-gradient-to-r from-[#C7E5FC] to-[#C8C0FF]
-}
-
-.project-deco-green {
-    @apply bg-gradient-to-r from-[#B0DDFF] to-[#A5FFED]
-}
-
-.decorate-list ul {
-    @apply list-disc list-inside
-}
 
 /*https://stackoverflow.com/questions/5460129/how-to-create-a-drop-shadow-only-on-one-side-of-an-element*/
 @layer utilities {
     .clip-path {
         clip-path: polygon(0% 0%, 99.9% 0%, 99.9% 120%, 0% 120%);
+    }
+    .screen-height {
+        @apply min-h-[calc(100vh)] max-h-[1100px]
     }
 }
 

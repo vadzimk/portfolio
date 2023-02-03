@@ -8,7 +8,7 @@ export default function Projects({projects}) {
             <div className="section-container">
                 <h2>Projects</h2>
             </div>
-                <ul>
+                <ul className="pt-28 pb-28 flex flex-col gap-28">
                     {projects?.data
                         ?.sort((a, b) => a.attributes.Priority - b.attributes.Priority)
                         .map(project =>
