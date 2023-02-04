@@ -27,9 +27,9 @@ export default function Header() {
 
     const modeButton = (
         <button onClick={() => setTheme(theme === 'dark' ? 'light' : 'dark')}>
-            <div className="sm:p-0 sm:flex sm:flex-col sm:gap-1 sm:justify-center sm:ml-16
+            <div className="sm:p-0 sm:flex sm:flex-col sm:gap-1 sm:justify-center sm:ml-16 w-[24px] h-[24px]
                    icon-micro-interactions">
-                {theme === 'dark' ? sunIcon : moonIcon}
+                {loaded && (theme === 'dark' ? sunIcon : moonIcon)}
             </div>
         </button>
     )
@@ -49,8 +49,7 @@ export default function Header() {
                     </Link>
                     <div className="sm:hidden flex flex-row justify-between gap-x-10">
                         {/*Moon or Sun button*/}
-                        {loaded &&
-                          <div className="flex flex-col justify-center">{modeButton}</div>}
+                          <div className="flex flex-col justify-center">{modeButton}</div>
                         {/*hamburger*/}
                         <button type="button"
                                 onClick={() => setIsVisible(!isVisible)}
@@ -89,8 +88,7 @@ export default function Header() {
                             </div>
                         ))}
                     {/*Moon or Sun button*/}
-                    {loaded &&
-                      <div className="hidden sm:flex">{modeButton}</div>}
+                      <div className="hidden sm:flex">{modeButton}</div>
                 </nav>
 
             </div>
