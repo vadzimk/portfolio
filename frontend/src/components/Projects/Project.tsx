@@ -1,6 +1,7 @@
 import Image from 'next/image';
 import {mdToHtml} from '@/utils/mdToHtml';
-import {useEffect, useState} from 'react';
+import {useEffect, useState, useRef} from 'react';
+
 // https://jakearchibald.github.io/svgomg/
 const LinkSvg = ({addClassName}) => <svg width="36" height="36" fill="none" className={`${addClassName} fill-current`}>
     <g clipPath="url(#a)">
@@ -25,26 +26,44 @@ export default function Project({project}) {
     const priority = project.attributes.Priority
     const linkStyle = `block shadow-md focus:shadow-inner hover:shadow-lg`
     const headerTextColorClass = "text-gray-700 dark:text-gray100"
+
     return (
         <div
-            className="bg-gray050 dark:bg-gray500 flex flex-col sm:flex-none sm:grid sm:grid-cols-2  sm:max-w-screen-desk sm:mx-auto
+            className="bg-gray050 dark:bg-gray500 flex flex-col sm:flex-none sm:grid sm:grid-cols-2
+            sm:max-w-screen-desk sm:mx-auto
             shadow-[0_25px_50px_-12px_rgba(0,0,0,0.08)]
             "
             key={project.id}>
             {/*image section*/}
-            <div className={` aspect-[1.34] max-w-[648px] flex items-end justify-end bg-gray200 
+            <div className={`bg-gray200 flex flex-col justify-center
             ${priority % 2 === 0
-                ? 'sm:col-start-2 sm:ro w-start-1 sm:col-span-1 sm:justify-start'
-                : 'sm:justify-end'}`}>
-                <div className="h-[90%] aspect-[1.34] saturate-[30%] hover:saturate-100">
-                    <div className="relative h-full w-full">
-                        <Image fill
-                               style={{objectFit: "contain", objectPosition: "right bottom"}}
-                               alt={`Project ${project.attributes.Title} image`}
-                               src={`${project.attributes.Image.data?.attributes.formats?.small?.url || project.attributes.Image.data?.attributes.url}`}
-                            // width={project.attributes.Image.data.attributes.formats.small.width}
-                            // height={project.attributes.Image.data.attributes.formats.small.height}
-                        />
+                ? 'sm:col-start-2 sm:row-start-1 sm:col-span-1'
+                : ''}
+            `}>
+                <div
+                    className="swiper-container sm:aspect-[1.34] max-w-[648px] flex flex-col justify-between">
+                    <div className="swiper-pagination w-full h-10 bg-red-600"></div>
+                    <div className={`sm:flex 
+                    md:h-[90%]  
+                    h-full
+                        ${priority % 2 === 0
+                        ? 'sm:justify-start'
+                        : 'sm:justify-end'}`}>
+                        <div className="h-full aspect-[1.34]  saturate-[30%] hover:saturate-100">
+                            <div className="relative h-full w-full">
+                                <div className="swiper-wrapper">
+                                    {project.attributes.Image.data?.map(d => (
+                                        <div className="swiper-slide" key={d.id}>
+                                            <Image fill
+                                                   style={{objectFit: "contain", objectPosition: "right bottom"}}
+                                                   alt={`Project ${project.attributes.Title} image`}
+                                                   src={`${d.attributes.formats?.small?.url || d.attributes.url}`}
+                                            />
+                                        </div>)
+                                    )}
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -53,7 +72,7 @@ export default function Project({project}) {
             ${priority % 2 === 0 ? 'sm:col-start-1 sm:row-start-1 sm:col-span-1' : ''}
             `}>
                 {/*description*/}
-                <div className="py-14 px-12 max-w-[648px]">
+                <div className="py-7 px-6 md:py-14 md:px-12 max-w-[648px]">
                     <div className="flex justify-between">
                         <div className="flex flex-col justify-center">
                             <h3 className="lowercase text-gray-700 dark:text-gray100">{project.attributes.Title}</h3>
@@ -79,8 +98,8 @@ export default function Project({project}) {
                          dangerouslySetInnerHTML={{__html: project.attributes.Description}}
                     />
                 </div>
-
             </div>
+
         </div>
     )
 }
