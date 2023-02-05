@@ -48,7 +48,7 @@ export function DescriptionSection({project}){
                           </a>}
                     </div>
                 </div>
-                <div className="pt-3 decorate-list"
+                <div className="pt-3 decorate-list min-h-[200px]"
                      dangerouslySetInnerHTML={{__html: project.attributes.Description}}
                 />
             </div>

@@ -13,7 +13,7 @@ export default function Project({project}) {
             ">
             <ImageSection
                 project={project}
-                // rootClasses={addRootStyles}
+                rootClasses={addRootStyles} // optional, if not provided chess order will be defaulted to column order
             />
             <DescriptionSection project={project}/>
         </div>
