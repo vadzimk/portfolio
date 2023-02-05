@@ -12,7 +12,8 @@ import 'swiper/css/scrollbar';
 
 export default function ImageSection({project, rootClasses = ""}) {
     const priority = project.attributes.Priority
-
+    const imageObjectPosition = Boolean(rootClasses) && priority % 2 === 0 ? "left bottom" : "right bottom"
+    console.log(priority, imageObjectPosition, rootClasses)
     return (
         <Swiper
             modules={[Navigation, Pagination, Keyboard, Autoplay]}
@@ -40,7 +41,7 @@ export default function ImageSection({project, rootClasses = ""}) {
                             <div className="h-full aspect-[1.34] saturate-[30%] hover:saturate-100">
                                 <div className="relative h-full w-full">
                                     <Image fill
-                                           style={{objectFit: "contain", objectPosition: "right bottom"}}
+                                           style={{objectFit: "contain", objectPosition: imageObjectPosition}}
                                            alt={`Project ${project.attributes.Title} image`}
                                            src={`${imageDatum.attributes.formats?.small?.url || imageDatum.attributes.url}`}
                                     />
