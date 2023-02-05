@@ -21,15 +21,12 @@ const LinkGithubThin = ({addClassName}) => <svg width="36" height="36" fill="non
 
 
 export function DescriptionSection({project}){
-    const priority = project.attributes.Priority
     const linkStyle = `block shadow-md focus:shadow-inner hover:shadow-lg`
     const headerTextColorClass = "text-gray-700 dark:text-gray100"
     return (
-        <div className={`flex flex-col justify-start sm:justify-between
-            ${priority % 2 === 0 ? 'sm:col-start-1 sm:row-start-1 sm:col-span-1' : ''}
-            `}>
+        <div className={`flex flex-col justify-start sm:justify-between`}>
             {/*description*/}
-            <div className="py-7 px-6 md:py-14 md:px-12 max-w-[648px]">
+            <div className="py-7 md:py-14 px-6 md:px-12 max-w-[648px]">
                 <div className="flex justify-between">
                     <div className="flex flex-col justify-center">
                         <h3 className="lowercase text-gray-700 dark:text-gray100">{project.attributes.Title}</h3>

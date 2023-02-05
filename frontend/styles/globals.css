@@ -101,7 +101,13 @@
     .icon-micro-interactions {
         @apply hover:text-green200 focus:outline-none active:text-green300
     }
+
+    :root{
+       --swiper-pagination-color: #A5FFED;
+       --swiper-navigation-color: #A5FFED;
+    }
 }
+
 
 
 /*https://stackoverflow.com/questions/5460129/how-to-create-a-drop-shadow-only-on-one-side-of-an-element*/

@@ -2,7 +2,7 @@
 
 const nextConfig = {
   output: 'standalone',
-  reactStrictMode: true,
+  reactStrictMode: false, // Swiper with React 18 causes TypeError: Cannot read properties of undefined [false value fixes this error]
   swcMinify: true,
   typescript:{
     ignoreBuildErrors:true,
